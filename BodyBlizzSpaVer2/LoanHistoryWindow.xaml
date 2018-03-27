@@ -1,0 +1,26 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.LoanHistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="Loan History" Height="230.667" Width="456" Loaded="MetroWindow_Loaded" WindowTitleBrush="#e83f8c" Background="#e83f8c" ResizeMode="NoResize" FontFamily="Rockwell" FontSize="16" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid x:Name="dgvLoanHistory" HorizontalAlignment="Left" Height="169" Margin="10,21,0,0" VerticalAlignment="Top" Width="428" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="DATE" Binding="{Binding DatePaid}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Therapist" Binding="{Binding Therapist}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Amount Paid" Binding="{Binding LoanAmount}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Controls:MetroWindow>

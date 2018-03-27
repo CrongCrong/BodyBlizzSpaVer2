@@ -1,0 +1,39 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.LoyaltyCardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="LOYALTY CARD" Height="523" Width="736" Loaded="MetroWindow_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#009b97" WindowTitleBrush="#009b97" FontFamily="Trajan Pro">
+    <Grid>
+        <DataGrid x:Name="dgvLoyaltyCard" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="333" Width="710" AutoGenerateColumns="False" FontFamily="Rockwell" FontSize="15">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Card Name" Binding="{Binding SerialNumber}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Assigned To:" Binding="{Binding ClientName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="10,387,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD RECORD" Click="btnAdd_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739" FontSize="16" FontFamily="Rockwell">
+
+        </Button>
+        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="100,387,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="EDIT RECORD" Click="btnEdit_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739" FontSize="16" FontFamily="Rockwell">
+
+        </Button>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="280,387,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="CLOSE WINDOW"  BorderThickness="1" BorderBrush="#383838" Background="#b7b739" Click="btnClose_Click" FontSize="16" FontFamily="Rockwell">
+
+        </Button>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="190,387,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="DELETE RECORD" Click="btnDelete_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739" FontSize="16" FontFamily="Rockwell">
+
+        </Button>
+    </Grid>
+</Controls:MetroWindow>

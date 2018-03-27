@@ -1,0 +1,35 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.ConsumableUpdates"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="UPDATE CONSUMABLE" Height="310.15" Width="493.985" Loaded="MetroWindow_Loaded" ResizeMode="NoResize" 
+                      WindowStartupLocation="CenterScreen" FontSize="16" Background="#b7b739" FontFamily="Rockwell" WindowTitleBrush="#b7b739">
+    <Grid>
+        <Label x:Name="label" Content="Consumable:" HorizontalAlignment="Left" Margin="74,41,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbConsumables" HorizontalAlignment="Left" Margin="187,41,0,0" VerticalAlignment="Top" Width="207" Height="29" ItemsSource="{Binding ConsumableModel}" DisplayMemberPath="Description" SelectedValuePath="ID" FontSize="16"/>
+        <Label x:Name="label1" Content="Quantity:" HorizontalAlignment="Left" Margin="104,75,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtQty" HorizontalAlignment="Left" Height="29" Margin="187,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" FontSize="16"/>
+        <Label x:Name="label2" Content="Used:" HorizontalAlignment="Left" Margin="130,109,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtUsed" HorizontalAlignment="Left" Height="29" Margin="187,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" Text="0" FontSize="16"/>
+        <Label x:Name="label3" Content="Left:" HorizontalAlignment="Left" Margin="140,143,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblLeft" HorizontalAlignment="Left" Margin="187,143,0,0" VerticalAlignment="Top" Width="207" Height="29"/>
+
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="298,186,0,0" VerticalAlignment="Top" Width="85" 
+                Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="SAVE" Background="#009b97" BorderThickness="1" BorderBrush="Black" Click="btnSave_Click">
+
+        </Button>
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="298,186,0,0" VerticalAlignment="Top" Width="85" 
+                Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="UPDATE" Background="#009b97" BorderThickness="1" BorderBrush="Black" Click="btnUpdate_Click">
+
+        </Button>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="393,186,0,0" VerticalAlignment="Top" Width="85" 
+                Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="CLOSE WINDOW" Background="#009b97" BorderThickness="1" BorderBrush="Black" Click="btnClose_Click"/>
+        <Label x:Name="label4" Content="Date:" HorizontalAlignment="Left" Margin="133,7,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dateBought" HorizontalAlignment="Left" Margin="187,7,0,0" VerticalAlignment="Top" Height="29" Width="207" FontSize="16"/>
+
+    </Grid>
+</Controls:MetroWindow>

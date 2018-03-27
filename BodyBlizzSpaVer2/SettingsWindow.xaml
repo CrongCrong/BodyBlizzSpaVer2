@@ -1,0 +1,65 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="SETTINGS" Height="500" Width="767" ResizeMode="NoResize" FontFamily="Rockwell" 
+                      Loaded="MetroWindow_Loaded" WindowStartupLocation="CenterScreen" Background="#FF2A4D6E" WindowTitleBrush="#FF2A4D6E">
+    <Grid>
+        <Button x:Name="btnServiceMode" HorizontalAlignment="Left" Height="77" Margin="43,37,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnServiceMode_Click">
+            <Image Source="Images/flip-flops.png"/>
+        </Button>
+        <Label x:Name="label" Content="Service Mode" HorizontalAlignment="Left" Margin="26,119,0,0" VerticalAlignment="Top" Width="111" HorizontalContentAlignment="Center" FontSize="15" Foreground="White"/>
+
+        <Button x:Name="btnServiceType" HorizontalAlignment="Left" Height="77" Margin="252,37,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnServiceType_Click">
+            <Image Source="Images/service type.png"/>
+        </Button>
+        <Label x:Name="label1" Content="Service Type" HorizontalAlignment="Left" Margin="238,119,0,0" VerticalAlignment="Top" Width="111" HorizontalContentAlignment="Center" FontSize="15" Foreground="White"/>
+
+        <Button x:Name="btnCommission" HorizontalAlignment="Left" Height="77" Margin="449,37,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnCommission_Click" >
+            <Image Source="Images/piggy-bank.png"/>
+        </Button>
+        <Label x:Name="label2" Content="Commissions" HorizontalAlignment="Left" Margin="434,119,0,0" VerticalAlignment="Top" Width="111" HorizontalContentAlignment="Center" FontSize="15" Foreground="White"/>
+
+        <Button x:Name="btnDiscount" HorizontalAlignment="Left" Height="77" Margin="634,37,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnDiscount_Click" >
+            <Image Source="Images/percentage.png"/>
+        </Button>
+        <Label x:Name="label3" Content="Discounts" HorizontalAlignment="Left" Margin="615,119,0,0" VerticalAlignment="Top" Width="111" HorizontalContentAlignment="Center" FontSize="15" Foreground="White"/>
+
+        <Button x:Name="btnProducts" HorizontalAlignment="Left" Height="77" Margin="43,179,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnProducts_Click" >
+            <Image Source="Images/perfume.png"/>
+        </Button>
+        <Label x:Name="label4" Content="Products" HorizontalAlignment="Left" Margin="26,261,0,0" VerticalAlignment="Top" Width="111" HorizontalContentAlignment="Center" FontSize="15" Foreground="White"/>
+
+        <Button x:Name="btnExpenses" HorizontalAlignment="Left" Height="77" Margin="252,179,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnExpenses_Click" >
+            <Image Source="Images/pillow.png"/>
+        </Button>
+        <Label x:Name="label5" Content="Expenses" HorizontalAlignment="Left" Margin="238,261,0,0" VerticalAlignment="Top" Width="111" HorizontalContentAlignment="Center" FontSize="15" Foreground="White"/>
+
+        <Button x:Name="btnLoyaltyCard" HorizontalAlignment="Left" Height="77" Margin="449,179,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnLoyaltyCard_Click">
+            <Image Source="Images/star.png"/>
+        </Button>
+        <Label x:Name="label6" Content="Loyalty" HorizontalAlignment="Left" Margin="434,261,0,0" VerticalAlignment="Top" Width="111" HorizontalContentAlignment="Center" FontSize="15" Foreground="White"/>
+
+        <Button x:Name="btnPromo" HorizontalAlignment="Left" Height="77" Margin="634,179,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnPromo_Click">
+            <Image Source="Images/massage.png"/>
+        </Button>
+        <Label x:Name="label7" Content="Promos" HorizontalAlignment="Left" Margin="615,261,0,0" VerticalAlignment="Top" Width="111" HorizontalContentAlignment="Center" FontSize="15" Foreground="White"/>
+        <Button x:Name="btnReports" HorizontalAlignment="Left" Height="77" Margin="43,333,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnReports_Click" >
+            <Image Source="Images/analytics.png"/>
+        </Button>
+        <Label x:Name="label8" Content="Reports" HorizontalAlignment="Left" Margin="26,415,0,0" VerticalAlignment="Top" Width="111" HorizontalContentAlignment="Center" FontSize="15" Foreground="White"/>
+
+        <Button x:Name="btnConsumables" HorizontalAlignment="Left" Height="77" Margin="252,333,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnConsumables_Click">
+            <Image Source="Images/drop.png"/>
+        </Button>
+        <Label x:Name="label9" Content="Consumables" HorizontalAlignment="Left" Margin="238,415,0,0" VerticalAlignment="Top" Width="111" HorizontalContentAlignment="Center" FontSize="15" Foreground="White"/>
+
+        <!-- <Button x:Name="btnPromoService" Content="  PROMO&#xa; SERVICE" HorizontalAlignment="Left" Height="77" Margin="449,316,0,0" VerticalAlignment="Top" Width="77" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnPromoService_Click">
+
+        </Button> -->
+    </Grid>
+</Controls:MetroWindow>

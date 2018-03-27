@@ -1,0 +1,24 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.LoansDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="LOANS" Height="315" Width="454" Loaded="MetroWindow_Loaded" WindowTitleBrush="#e83f8c" Background="#e83f8c" ResizeMode="NoResize" FontFamily="Rockwell" FontSize="16" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label x:Name="label" Content="Date:" HorizontalAlignment="Left" Margin="108,41,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dateLoan" HorizontalAlignment="Left" Margin="162,41,0,0" VerticalAlignment="Top" Height="29" FontSize="16" Width="235" Padding="1"/>
+        <Label x:Name="label1" Content="Therapist:" HorizontalAlignment="Left" Margin="73,75,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbTherapist" HorizontalAlignment="Left" Margin="162,75,0,0" VerticalAlignment="Top" Width="235" Height="29" ItemsSource="{Binding TherapistModel}" DisplayMemberPath="Description" SelectedValuePath="ID1" FontSize="16"/>
+        <Label x:Name="label2" Content="Loan Amount:" HorizontalAlignment="Left" Margin="46,109,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtLoanAmount" HorizontalAlignment="Left" Height="29" Margin="162,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" Padding="1" FontSize="16"/>
+
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="263,191,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="SAVE" Click="btnSave_Click" Background="#009b97" BorderThickness="1" BorderBrush="#009b97" FontFamily="Rockwell"/>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="353,191,0,0" VerticalAlignment="Top" Width="85" 
+                Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="CLOSE WINDOW" Click="btnClose_Click" Background="#009b97" BorderThickness="1" BorderBrush="#009b97" FontFamily="Rockwell"/>
+
+    </Grid>
+</Controls:MetroWindow>

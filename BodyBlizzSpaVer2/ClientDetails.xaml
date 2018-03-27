@@ -1,0 +1,122 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.ClientDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="CLIENT DETAILS" Height="737" Width="996"  FontFamily="Rockwell" 
+                      Loaded="MetroWindow_Loaded" ResizeMode="NoResize" Background="#b7b739" WindowStartupLocation="CenterScreen" WindowTitleBrush="#b7b739" FontSize="16">
+
+    <Grid>
+        <Label x:Name="lblDate" Content="Date:" HorizontalAlignment="Left" Margin="113,10,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="txtDate" HorizontalAlignment="Left" Height="32" Margin="172,10,0,0" TextWrapping="Wrap" Width="199" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="label1" Content="Serial Number:" HorizontalAlignment="Left" Margin="32,48,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="txtSerialNumber" HorizontalAlignment="Left" Height="31" Margin="172,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontSize="16" TabIndex="9" FontFamily="Rockwell"/>
+        <Label x:Name="label2" Content="C.O.D:" HorizontalAlignment="Left" Margin="100,85,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="txtCOD" HorizontalAlignment="Left" Height="32" Margin="172,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontSize="16" TabIndex="7" FontFamily="Rockwell"/>
+        <Label x:Name="label3" Content="CLIENT INFORMATION" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" FontSize="19"/>
+        <Label x:Name="label4" Content="First Name:" HorizontalAlignment="Left" Margin="49,157,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="txtFirstName" HorizontalAlignment="Left" Height="31" Margin="160,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontSize="16" FontFamily="Rockwell" TabIndex="1"/>
+        <Label x:Name="label5" Content="Last Name:" HorizontalAlignment="Left" Margin="54,192,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Height="31" Margin="160,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontSize="16" TabIndex="2" FontFamily="Rockwell"/>
+        <Label x:Name="label6" Content="Service Mode:" HorizontalAlignment="Left" Margin="25,264,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ComboBox x:Name="cmbServiceMode" HorizontalAlignment="Left" Margin="160,265,0,0" VerticalAlignment="Top" Width="199" ItemsSource="{Binding ServiceTypeModel}" DisplayMemberPath="ServiceType" SelectedValuePath="ID1" Height="31" FontSize="16" TabIndex="4" FontFamily="Rockwell"/>
+        <Label x:Name="label7" Content="Address:" HorizontalAlignment="Left" Margin="533,157,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="txtAddress" HorizontalAlignment="Left" Height="67" Margin="623,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="303" AcceptsReturn="True" FontSize="16" TabIndex="5" FontFamily="Rockwell"/>
+        <Label x:Name="label8" Content="Time In:" HorizontalAlignment="Left" Margin="558,47,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <xctk:DateTimeUpDown x:Name="timeInPicker" Format="ShortTime" Margin="640,41,0,0" Focusable="False" FontSize="16" HorizontalAlignment="Left" Width="104" Height="37" VerticalAlignment="Top" TabIndex="7"/>
+        <Label x:Name="label9" Content="Time Out:" HorizontalAlignment="Left" Margin="544,88,0,0" VerticalAlignment="Top" FontSize="18"/>
+
+        <xctk:DateTimeUpDown x:Name="timeOutPicker" Format="ShortTime" Margin="640,83,0,0" Focusable="False" FontSize="16" Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104" TabIndex="8"/>
+        <DataGrid x:Name="dgvServiceMade" HorizontalAlignment="Left" Margin="10,338,0,0" VerticalAlignment="Top" Height="175" Width="641" 
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="DateServiced" Binding="{Binding DateServiced}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="SERVICE TYPE" Binding="{Binding ServiceType}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="THERAPIST" Binding="{Binding Therapist}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="PRICE" Binding="{Binding Price}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="STAMP TO CARD" Binding="{Binding isSavedToCard}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="DISCOUNTED" Binding="{Binding Discounted}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Free 30Mins" Binding="{Binding FirstFree}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Free 1HR" Binding="{Binding SecondFree}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="dgvClientProduct" HorizontalAlignment="Left" Margin="671,338,0,0" VerticalAlignment="Top" Height="175" Width="309" 
+                  AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="PRODUCT" Binding="{Binding ProductName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="PRICE" Binding="{Binding ProductPrice}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="DISCOUNTED" Binding="{Binding isDiscounted}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnAdd" Content="   Add&#xa; Service" HorizontalAlignment="Left" Margin="10,518,0,0" VerticalAlignment="Top" Width="88" 
+                Height="88" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD SERVICE" Click="btnAdd_Click" BorderThickness="1" Background="#009b97" FontSize="15" BorderBrush="Black" TabIndex="11">
+
+        </Button>
+        <Button x:Name="btnAddProduct" Content="   Add&#xa;Product" HorizontalAlignment="Left" Margin="671,518,0,0" VerticalAlignment="Top" Width="88" Height="88" Style="{DynamicResource MetroCircleButtonStyle}" 
+                ToolTip="ADD SERVICE" Background="#009b97" BorderThickness="1" BorderBrush="Black" Click="btnAddProduct_Click" TabIndex="14">
+
+        </Button>
+        <Button x:Name="btnDeleteProduct" Content=" Delete&#xa;Product" HorizontalAlignment="Left" Margin="764,518,0,0" VerticalAlignment="Top" Width="88" Height="88" Style="{DynamicResource MetroCircleButtonStyle}" 
+                ToolTip="ADD SERVICE" Background="#009b97" BorderThickness="1" BorderBrush="Black" Click="btnDeleteProduct_Click" TabIndex="15" >
+
+        </Button>
+        <Button x:Name="btnEdit" Content="   Edit&#xa; Service"   HorizontalAlignment="Left" Margin="103,518,0,0" VerticalAlignment="Top" Width="88" Height="88" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="EDIT SERVICE" Click="btnEdit_Click" BorderThickness="1" Background="#009b97" BorderBrush="Black" FontSize="15" TabIndex="12">
+
+        </Button>
+
+        <Button x:Name="btnDelete" Content="  Delete&#xa; Service" HorizontalAlignment="Left" Margin="196,518,0,0" VerticalAlignment="Top" Width="88" Height="88" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="DELETE SERVICE" Click="btnDelete_Click" Background="#009b97" BorderThickness="1" BorderBrush="Black" FontSize="15" TabIndex="13" >
+
+        </Button>
+
+        <Button x:Name="btnSave" Content="  Save&#xa; Client" HorizontalAlignment="Left" Margin="895,613,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="SAVE RECORD" Click="btnSave_Click" Background="#009b97" BorderThickness="1" BorderBrush="Black" FontSize="16" TabIndex="16">
+
+        </Button>
+        <Label x:Name="label18" Content="SERVICES:" HorizontalAlignment="Left" Margin="10,302,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="label19" Content="PRODUCTS:" HorizontalAlignment="Left" Margin="671,302,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <CheckBox x:Name="chkAvailLoyalty" Content="Avail Card" HorizontalAlignment="Left" Margin="538,242,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Rockwell" Checked="chkAvailLoyalty_Checked" Unchecked="chkAvailLoyalty_Unchecked"/>
+        <ComboBox x:Name="cmbLoyaltycards" HorizontalAlignment="Left" Margin="656,237,0,0" VerticalAlignment="Top" Width="270" Height="31" ItemsSource="{Binding LoyaltyCardModel}" DisplayMemberPath="SerialNumber" SelectedValuePath="ID" FontSize="16" TabIndex="6" FontFamily="Rockwell"/>
+        <DatePicker x:Name="datePicker" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Height="32" Width="199" FontSize="16" FontFamily="Rockwell" 
+                    
+                    SelectedDateChanged="datePicker_SelectedDateChanged"/>
+
+        <Label x:Name="labe20" Content="Phone Number:" HorizontalAlignment="Left" Margin="15,228,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="txtPhoneNumber" HorizontalAlignment="Left" Height="31" Margin="160,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontSize="16" TabIndex="2" FontFamily="Rockwell"/>
+    </Grid>
+</Controls:MetroWindow>

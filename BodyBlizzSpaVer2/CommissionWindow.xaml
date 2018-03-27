@@ -1,0 +1,59 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.CommissionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="COMMISSION" Height="531" Width="743" Loaded="MetroWindow_Loaded" Background="#009b97" 
+                      ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowTitleBrush="#009b97" FontSize="16" FontFamily="Rockwell">
+    <Grid>
+        <DataGrid x:Name="dgvCommission" HorizontalAlignment="Left" Height="335" Margin="10,45,0,0" VerticalAlignment="Top" Width="717" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="SERVICE TYPE" Binding="{Binding ServiceType}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="COMMISSION" Binding="{Binding Commission}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                        <Grid Background="Transparent">
+                                            <ContentPresenter HorizontalAlignment="Center" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="10,385,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD RECORD" Click="btnAdd_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739">
+
+        </Button>
+
+        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="100,385,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="EDIT RECORD" Click="btnEdit_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739">
+           
+        </Button>
+
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="190,385,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="DELETE RECORD" Click="btnDelete_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739">
+
+        </Button>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="280,385,0,0" VerticalAlignment="Top" Width="84" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="CLOSE WINDOW"  BorderThickness="1" BorderBrush="#383838" Background="#b7b739" Click="btnClose_Click">
+
+        </Button>
+    </Grid>
+</Controls:MetroWindow>

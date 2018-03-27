@@ -1,0 +1,40 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.CashAdvanceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="CASH ADVANCE" Height="616" Width="719" Loaded="MetroWindow_Loaded" 
+                      Background="#b7b739" FontFamily="Rockwell" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowTitleBrush="#b7b739" FontSize="16">
+    <Grid>
+        <Label x:Name="label" Content="Therapist:" HorizontalAlignment="Left" Margin="24,53,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbTherapist" HorizontalAlignment="Left" Margin="113,53,0,0" VerticalAlignment="Top" Width="232" FontSize="16" ItemsSource="{Binding TherapistModel}" DisplayMemberPath="Description" SelectedValuePath="ID1" />
+        <Label x:Name="label1" Content="Date:" HorizontalAlignment="Left" Margin="59,19,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dateCashAdvance" HorizontalAlignment="Left" Margin="113,19,0,0" VerticalAlignment="Top" FontSize="16" Width="232"/>
+        <Label x:Name="label2" Content="Cash:" HorizontalAlignment="Left" Margin="56,87,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCash" HorizontalAlignment="Left" Height="29" Margin="113,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" FontSize="16"/>
+
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="377,31,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD RECORD" Click="btnAdd_Click" BorderThickness="1" Background="#009b97" FontFamily="Rockwell">
+
+        </Button>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="10,447,0,0" VerticalAlignment="Top" Width="85" 
+                Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="DELETE RECORD" Background="#009b97" BorderThickness="1" BorderBrush="#009b97" Click="btnDelete_Click"/>
+        
+        <DataGrid x:Name="dgvCashAdvance" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Height="297" Width="693" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Therapist" Binding="{Binding Therapist}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Cash" Binding="{Binding Cash}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Controls:MetroWindow>

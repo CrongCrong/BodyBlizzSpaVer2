@@ -1,0 +1,59 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.AttendanceForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="ATTENDANCE" Height="491" Width="780" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
+                      Background="#009b97" FontFamily="Rockwell" Loaded="MetroWindow_Loaded" WindowTitleBrush="#009b97" FontSize="16">
+    <Grid>
+        <Label x:Name="label" Content="Search Date:" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dateFrom" HorizontalAlignment="Left" Margin="118,27,0,0" VerticalAlignment="Top" Width="232" Height="29" FontSize="16"/>
+        <Button x:Name="btnSearch" Content="search" HorizontalAlignment="Left" Margin="355,27,0,0" VerticalAlignment="Top" Width="122" Style="{DynamicResource SquareButtonStyle}" Click="btnSearch_Click" FontFamily="Rockwell" BorderThickness="1" Background="#b7b739" BorderBrush="Black"/>
+        <Label x:Name="label1" Content="Therapist:" HorizontalAlignment="Left" Margin="29,61,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbTherapist" HorizontalAlignment="Left" Margin="118,61,0,0" VerticalAlignment="Top" Width="232" ItemsSource="{Binding TherapistModel}" DisplayMemberPath="Description" SelectedValuePath="ID1" Height="29" FontSize="16"/>
+
+        <DataGrid x:Name="dgvAttendance" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Height="233" Width="426" AutoGenerateColumns="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="DATE" Binding="{Binding AttendanceDate}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="THERAPIST" Binding="{Binding Therapist}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="TIME IN" Binding="{Binding TimeIn}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="TIME OUT" Binding="{Binding TimeOut}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="date" Content="Label" HorizontalAlignment="Left" Margin="133,353,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <Label x:Name="time" Content="Time" HorizontalAlignment="Left" Margin="282,353,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <Button x:Name="btnTimeIn" HorizontalAlignment="Left" Margin="475,146,0,0" VerticalAlignment="Top" Width="72" Height="72" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnTimeIn_Click">
+            <Image  Source="Images/timeInOut.png"/>
+        </Button>
+        <Button x:Name="btnTimeOut" HorizontalAlignment="Left" Margin="651,150,0,0" VerticalAlignment="Top" Width="72" Height="72" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnTimeOut_Click">
+            <Image  Source="Images/timeInOut.png"/>
+        </Button>
+        <Label x:Name="label2" Content="TIME IN" HorizontalAlignment="Left" Margin="475,223,0,0" VerticalAlignment="Top" Width="72" HorizontalContentAlignment="Center" FontSize="17"/>
+        <Label x:Name="label3" Content="TIME OUT" HorizontalAlignment="Left" Margin="647,226,0,0" VerticalAlignment="Top" Width="83" HorizontalContentAlignment="Center" FontSize="15"/>
+        <CheckBox x:Name="chkManualIn" Content="Manual Time In" HorizontalAlignment="Left" Margin="441,250,0,0" VerticalAlignment="Top" Height="29" Width="146" Checked="chkManualIn_Checked" Unchecked="chkManualIn_Unchecked" FontSize="16"/>
+        <CheckBox x:Name="chkManualOut" Content="Manual Time Out" HorizontalAlignment="Left" Margin="618,254,0,0" VerticalAlignment="Top" Checked="chkManualOut_Checked" Unchecked="chkManualOut_Unchecked" FontSize="16"/>
+        <xctk:DateTimeUpDown x:Name="dateTimeIn" Format="ShortTime" Margin="441,284,0,129" Focusable="False" FontSize="16" HorizontalAlignment="Left" Width="146"/>
+        <xctk:DateTimeUpDown x:Name="dateTimeOut" Format="ShortTime" Margin="618,284,0,129" Focusable="False" FontSize="16" HorizontalAlignment="Left" Width="146"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="10,338,0,0" VerticalAlignment="Top" Width="85" 
+                Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="DELETE RECORD" Background="#b7b739" BorderThickness="1" BorderBrush="Black" Click="btnDelete_Click"/>
+        <DatePicker x:Name="dteAttendance" HorizontalAlignment="Left" Margin="441,100,0,0" VerticalAlignment="Top" Width="323" Height="41" FontSize="16"/>
+
+    </Grid>
+</Controls:MetroWindow>

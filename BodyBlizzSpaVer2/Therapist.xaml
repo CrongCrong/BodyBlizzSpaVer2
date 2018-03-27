@@ -1,0 +1,63 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.Therapist"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="Therapist" Height="531" Width="743" ResizeMode="NoResize" Background="#009b97" 
+                      Loaded="MetroWindow_Loaded" WindowStartupLocation="CenterScreen" WindowTitleBrush="#009b97" FontSize="16">
+    <Grid>
+        <DataGrid x:Name="dgvTherapist" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="333" Width="717" AutoGenerateColumns="False" FontFamily="Rockwell">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID1}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="FIRST NAME" Binding="{Binding FirstName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="LAST NAME" Binding="{Binding LastName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="WAGE" Binding="{Binding Wage}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD RECORD" Click="btnAdd_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838" FontFamily="Rockwell">
+
+        </Button>
+
+        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="100,393,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="EDIT RECORD" Click="btnEdit_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838" FontFamily="Rockwell">
+
+        </Button>
+
+        <Button x:Name="btnCompute" Content="Salary" HorizontalAlignment="Left" Margin="190,393,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="COMPUTE SALARY" Click="btnCompute_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838" FontFamily="Rockwell">
+
+        </Button>
+        <Button x:Name="btnCashAdvance" Content="    Cash &#xa; Advance" HorizontalAlignment="Left" Margin="280,393,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="CASH ADVANCE" BorderThickness="1" Background="#b7b739" BorderBrush="#383838" FontFamily="Rockwell" Click="btnCashAdvance_Click" FontSize="15">
+
+        </Button>
+        <Button x:Name="btnLoans" Content="Loans" HorizontalAlignment="Left" Margin="370,393,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="LOANS" BorderThickness="1" Background="#b7b739" BorderBrush="#383838" FontFamily="Rockwell" Click="btnLoans_Click">
+
+        </Button>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="460,393,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="DELETE RECORD" Click="btnDelete_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838" FontFamily="Rockwell">
+
+        </Button>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="550,393,0,0" VerticalAlignment="Top" Width="84" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="CLOSE WINDOW"  BorderThickness="1" Background="#b7b739" BorderBrush="#383838" Click="btnClose_Click" FontFamily="Rockwell">
+
+        </Button>
+    </Grid>
+</Controls:MetroWindow>

@@ -1,0 +1,34 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.DiscountDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="DISCOUNT DETAILS" Height="291.3" Width="474" Loaded="MetroWindow_Loaded" ResizeMode="NoResize" 
+                      WindowStartupLocation="CenterScreen" FontFamily="Rockwell" Background="#b7b739" WindowTitleBrush="#b7b739" FontSize="16">
+    <Grid>
+        <Label x:Name="label" Content="Discount Price:" HorizontalAlignment="Left" Margin="57,42,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDiscount" HorizontalAlignment="Left" Height="29" Margin="183,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" FontSize="16" PreviewTextInput="txtDiscount_PreviewTextInput" FontFamily="Rockwell"/>
+        <Label x:Name="label1" Content="%" HorizontalAlignment="Left" Margin="357,43,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Description:" HorizontalAlignment="Left" Margin="78,76,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="46" Margin="183,77,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="169" FontSize="16" FontFamily="Rockwell"/>
+
+        <Button x:Name="btnAdd" Content="Save" HorizontalAlignment="Left" Margin="283,167,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="SAVE" Click="btnAdd_Click" Background="#009b97" BorderThickness="1" BorderBrush="Black" >
+
+        </Button>
+
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="373,167,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="CLOSE WINDOW" Click="btnClose_Click" Background="#009b97" BorderThickness="1" BorderBrush="Black" >
+
+        </Button>
+
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="283,167,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="UPDATE" Click="btnUpdate_Click" Background="#009b97" BorderThickness="1" BorderBrush="Black" >
+
+        </Button>
+
+    </Grid>
+</Controls:MetroWindow>

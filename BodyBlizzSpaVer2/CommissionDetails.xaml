@@ -1,0 +1,33 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.CommissionDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="COMMISSION DETAILS" Height="271.3" Width="433" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+                      Loaded="MetroWindow_Loaded" Background="#b7b739" WindowTitleBrush="#b7b739" FontSize="16" FontFamily="Rockwell">
+    <Grid>
+        <Label x:Name="label" Content="Service Type:" HorizontalAlignment="Left" Margin="54,39,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbServiceType" HorizontalAlignment="Left" Margin="170,39,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding ServiceTypeModel}" DisplayMemberPath="Description" SelectedValuePath="ID1" Height="30" FontSize="16"/>
+        <Label x:Name="label1" Content="Commission:" HorizontalAlignment="Left" Margin="59,77,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCommission" HorizontalAlignment="Left" Height="31" Margin="170,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="16" PreviewTextInput="txtCommission_PreviewTextInput"/>
+
+        <Button x:Name="btnAdd" Content="Save" HorizontalAlignment="Left" Margin="242,147,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="SAVE" Click="btnAdd_Click" Background="#009b97" BorderThickness="1" BorderBrush="Black" >
+            
+        </Button>
+
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="332,147,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="CLOSE WINDOW" Click="btnClose_Click" Background="#009b97" BorderThickness="1" BorderBrush="Black" >
+
+        </Button>
+
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="242,147,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="UPDATE" Click="btnUpdate_Click" Background="#009b97" BorderThickness="1" BorderBrush="Black" >
+           
+        </Button>
+
+    </Grid>
+</Controls:MetroWindow>

@@ -1,0 +1,33 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.PromoServiceDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="PROMO SERVICE DETAILS" Height="522" Width="736" Loaded="MetroWindow_Loaded" Background="#b7b739" WindowTitleBrush="#b7b739" FontFamily="Trajan Pro" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" FontSize="16" Closing="MetroWindow_Closing">
+    <Grid>
+        <DataGrid x:Name="dgvPromoServices" HorizontalAlignment="Left" Margin="10,202,0,0" VerticalAlignment="Top" Height="229" Width="708" AutoGenerateColumns="False" FontSize="15" FontFamily="Rockwell">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Promo Name" Binding="{Binding PromoName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Service" Binding="{Binding ServiceName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Label x:Name="label" Content="Promo Name:" HorizontalAlignment="Left" Margin="30,16,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Rockwell"/>
+        <ComboBox x:Name="cmbPromos" HorizontalAlignment="Left" Margin="145,16,0,0" VerticalAlignment="Top" Width="222" FontSize="16" ItemsSource="{Binding PromoModel}" DisplayMemberPath="PromoName" SelectedValuePath="ID" SelectionChanged="cmbPromos_SelectionChanged" FontFamily="Rockwell"/>
+        <Label x:Name="label1" Content="Service:" HorizontalAlignment="Left" Margin="70,50,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Rockwell"/>
+        <ComboBox x:Name="cmbServices" HorizontalAlignment="Left" Margin="145,50,0,0" VerticalAlignment="Top" Width="222" FontSize="16" ItemsSource="{Binding ServiceTypeModel}" DisplayMemberPath="Description" SelectedValuePath="ID1" FontFamily="Rockwell"/>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="10,102,0,0" 
+                VerticalAlignment="Top" Width="80" Height="80" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD" Click="btnAdd_Click" Background="#009b97" BorderThickness="1" BorderBrush="Black" FontFamily="Rockwell">
+
+        </Button>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="95,102,0,0" 
+                VerticalAlignment="Top" Width="80" Height="80" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="DELETE" Click="btnDelete_Click" Background="#009b97" BorderThickness="1" BorderBrush="Black" FontFamily="Rockwell"/>
+    </Grid>
+</Controls:MetroWindow>

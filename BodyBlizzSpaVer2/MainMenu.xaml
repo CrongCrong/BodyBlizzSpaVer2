@@ -1,0 +1,46 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.MainMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="MAIN MENU" Height="602" Width="747" Loaded="MetroWindow_Loaded" Closing="MetroWindow_Closing" 
+                      WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush TileMode="None" ImageSource="Images/spab1.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Button x:Name="btnClient" HorizontalAlignment="Left" Height="129" Margin="41,28,0,0" VerticalAlignment="Top" Width="129" 
+                Style="{DynamicResource MetroCircleButtonStyle}"  Click="btnClient_Click" ToolTip="ADD/EDIT CLIENTS">
+            
+            <Button.Content>
+                <Image Source="Images/client128x128.png"/>
+            </Button.Content>
+       
+        </Button>
+        <Button x:Name="btnTherapist" HorizontalAlignment="Left" Height="129" Margin="226,28,0,0" VerticalAlignment="Top" Width="129" 
+                Style="{DynamicResource MetroCircleButtonStyle}" Click="btnTherapist_Click" ToolTip="THERAPISTS">
+            <Image Source="Images/therapist128x128.png"/>
+        </Button>
+        <Button x:Name="btnAttendance" HorizontalAlignment="Left" Height="129" Margin="406,28,0,0" VerticalAlignment="Top" Width="129" 
+                Style="{DynamicResource MetroCircleButtonStyle}" Click="btnAttendance_Click" ToolTip="ATTENDANCE">
+            <Image Source="Images/alarm-clock128x128.png"/>
+        </Button>
+        <Button x:Name="btnSettings" HorizontalAlignment="Left" Height="129" Margin="41,204,0,0" VerticalAlignment="Top" Width="129" 
+                Style="{DynamicResource MetroCircleButtonStyle}" Click="btnSettings_Click" ToolTip="SETTINGS">
+            <Image Source="Images/settings.png"/>
+        </Button>
+
+        <Button x:Name="btnLogout" HorizontalAlignment="Left" Height="129" Margin="226,204,0,0" VerticalAlignment="Top" Width="129" 
+                Style="{DynamicResource MetroCircleButtonStyle}" Click="btnLogout_Click" ToolTip="LOG OUT">
+            <Image Source="Images/door128x128.png"/>
+        </Button>
+        <Label x:Name="label" Content="T h e  B o d y  B l i z z" HorizontalAlignment="Left" Margin="198,404,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Rockwell"/>
+        <Label x:Name="label1" Content="Wellness &amp; Day Spa" HorizontalAlignment="Left" Margin="218,433,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Rockwell"/>
+    </Grid>
+    <Window.Resources>
+        <DropShadowEffect x:Key="MyEffect" ShadowDepth="0" Color="Blue" Opacity="1" BlurRadius="20"/>
+    </Window.Resources>
+</Controls:MetroWindow>

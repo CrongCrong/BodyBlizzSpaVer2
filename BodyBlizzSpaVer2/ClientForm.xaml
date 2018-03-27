@@ -1,0 +1,93 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.ClientForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="CLIENT INFO" Height="605" Width="913" Loaded="MetroWindow_Loaded" 
+                      ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontFamily="Rockwell" WindowTitleBrush="#009b97" FontSize="16" >
+    <Window.Background>
+        <!-- old Background="#009b97" -->
+        <ImageBrush ImageSource="/Images/test.png"/>
+    </Window.Background>
+    <Grid>
+        <DatePicker x:Name="dateFrom" HorizontalAlignment="Left" Margin="181,30,0,0" VerticalAlignment="Top" Width="230" Height="29" FontSize="16" FontFamily="Rockwell"/>
+        <DataGrid x:Name="dgvClient" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" 
+                  Height="278" Width="887" AutoGenerateColumns="False"  Background="Transparent" >
+            
+            <DataGrid.Columns>
+                <!-- <DataGridTextColumn Header="ID" Binding="{Binding ID1}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn> -->
+                <DataGridTextColumn Header="FIRST NAME" Binding="{Binding FirstName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="LAST NAME" Binding="{Binding LastName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Phone Number" Binding="{Binding PhoneNumber}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                
+                <DataGridTextColumn Header="SERVICE MODE" Binding="{Binding ServiceMode}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="LOYALTY CARD" Binding="{Binding isLoyal}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnAdd" Content="  Add&#xa;Client" HorizontalAlignment="Left" Margin="10,445,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD RECORD" Click="btnAdd_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838">
+            
+        </Button>
+
+        <Button x:Name="btnEdit" Content="  Edit&#xa;Client" HorizontalAlignment="Left" Margin="100,445,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="EDIT RECORD" Click="btnEdit_Click" 
+                Background="#b7b739" BorderThickness="1" BorderBrush="#383838">
+
+        </Button>
+
+        <Button x:Name="btnViewDetails" Content="   View&#xa; Record" HorizontalAlignment="Left" Margin="190,445,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="VIEW DETAILS" 
+                Click="btnViewDetails_Click" Background="#b7b739" BorderThickness="1" BorderBrush="#383838">
+
+        </Button>
+
+        <Button x:Name="btnPrint" Content="  Print&#xa; Client&#xa;Record" HorizontalAlignment="Left" Margin="280,445,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="PRINT CLIENT FORM" 
+                Click="btnPrint_Click" BorderThickness="1" Background="#b7b739" FontSize="15" BorderBrush="#383838">
+
+        </Button>
+
+        <Button x:Name="btnPrint2" Content="   Print&#xa; Waiver" HorizontalAlignment="Left" Margin="370,445,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" 
+                ToolTip="PRINT WAIVER FORM" Click="btnPrint2_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838">
+
+        </Button>
+
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="460,445,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" 
+                ToolTip="DELETE RECORD" Click="btnDelete_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838">
+
+        </Button>
+
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="550,445,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" 
+                ToolTip="CLOSE WINDOW" Click="btnClose_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838">
+
+        </Button>
+        <Button x:Name="btnSearch" Content="search" HorizontalAlignment="Left" Margin="435,64,0,0" VerticalAlignment="Top" Width="103" Style="{DynamicResource SquareButtonStyle}" Click="btnSearch_Click" Height="64" FontFamily="Rockwell" BorderThickness="1" Background="#b7b739" BorderBrush="#383838"/>
+        <Button x:Name="btnReset" Content="reset" HorizontalAlignment="Left" Margin="543,64,0,0" VerticalAlignment="Top" Width="103" Style="{DynamicResource SquareButtonStyle}" Height="64" Click="btnReset_Click" FontFamily="Rockwell" BorderThickness="1" Background="#b7b739" BorderBrush="#383838"/>
+        <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Height="30" Margin="181,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" FontSize="16" FontFamily="Rockwell"/>
+        <TextBox x:Name="txtFirstName" HorizontalAlignment="Left" Height="30" Margin="181,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" FontSize="16" FontFamily="Rockwell"/>
+        <CheckBox x:Name="chkDate" Content="Date:" HorizontalAlignment="Left" Margin="58,32,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Right" Width="118" Height="27" FontFamily="Rockwell" FontWeight="Bold" Background="#FF9E9BE4"/>
+        <CheckBox x:Name="chkLastname" Content="Last name:" HorizontalAlignment="Left" Margin="58,64,0,0" VerticalAlignment="Top" FontSize="16" Height="30" HorizontalContentAlignment="Right" Width="118" FontFamily="Rockwell" FontWeight="Bold" Background="#FF9E9BE4"/>
+        <CheckBox x:Name="chkFirstname" Content="First name:" HorizontalAlignment="Left" Margin="58,99,0,0" VerticalAlignment="Top" FontSize="16" Height="29" Width="118" HorizontalContentAlignment="Right" FontFamily="Rockwell" FontWeight="Bold" Background="#FF9E9BE4"/>
+    </Grid>
+</Controls:MetroWindow>

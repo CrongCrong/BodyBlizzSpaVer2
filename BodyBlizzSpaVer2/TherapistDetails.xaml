@@ -1,0 +1,34 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.TherapistDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="THERAPIST DETAILS" Height="294" Width="454" Background="#b7b739" Loaded="MetroWindow_Loaded" 
+                      ResizeMode="NoResize" FontFamily="Rockwell" WindowStartupLocation="CenterScreen" WindowTitleBrush="#b7b739" FontSize="16">
+    <Grid>
+        <Label x:Name="label" Content="First Name:" HorizontalAlignment="Left" Margin="83,40,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtFirstName" HorizontalAlignment="Left" Height="29" Margin="182,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" FontSize="16" FontFamily="Rockwell"/>
+        <Label x:Name="label1" Content="Last Name:" HorizontalAlignment="Left" Margin="86,74,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Height="29" Margin="182,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" FontSize="16" FontFamily="Rockwell"/>
+        <Label x:Name="label2" Content="Wage:" HorizontalAlignment="Left" Margin="119,108,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtWage" HorizontalAlignment="Left" Height="29" Margin="182,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" FontSize="16" PreviewTextInput="txtWage_PreviewTextInput" FontFamily="Rockwell"/>
+
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="263,170,0,0" VerticalAlignment="Top" Width="85" 
+                Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="Add Service" BorderThickness="0" Background="#009b97" Click="btnSave_Click">
+
+        </Button>
+
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="263,170,0,0" VerticalAlignment="Top" Width="85" 
+                Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="Update Service" BorderThickness="0" Background="#009b97" Click="btnUpdate_Click">
+
+        </Button>
+
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="353,170,0,0" VerticalAlignment="Top" Width="85" 
+                Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="Close Window" BorderThickness="0" Background="#009b97" Click="btnClose_Click">
+
+        </Button>
+    </Grid>
+</Controls:MetroWindow>

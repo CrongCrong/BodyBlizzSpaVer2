@@ -1,0 +1,26 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.PrintExpensesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="PRINT REMITTANCE" Height="292.128" Width="369.383" Loaded="MetroWindow_Loaded" ResizeMode="NoResize" Background="#009b97" WindowTitleBrush="#009b97" WindowStartupLocation="CenterScreen" FontFamily="Rockwell">
+    <Grid>
+        <DatePicker x:Name="datePickerFrom" HorizontalAlignment="Left" Margin="117,20,0,0" VerticalAlignment="Top" Height="31" Width="212" FontSize="16"/>
+        <Label x:Name="label" Content="Date From:" HorizontalAlignment="Left" Margin="24,20,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="label1" Content="Date To:" HorizontalAlignment="Left" Margin="45,56,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <DatePicker x:Name="datePickerTo" HorizontalAlignment="Left" Margin="117,56,0,0" VerticalAlignment="Top" FontSize="16" Width="212"/>
+        <Button x:Name="btnPrint" Content="Print" HorizontalAlignment="Left" Margin="180,168,0,0" VerticalAlignment="Top" Width="84" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="PRINT REPORT"  BorderThickness="1" BorderBrush="#383838" Background="#b7b739" FontFamily="Rockwell" FontSize="16" Click="btnPrint_Click">
+
+        </Button>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="269,168,0,0" VerticalAlignment="Top" Width="84" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="CLOSE WINDOW" BorderThickness="1" BorderBrush="#383838" Background="#b7b739" Click="btnClose_Click" FontFamily="Rockwell" FontSize="16">
+
+        </Button>
+        <CheckBox x:Name="checkBox" Content="Cash Advance" HorizontalAlignment="Left" Margin="117,90,0,0" VerticalAlignment="Top" FontSize="16" Height="29" Width="212" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" FontFamily="Rockwell"/>
+        <CheckBox x:Name="checkBox1" Content="Loans" HorizontalAlignment="Left" Margin="117,124,0,0" VerticalAlignment="Top" Height="29" Width="212" FontSize="16" FontFamily="Rockwell" Checked="checkBox1_Checked" Unchecked="checkBox1_Unchecked"/>
+    </Grid>
+</Controls:MetroWindow>

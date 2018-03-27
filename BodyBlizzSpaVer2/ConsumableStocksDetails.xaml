@@ -1,0 +1,42 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.ConsumableStocksDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="CONSUMABLE STOCKS DETAILS" Height="460" Width="736" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+                      Loaded="MetroWindow_Loaded" Background="#1b5e20" WindowTitleBrush="#1b5e20"  FontSize="16" FontFamily="Rockwell" Closing="MetroWindow_Closing">
+    <Grid>
+        <DataGrid x:Name="dgvConsumableOnStocks" HorizontalAlignment="Left" Height="284" Margin="10,10,0,0" VerticalAlignment="Top" Width="710" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Item" Binding="{Binding Description}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                
+                <DataGridTextColumn Header="QTY" Binding="{Binding Quantity}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Used" Binding="{Binding Used}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Left" Binding="{Binding Left}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="10,299,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD RECORD" Click="btnAdd_Click" BorderThickness="0" Background="#FF2196F3">
+
+        </Button>
+        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="100,299,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="EDIT RECORD" Click="btnEdit_Click" BorderThickness="0" Background="#FF2196F3">
+
+        </Button>
+    </Grid>
+</Controls:MetroWindow>

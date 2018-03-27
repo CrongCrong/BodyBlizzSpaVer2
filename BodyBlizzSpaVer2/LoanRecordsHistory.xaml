@@ -1,0 +1,26 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.LoanRecordsHistory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="Loan Records" Height="300" Width="538.298" Loaded="MetroWindow_Loaded" FontSize="16" Background="#FFBF360C" WindowTitleBrush="#FFBF360C" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontFamily="Rockwell" Closing="MetroWindow_Closing">
+    <Grid>
+        <DataGrid x:Name="dgvLoanHistory" HorizontalAlignment="Left" Height="151" Margin="10,10,0,0" VerticalAlignment="Top" Width="510" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date Paid" Binding="{Binding DatePaid}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Amount Paid" Binding="{Binding LoanAmount}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="PAY LOAN" BorderThickness="0" Background="#FF2196F3" Click="btnDelete_Click" />
+
+    </Grid>
+</Controls:MetroWindow>

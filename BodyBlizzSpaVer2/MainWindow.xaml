@@ -1,0 +1,22 @@
+﻿<Controls:MetroWindow x:Name="LogIn" x:Class="BodyBlizzSpaVer2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="Log-In Spa" Height="530" Width="418" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" 
+                      ResizeMode="NoResize" Loaded="MetroWindow_Loaded" FontFamily="Rockwell" Closing="LogIn_Closing" Closed="LogIn_Closed">
+
+    <Window.Background>
+        <ImageBrush TileMode="None" ImageSource="Images/bb.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Label x:Name="label" Content="Username:" HorizontalAlignment="Left" Margin="165,146,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="29" Margin="259,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" TabIndex="1" FontSize="16"/>
+        <Label x:Name="label1" Content="Password:" HorizontalAlignment="Left" Margin="169,180,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Button x:Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="259,214,0,0" VerticalAlignment="Top" Width="131"  Style="{DynamicResource SquareButtonStyle}" Click="btnLogin_Click" TabIndex="3" Height="42" FontSize="16"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="259,180,0,0" VerticalAlignment="Top" Width="131" TabIndex="2" KeyDown="txtPassword_KeyDown" Height="29" FontSize="16" />
+
+    </Grid>
+</Controls:MetroWindow>

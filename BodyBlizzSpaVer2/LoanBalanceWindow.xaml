@@ -1,0 +1,70 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.LoanBalanceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="LOAN BALANCE" Height="486" Width="736" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded" 
+                      Background="#e83f8c" WindowTitleBrush="#e83f8c" FontSize="16" FontFamily="Rockwell" Closing="MetroWindow_Closing">
+    <Grid>
+        <DataGrid x:Name="dgvLoansToPay" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Height="231" Width="386" AutoGenerateColumns="False">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                    <Setter Property="Background" Value="Red" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ifPaid}" Value="True" >
+                            <Setter Property="Background" Value="GreenYellow" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+
+            </DataGrid.RowStyle>
+
+            <DataGrid.Resources>
+
+                <Style TargetType="{x:Type CheckBox}" x:Key="style">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ifPaid}" Value="1">
+                            <Setter Property="IsChecked" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+
+            </DataGrid.Resources>
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Date" Binding="{Binding LoanDate}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Loan Amt." Binding="{Binding LoanAmount}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Balance" Binding="{Binding LoanBalance}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="Paid" ElementStyle="{StaticResource style}" EditingElementStyle="{StaticResource style}" Binding="{Binding ifPaid}">
+
+                </DataGridCheckBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel HorizontalAlignment="Left" Height="197" Margin="401,126,0,0" VerticalAlignment="Top" Width="319">
+            <TextBlock x:Name="txtDetails" TextWrapping="Wrap" Height="198"/>
+        </StackPanel>
+        <Button x:Name="btnPayLoan" Content="Pay" HorizontalAlignment="Left" Margin="10,328,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="PAY LOAN" BorderThickness="1" Background="#009b97" Click="btnPayLoan_Click">
+
+        </Button>
+        <Button x:Name="btnUpdateLoan" Content="Update " HorizontalAlignment="Left" Margin="100,328,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="UPDATE LOAN" BorderThickness="1" Background="#009b97" Click="btnUpdateLoan_Click" />
+
+        <Button x:Name="btnViewHistory" Content="   View&#xa;Records" HorizontalAlignment="Left" Margin="190,328,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+                Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="UPDATE LOAN" BorderThickness="1" Background="#009b97" Click="btnViewHistory_Click" />
+
+        <Label x:Name="lblTherapistName" Content="" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Height="37" Width="710" FontSize="20"/>
+        <Label x:Name="label" Content="Payment history:" HorizontalAlignment="Left" Margin="401,92,0,0" VerticalAlignment="Top" Width="319"/>
+        <Controls:ProgressRing x:Name="progressBar" IsActive="False" Margin="165,177,505,220" />
+
+    </Grid>
+</Controls:MetroWindow>

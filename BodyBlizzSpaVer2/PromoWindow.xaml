@@ -1,0 +1,55 @@
+﻿<Controls:MetroWindow x:Class="BodyBlizzSpaVer2.PromoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        mc:Ignorable="d"
+        Title="PROMOS" Height="631" Width="736" WindowTitleBrush="#009b97" Background="#009b97" FontFamily="Trajan Pro" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded">
+    <Grid>
+        <DataGrid x:Name="dgvPromos" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="165" Width="710" AutoGenerateColumns="False" FontFamily="Rockwell">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Promo Name" Binding="{Binding PromoName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Price" Binding="{Binding PromoPrice}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Commission" Binding="{Binding Commission}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button x:Name="btnAdd" Content="  Add&#xa;Promo" HorizontalAlignment="Left" Margin="10,180,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD PROMO" Click="btnAdd_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739" FontFamily="Rockwell">
+
+        </Button>
+        <Button x:Name="btnEdit" Content="  Edit&#xa;Promo" HorizontalAlignment="Left" Margin="100,180,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="EDIT PROMO" Click="btnEdit_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739" FontFamily="Rockwell">
+
+        </Button>
+
+        <DataGrid x:Name="dgvPromoServices" HorizontalAlignment="Left" Margin="10,302,0,0" VerticalAlignment="Top" Height="181" Width="710" AutoGenerateColumns="False" FontFamily="Rockwell">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Promo Name" Binding="{Binding PromoName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Service Type" Binding="{Binding ServiceName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Rectangle Fill="#b7b739" HorizontalAlignment="Left" Height="7" Margin="0,277,0,0" Stroke="Black" VerticalAlignment="Top" Width="730"/>
+        <Button x:Name="btnAddServiceToPromo" Content="   Add&#xa;Service" HorizontalAlignment="Left" Margin="10,488,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD SERVICE" Click="btnAddServiceToPromo_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739" FontFamily="Rockwell">
+
+        </Button>
+        <Button x:Name="btnEditServiceToPromo" Content="  Edit&#xa;Service" HorizontalAlignment="Left" Margin="100,488,0,0" 
+                VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="EDIT SERVICE" Click="btnEditServiceToPromo_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739" FontFamily="Rockwell">
+
+        </Button>
+    </Grid>
+</Controls:MetroWindow>
