@@ -39,7 +39,8 @@ namespace BodyBlizzSpaVer2
             List<ServiceTypeModel> lstServiceType = new List<ServiceTypeModel>();
             ServiceTypeModel serviceModel = new ServiceTypeModel();
 
-            string queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE' , description AS 'DESCRIPTION' FROM dbspa.tblservicetype WHERE (isDeleted = 0)";
+            string queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE' , " +
+                "description AS 'DESCRIPTION' FROM dbspa.tblservicetype WHERE (isDeleted = 0) order by servicetype asc";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 

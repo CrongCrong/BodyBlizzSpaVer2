@@ -51,21 +51,21 @@
 
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="STAMP TO CARD" Binding="{Binding isSavedToCard}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+                <!-- <DataGridTextColumn Header="STAMP TO CARD" Binding="{Binding isSavedToCard}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
-                </DataGridTextColumn>
+                </DataGridTextColumn> -->
 
                 <DataGridTextColumn Header="DISCOUNTED" Binding="{Binding Discounted}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Free 30Mins" Binding="{Binding FirstFree}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+                 <!-- <DataGridTextColumn Header="Free 30Mins" Binding="{Binding FirstFree}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
-                </DataGridTextColumn>
+                </DataGridTextColumn> -->
 
-                <DataGridTextColumn Header="Free 1HR" Binding="{Binding SecondFree}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+                <!-- <DataGridTextColumn Header="Free 1HR" Binding="{Binding SecondFree}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
-                </DataGridTextColumn>
+                </DataGridTextColumn> -->
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="dgvClientProduct" HorizontalAlignment="Left" Margin="671,338,0,0" VerticalAlignment="Top" Height="175" Width="309" 

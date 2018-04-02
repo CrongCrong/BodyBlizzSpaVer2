@@ -124,7 +124,8 @@ namespace BodyBlizzSpaVer2
         {
             try
             {
-                string queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE', description FROM dbspa.tblservicetype WHERE (isDeleted = 0)";
+                string queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE', description "+
+                    "FROM dbspa.tblservicetype WHERE (isDeleted = 0) order by description";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 

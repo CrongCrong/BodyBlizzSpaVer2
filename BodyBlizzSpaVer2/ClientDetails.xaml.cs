@@ -73,7 +73,7 @@ namespace BodyBlizzSpaVer2
 
             if (clientModel != null)
             {
-                fillComboBoxServiceMode(cmbServiceMode);
+                //fillComboBoxServiceMode(cmbServiceMode);
                 fillLoyaltyCards();
 
                 if (clientModel.IfViewDetails)
@@ -393,11 +393,6 @@ namespace BodyBlizzSpaVer2
                 {
                     System.Windows.Forms.MessageBox.Show("Please select date.");
                 }
-
-                
-
-                
-
             }
             catch (Exception ex)
             {
