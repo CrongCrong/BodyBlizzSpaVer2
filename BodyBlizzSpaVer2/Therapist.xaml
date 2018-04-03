@@ -11,9 +11,9 @@
     <Grid>
         <DataGrid x:Name="dgvTherapist" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="333" Width="717" AutoGenerateColumns="False" FontFamily="Rockwell">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ID1}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+                <!--<DataGridTextColumn Header="ID" Binding="{Binding ID1}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
-                </DataGridTextColumn>
+                </DataGridTextColumn> -->
 
                 <DataGridTextColumn Header="FIRST NAME" Binding="{Binding FirstName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 

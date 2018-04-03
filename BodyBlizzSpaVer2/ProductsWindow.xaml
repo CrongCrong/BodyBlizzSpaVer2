@@ -10,9 +10,9 @@
     <Grid>
         <DataGrid x:Name="dgvProducts" HorizontalAlignment="Left" Height="165" Margin="10,10,0,0" VerticalAlignment="Top" Width="710" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ID}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+                <!-- <DataGridTextColumn Header="ID" Binding="{Binding ID}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
-                </DataGridTextColumn>
+                </DataGridTextColumn> -->
                 <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
                 </DataGridTextColumn>

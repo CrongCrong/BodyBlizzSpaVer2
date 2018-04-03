@@ -53,7 +53,7 @@ namespace BodyBlizzSpaVer2
             cmbLoyaltycards.Visibility = Visibility.Hidden;
 
             txtDate.Visibility = Visibility.Hidden;
-            
+            fillComboBoxServiceMode(cmbServiceMode);
             timeInPicker.Text = DateTime.Now.ToShortTimeString();
             timeOutPicker.IsEnabled = false;
             if(user.Type > 1)
@@ -70,7 +70,6 @@ namespace BodyBlizzSpaVer2
                 txtCOD.Text = (Convert.ToInt32(codNum.COD1) + 1).ToString();
             }
             
-
             if (clientModel != null)
             {
                 //fillComboBoxServiceMode(cmbServiceMode);
@@ -178,7 +177,7 @@ namespace BodyBlizzSpaVer2
             txtPhoneNumber.Text = clientModel.PhoneNumber;
             //txtTotal.Text = clientModel.TotalAmt;
 
-            fillComboBoxServiceMode(cmbServiceMode);
+            //fillComboBoxServiceMode(cmbServiceMode);
             cmbServiceMode.SelectedItem = clientModel.ServiceMode;
 
             timeInPicker.Text = clientModel.TimeIn;
@@ -236,10 +235,7 @@ namespace BodyBlizzSpaVer2
                         }
                     }
                 }
-
-
                 conDB.closeConnection();
-
             }
             catch (Exception ex)
             {
@@ -257,11 +253,13 @@ namespace BodyBlizzSpaVer2
                     "dbspa.tbltherapist.description AS 'THERAPIST', dbspa.tblservicemade.dateServiced, dbspa.tblservicemade.discountID," +
                     "IF(dbspa.tblservicemade.isDiscounted, ROUND(dbspa.tblservicetype.price - dbspa.tblservicetype.price * (dbspa.tbldiscount.discount / 100)), dbspa.tblservicetype.price) AS 'PRICE', " +
                     "IF(dbspa.tblservicemade.isDiscounted, 'YES', 'NO') AS 'DISCOUNTED', IF(dbspa.tblservicemade.savetocard, 'YES', 'NO') AS 'SAVED TO CARD', " +
-                    "IF(dbspa.tblservicemade.firstfree, 'YES', 'NO') AS 'FREE 30 MINS', IF(dbspa.tblservicemade.secondfree, 'YES', 'NO') AS 'FREE 1HR' " +
-                    "FROM ((((dbspa.tblservicemade INNER JOIN dbspa.tblclient ON dbspa.tblservicemade.clientID = dbspa.tblClient.ID) " +
+                    "IF(dbspa.tblservicemade.firstfree, 'YES', 'NO') AS 'FREE 30 MINS', IF(dbspa.tblservicemade.secondfree, 'YES', 'NO') AS 'FREE 1HR', " +
+                    "dbspa.tblservicemade.timeIn, dbspa.tblservicemade.timeOut, dbspa.tblcommissions.commission FROM (((((dbspa.tblservicemade INNER JOIN dbspa.tblclient ON dbspa.tblservicemade.clientID = dbspa.tblClient.ID) " +
                     "INNER JOIN dbspa.tblservicetype ON tblservicemade.serviceTypeID = dbspa.tblservicetype.ID) " +
                     "INNER JOIN dbspa.tbltherapist ON dbspa.tblservicemade.therapistID = dbspa.tbltherapist.ID) " +
-                    "INNER JOIN dbspa.tbldiscount ON dbspa.tblservicemade.discountID = dbspa.tbldiscount.ID) WHERE (dbspa.tblclient.ID = ?) " +
+                    "INNER JOIN dbspa.tbldiscount ON dbspa.tblservicemade.discountID = dbspa.tbldiscount.ID) " +
+                    "INNER JOIN dbspa.tblcommissions ON dbspa.tblservicemade.commissionID = dbspa.tblcommissions.ID) " +
+                    "WHERE (dbspa.tblclient.ID = ?) " +
                     "AND (dbspa.tblservicemade.isDeleted = 0) ORDER BY ID desc";
 
                 List<string> parameters = new List<string>();
@@ -283,6 +281,9 @@ namespace BodyBlizzSpaVer2
                     serviceMade.FirstFree = reader["FREE 30 MINS"].ToString();
                     serviceMade.SecondFree = reader["FREE 1HR"].ToString();
                     serviceMade.ifPromoService = false;
+                    serviceMade.TimeIn = reader["timeIn"].ToString();
+                    serviceMade.TimeOut = reader["timeOut"].ToString();
+                    serviceMade.Commission = reader["commission"].ToString();
                     lstServiceMade.Add(serviceMade);
                 }
                 lstServiceMade.AddRange(getPromoServicesMadeForClient());

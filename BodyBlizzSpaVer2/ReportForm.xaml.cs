@@ -320,29 +320,29 @@ namespace BodyBlizzSpaVer2
             param.Values.Add(therapist.Description);
             paramList.Add(param);
 
-            param = new ReportParameter("dailyWage");
-            param.Values.Add(therapist.Wage);
-            paramList.Add(param);
+            //param = new ReportParameter("dailyWage");
+            //param.Values.Add(therapist.Wage);
+            //paramList.Add(param);
 
-            param = new ReportParameter("totalDays");
-            param.Values.Add(lstTherapist.Count.ToString());
-            paramList.Add(param);
+            //param = new ReportParameter("totalDays");
+            //param.Values.Add(lstTherapist.Count.ToString());
+            //paramList.Add(param);
 
-            param = new ReportParameter("totalWage");
-            param.Values.Add(therapist.TotalWage);
-            paramList.Add(param);
+            //param = new ReportParameter("totalWage");
+            //param.Values.Add(therapist.TotalWage);
+            //paramList.Add(param);
 
             param = new ReportParameter("total");
             param.Values.Add(therapist.TotalCommission);
             paramList.Add(param);
 
-            param = new ReportParameter("cashAdvance");
-            param.Values.Add(therapist.CashAdvance);
-            paramList.Add(param);
+            //param = new ReportParameter("cashAdvance");
+            //param.Values.Add(therapist.CashAdvance);
+            //paramList.Add(param);
 
-            param = new ReportParameter("loan");
-            param.Values.Add(therapist.Loan);
-            paramList.Add(param);
+            //param = new ReportParameter("loan");
+            //param.Values.Add(therapist.Loan);
+            //paramList.Add(param);
 
             double totalDeductions = 0.0;
             foreach (TherapistModel tm in lstTherapist)
@@ -357,9 +357,9 @@ namespace BodyBlizzSpaVer2
             double dblCA = Convert.ToDouble(therapist.CashAdvance);
             netPay = netPay - dblCA;
 
-            param = new ReportParameter("netPay");
-            param.Values.Add(String.Format("{0:0.00}", netPay));
-            paramList.Add(param);
+            //param = new ReportParameter("netPay");
+            //param.Values.Add(String.Format("{0:0.00}", netPay));
+            //paramList.Add(param);
 
             //MULTI LEVEL PARAMS
             ReportParameter multiValueParam = new ReportParameter("servicesRendered");
@@ -370,9 +370,9 @@ namespace BodyBlizzSpaVer2
             multiValueParam.Values.AddRange(therapist.Amount);
             paramList.Add(multiValueParam);
 
-            multiValueParam = new ReportParameter("penalties");
-            multiValueParam.Values.AddRange(therapist.Penalties);
-            paramList.Add(multiValueParam);
+            //multiValueParam = new ReportParameter("penalties");
+            //multiValueParam.Values.AddRange(therapist.Penalties);
+            //paramList.Add(multiValueParam);
 
             this.reportViewer.LocalReport.SetParameters(paramList.ToArray());
 
@@ -417,9 +417,9 @@ namespace BodyBlizzSpaVer2
             }
 
             sales = totalSales;
-            totalSales = totalSales - totalExpenses;
-            totalSales = totalSales - totalCA;
-            totalSales = totalSales - totalLoans;
+            //totalSales = totalSales - totalExpenses;
+            //totalSales = totalSales - totalCA;
+            //totalSales = totalSales - totalLoans;
 
             //Create the list of parameters that will be passed to the report
             List<ReportParameter> paramList = new List<ReportParameter>();

@@ -69,6 +69,9 @@ namespace BodyBlizzSpaVer2
             List<PromoServicesModel> lstPromoS = new List<PromoServicesModel>();
             if (serviceMade != null)
             {
+                timeInPicker.Text = serviceMade.TimeIn;
+                timeOutPicker.Text = serviceMade.TimeOut;
+
                 if (serviceMade.ifPromoService)
                 {
                     lstPromoS = getPromoServicesRendered(serviceMade.ID);
@@ -399,11 +402,13 @@ namespace BodyBlizzSpaVer2
                     "dbspa.tbltherapist.description AS 'THERAPIST', dbspa.tblservicemade.dateServiced, dbspa.tblservicemade.discountID," +
                     "IF(dbspa.tblservicemade.isDiscounted, ROUND(dbspa.tblservicetype.price - dbspa.tblservicetype.price * (dbspa.tbldiscount.discount / 100)), dbspa.tblservicetype.price) AS 'PRICE', " +
                     "IF(dbspa.tblservicemade.isDiscounted, 'YES', 'NO') AS 'DISCOUNTED', IF(dbspa.tblservicemade.savetocard, 'YES', 'NO') AS 'SAVED TO CARD', " +
-                    "IF(dbspa.tblservicemade.firstfree, 'YES', 'NO') AS 'FREE 30 MINS', IF(dbspa.tblservicemade.secondfree, 'YES', 'NO') AS 'FREE 1HR' " +
-                    "FROM ((((dbspa.tblservicemade INNER JOIN dbspa.tblclient ON dbspa.tblservicemade.clientID = dbspa.tblClient.ID) " +
+                    "IF(dbspa.tblservicemade.firstfree, 'YES', 'NO') AS 'FREE 30 MINS', IF(dbspa.tblservicemade.secondfree, 'YES', 'NO') AS 'FREE 1HR', " +
+                    "dbspa.tblservicemade.timeIn, dbspa.tblservicemade.timeOut, dbspa.tblcommissions.commission FROM (((((dbspa.tblservicemade INNER JOIN dbspa.tblclient ON dbspa.tblservicemade.clientID = dbspa.tblClient.ID) " +
                     "INNER JOIN dbspa.tblservicetype ON tblservicemade.serviceTypeID = dbspa.tblservicetype.ID) " +
                     "INNER JOIN dbspa.tbltherapist ON dbspa.tblservicemade.therapistID = dbspa.tbltherapist.ID) " +
-                    "INNER JOIN dbspa.tbldiscount ON dbspa.tblservicemade.discountID = dbspa.tbldiscount.ID) WHERE (dbspa.tblclient.ID = ?) " +
+                    "INNER JOIN dbspa.tbldiscount ON dbspa.tblservicemade.discountID = dbspa.tbldiscount.ID) " +
+                    "INNER JOIN dbspa.tblcommissions ON dbspa.tblservicemade.commissionID = dbspa.tblcommissions.ID) " +
+                    "WHERE (dbspa.tblclient.ID = ?) " +
                     "AND (dbspa.tblservicemade.isDeleted = 0) ORDER BY ID desc";
 
                 List<string> parameters = new List<string>();
@@ -425,6 +430,9 @@ namespace BodyBlizzSpaVer2
                     serviceMade.FirstFree = reader["FREE 30 MINS"].ToString();
                     serviceMade.SecondFree = reader["FREE 1HR"].ToString();
                     serviceMade.ifPromoService = false;
+                    serviceMade.TimeIn = reader["timeIn"].ToString();
+                    serviceMade.TimeOut = reader["timeOut"].ToString();
+                    serviceMade.Commission = reader["commission"].ToString();
                     lstServiceMade.Add(serviceMade);
                 }
 
@@ -695,8 +703,8 @@ namespace BodyBlizzSpaVer2
                 }
 
                 string queryString = "INSERT INTO dbspa.tblservicemade (serviceTypeID,clientID,therapistID,dateServiced,isDeleted,isDiscounted, " +
-                    "discountID,commissionID,loyaltyID,savetocard, firstfree, secondfree)" +
-                    "VALUES(?,?, ?,?,?,?,?,?,?,?,?,?)";
+                    "discountID,commissionID,loyaltyID,savetocard, firstfree, secondfree, timeIn, timeOut)" +
+                    "VALUES(?,?, ?,?,?,?,?,?,?,?,?,?,?,?)";
 
                 List<string> parameters = new List<string>();
 
@@ -741,6 +749,24 @@ namespace BodyBlizzSpaVer2
                     parameters.Add("0");
                 }
 
+                if (string.IsNullOrEmpty(timeInPicker.Text))
+                {
+                    parameters.Add(" ");
+                }
+                else
+                {
+                    parameters.Add(timeInPicker.Text);
+                }
+
+                if (string.IsNullOrEmpty(timeOutPicker.Text))
+                {
+                    parameters.Add(" ");
+                }
+                else
+                {
+                    parameters.Add(timeOutPicker.Text);
+                }
+
                 conDB.AddRecordToDatabase(queryString, parameters);
                 conDB.closeConnection();
                 conDB.writeLogFile("ADDED SERVICE FOR CLIENT: " + stm.Description + " " + model.FirstName + " " + model.LastName);
@@ -772,7 +798,7 @@ namespace BodyBlizzSpaVer2
 
 
                 string queryString = "UPDATE dbspa.tblservicemade SET serviceTypeID = ?, dateServiced = ?, isDiscounted = ?, discountID = ? " +
-                    " ,therapistID = ? , commissionID = ?, savetocard = ? WHERE ID = ?";
+                    " ,therapistID = ? , commissionID = ?, savetocard = ?, timeIn = ?, timeOut = ? WHERE ID = ?";
 
                 List<string> parameters = new List<string>();
                 parameters.Add(stm.ID1);
@@ -794,6 +820,23 @@ namespace BodyBlizzSpaVer2
                     {
                         updateLoyaltyRecordDeductStamp();
                     }
+                }
+
+                if (string.IsNullOrEmpty(timeInPicker.Text))
+                {
+                    parameters.Add(" ");
+                }else
+                {
+                    parameters.Add(timeInPicker.Text);
+                }
+
+                if (string.IsNullOrEmpty(timeOutPicker.Text))
+                {
+                    parameters.Add(" ");
+                }
+                else
+                {
+                    parameters.Add(timeOutPicker.Text);
                 }
 
                 parameters.Add(serviceMade.ID);

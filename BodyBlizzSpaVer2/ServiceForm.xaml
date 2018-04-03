@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:BodyBlizzSpaVer2"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="ADD SERVICE" Height="593.5" Width="646" Background="#009b97" ResizeMode="NoResize" FontFamily="Rockwell" 
                       Loaded="MetroWindow_Loaded" WindowStartupLocation="CenterScreen" WindowTitleBrush="#009b97" FontSize="16">
@@ -33,7 +34,7 @@
         <CheckBox x:Name="chkAvailToCard" Content="Stamp to Card" HorizontalAlignment="Left" Margin="336,63,0,0" VerticalAlignment="Top" FontSize="16" Height="29" Width="204" Unchecked="chkAvailToCard_Unchecked" FontFamily="Rockwell"/>
         <CheckBox x:Name="chkFirstFree" Content="Avail free 30 Mins" HorizontalAlignment="Left" Margin="336,97,0,0" VerticalAlignment="Top" Height="29" Width="204" FontSize="16" Checked="chkFirstFree_Checked" Unchecked="chkFirstFree_Unchecked" FontFamily="Rockwell"/>
         <CheckBox x:Name="chkSecondFree" Content="Avail 1 Hour" HorizontalAlignment="Left" Margin="336,131,0,0" VerticalAlignment="Top" Height="29" Width="204" FontSize="16" Checked="chkSecondFree_Checked" Unchecked="chkSecondFree_Unchecked" FontFamily="Rockwell"/>
-        <DataGrid x:Name="dgvPromoServices" HorizontalAlignment="Left" Margin="10,284,0,0" VerticalAlignment="Top" Height="165" Width="620" AutoGenerateColumns="False">
+        <DataGrid x:Name="dgvPromoServices" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Height="165" Width="620" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="SERVICE TYPE" Binding="{Binding ServiceName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
@@ -48,10 +49,14 @@
                 <!-- <DataGridComboBoxColumn Header="Therapist" Width="100" x:Name="datagridCombo" ItemsSource="{Binding DiscountModel}" DisplayMemberPath="ServiceType" SelectedValuePath="ID1" /> -->
             </DataGrid.Columns>
         </DataGrid>
-        <CheckBox x:Name="chkAvailPromo" Content="Avail Promo Services" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top" FontSize="16" Checked="chkAvailPromo_Checked" Unchecked="chkAvailPromo_Unchecked" FontFamily="Rockwell"/>
-        <Label x:Name="label3" Content="Promos:" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <ComboBox x:Name="cmbPromoServices" HorizontalAlignment="Left" Margin="85,250,0,0" VerticalAlignment="Top" Width="209" FontSize="16" 
+        <CheckBox x:Name="chkAvailPromo" Content="Avail Promo Services" HorizontalAlignment="Left" Margin="10,244,0,0" VerticalAlignment="Top" FontSize="16" Checked="chkAvailPromo_Checked" Unchecked="chkAvailPromo_Unchecked" FontFamily="Rockwell"/>
+        <Label x:Name="label3" Content="Promos:" HorizontalAlignment="Left" Margin="15,268,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <ComboBox x:Name="cmbPromoServices" HorizontalAlignment="Left" Margin="90,268,0,0" VerticalAlignment="Top" Width="209" FontSize="16" 
                  ItemsSource="{Binding PromoModel}" DisplayMemberPath="PromoName" SelectedValuePath="ID" SelectionChanged="cmbPromoServices_SelectionChanged" FontFamily="Rockwell"/>
+        <Label x:Name="label4" Content="Time In:" HorizontalAlignment="Left" Margin="36,132,0,0" VerticalAlignment="Top"/>
+        <xctk:DateTimeUpDown x:Name="timeInPicker" Format="ShortTime" Margin="111,132,0,0" Focusable="False" FontSize="16" HorizontalAlignment="Left" Width="104" Height="29" VerticalAlignment="Top" TabIndex="7"/>
+        <Label x:Name="label5" Content="Time Out:" HorizontalAlignment="Left" Margin="24,166,0,0" VerticalAlignment="Top"/>
+        <xctk:DateTimeUpDown x:Name="timeOutPicker" Format="ShortTime" Margin="111,166,0,0" Focusable="False" FontSize="16" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104" TabIndex="8"/>
 
     </Grid>
 </Controls:MetroWindow>

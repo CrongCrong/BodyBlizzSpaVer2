@@ -59,7 +59,18 @@
 
                 </DataGridTextColumn>
 
-                 <!-- <DataGridTextColumn Header="Free 30Mins" Binding="{Binding FirstFree}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+                <DataGridTextColumn Header="COMMISSION" Binding="{Binding Commission}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Time IN" Binding="{Binding TimeIn}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Time Out" Binding="{Binding TimeOut}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
+                <!-- <DataGridTextColumn Header="Free 30Mins" Binding="{Binding FirstFree}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
                 </DataGridTextColumn> -->
 

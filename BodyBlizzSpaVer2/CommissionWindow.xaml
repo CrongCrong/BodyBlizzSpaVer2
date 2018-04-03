@@ -11,9 +11,9 @@
     <Grid>
         <DataGrid x:Name="dgvCommission" HorizontalAlignment="Left" Height="335" Margin="10,45,0,0" VerticalAlignment="Top" Width="717" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ID}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+                <!--<DataGridTextColumn Header="ID" Binding="{Binding ID}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
-                </DataGridTextColumn>
+                </DataGridTextColumn> -->
 
                 <DataGridTextColumn Header="SERVICE TYPE" Binding="{Binding ServiceType}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 

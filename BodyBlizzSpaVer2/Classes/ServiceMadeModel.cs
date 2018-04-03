@@ -45,5 +45,10 @@ namespace BodyBlizzSpaVer2.Classes
 
         public bool ifPaid { get; set; }
 
+        public string TimeIn { get; set; }
+
+        public string TimeOut { get; set; }
+
+
     }
 }
