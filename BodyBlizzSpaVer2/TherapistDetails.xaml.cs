@@ -141,11 +141,12 @@ namespace BodyBlizzSpaVer2
                 {
                     try
                     {
-                        string queryString = "UPDATE dbspa.tbltherapist SET firstName = ?, lastName = ?, wage = ? WHERE ID = ?";
+                        string queryString = "UPDATE dbspa.tbltherapist SET firstName = ?, lastName = ?, wage = ?, description = ? WHERE ID = ?";
                         List<string> parameters = new List<string>();
                         parameters.Add(txtFirstName.Text);
                         parameters.Add(txtLastName.Text);
                         parameters.Add(txtWage.Text);
+                        parameters.Add(txtFirstName.Text + " " + txtLastName.Text);
                         parameters.Add(tModel.ID1);
 
                         conDB.AddRecordToDatabase(queryString, parameters);

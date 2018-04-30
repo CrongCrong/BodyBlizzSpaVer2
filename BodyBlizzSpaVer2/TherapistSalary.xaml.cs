@@ -57,14 +57,17 @@ namespace BodyBlizzSpaVer2
                
                 try
                 {
-                    string queryString = "SELECT tblServiceMade.ID, dbspa.tblservicemade.dateServiced as 'DATE SERVICED', dbspa.tbltherapist.description as 'THERAPIST'," +
-                        "dbspa.tblservicetype.serviceType as 'SERVICE TYPE', dbspa.tblcommissions.commission, dbspa.tblservicemade.isDiscounted, dbspa.tbldiscount.discount, " +
-                        " ifPaid FROM ((((dbspa.tblservicemade INNER JOIN " +
-                        "dbspa.tbltherapist ON dbspa.tblservicemade.therapistID = dbspa.tblTherapist.ID) INNER JOIN dbspa.tblservicetype ON " +
-                        "dbspa.tblservicemade.serviceTypeID = dbspa.tblservicetype.ID) INNER JOIN dbspa.tblcommissions ON " +
-                        "dbspa.tblservicemade.commissionID = dbspa.tblcommissions.ID) INNER JOIN dbspa.tbldiscount ON dbspa.tblservicemade.discountID = dbspa.tbldiscount.ID)" + 
-                        " WHERE (dbspa.tbltherapist.ID = ?) AND " +
-                        "(dbspa.tblservicemade.dateServiced BETWEEN ? AND ?) AND (dbspa.tblservicemade.isDeleted = 0)";
+                    string queryString = "SELECT tblServiceMade.ID, dbspa.tblservicemade.dateServiced as 'DATE SERVICED'," +
+                        "dbspa.tbltherapist.description as 'THERAPIST', dbspa.tblservicetype.serviceType as 'SERVICE TYPE'," +
+                        " dbspa.tblcommissions.commission, dbspa.tblservicemade.isDiscounted, dbspa.tbldiscount.discount, ifPaid, " +
+                        "concat(dbspa.tblclient.firstName, ' ', dbspa.tblclient.lastName) AS CLIENT_NAME FROM (((((dbspa.tblservicemade " +
+                        "INNER JOIN dbspa.tbltherapist ON dbspa.tblservicemade.therapistID = dbspa.tblTherapist.ID) " +
+                        "INNER JOIN dbspa.tblservicetype ON dbspa.tblservicemade.serviceTypeID = dbspa.tblservicetype.ID) " +
+                        "INNER JOIN dbspa.tblcommissions ON dbspa.tblservicemade.commissionID = dbspa.tblcommissions.ID) " +
+                        "INNER JOIN dbspa.tbldiscount ON dbspa.tblservicemade.discountID = dbspa.tbldiscount.ID) " +
+                        "INNER JOIN dbspa.tblclient ON dbspa.tblservicemade.clientID = dbspa.tblclient.ID) " +
+                        "WHERE(dbspa.tbltherapist.ID = ?) AND (dbspa.tblservicemade.dateServiced BETWEEN ? AND ?) AND " +
+                        "(dbspa.tblservicemade.isDeleted = 0) AND (dbspa.tblclient.isDeleted = 0) AND (dbspa.tblservicetype.isDeleted = 0)";
 
                     List<string> parameters = new List<string>();
                     parameters.Add(therapist.ID1);
@@ -86,10 +89,9 @@ namespace BodyBlizzSpaVer2
                         serviceMade.DateServiced = dte.ToShortDateString();
                         serviceMade.Therapist = reader["THERAPIST"].ToString();
                         serviceMade.ServiceType = reader["SERVICE TYPE"].ToString();
-
                         serviceMade.Commission = reader["commission"].ToString();
-
                         string strPaid = reader["ifPaid"].ToString();
+                        serviceMade.ClientName = reader["CLIENT_NAME"].ToString();
                         if (strPaid.Equals("1"))
                         {
                             serviceMade.ifPaid = true;
@@ -334,7 +336,8 @@ namespace BodyBlizzSpaVer2
             {
 
                 string queryString = "SELECT ID, attendanceDate, timeIn, timeOut, therapistID, minutesLate, isLate, deduction, ifhalfday, " +
-                    "ifUndertime, lateDeduction, undertimeDeduction FROM dbspa.tblattendance WHERE (isDeleted = 0) AND (therapistID = ?) AND (attendanceDate BETWEEN ? AND ?)";
+                    "ifUndertime, lateDeduction, undertimeDeduction FROM dbspa.tblattendance WHERE  " +
+                    "(dbspa.tblattendance.isDeleted = 0) AND (therapistID = ?) AND (attendanceDate BETWEEN ? AND ?)";
                 List<string> parameters = new List<string>();
 
                 parameters.Add(ID.ToString());
@@ -378,8 +381,6 @@ namespace BodyBlizzSpaVer2
 
         private void compute(List<ServiceMadeModel> lstServicesMade)
         {
-
-
             string[] services;
             string[] amount;
             double total = 0.0;
@@ -414,6 +415,7 @@ namespace BodyBlizzSpaVer2
 
             therapist.Services = services;
             therapist.Amount = amount;
+            therapist.ClientName = getClientNames(lstServiceMade);
             therapist.TotalCommission = String.Format("{0:0.00}", total.ToString());
             
         }
@@ -442,7 +444,6 @@ namespace BodyBlizzSpaVer2
                 
                 }
                 
-
                 if (tm.IsLate > 0)
                 {
                     str = str + " LATE - " + tm.MinutesLate + " Minute/s - " +
@@ -458,6 +459,28 @@ namespace BodyBlizzSpaVer2
             }
 
             return penalties;
+        }
+
+        private string[] getClientNames(List<ServiceMadeModel> lstSrvcMadeMdl)
+        {
+            string[] clientNames;
+            if (lstSrvcMadeMdl.Count > 0)
+            {
+                clientNames = new string[lstSrvcMadeMdl.Count];
+                int i = 0;
+                foreach (ServiceMadeModel tm in lstSrvcMadeMdl)
+                {
+                    clientNames[i] = "\r" + tm.ClientName.ToString() + "\n";
+                    i++;
+                }
+
+            }else
+            {
+                clientNames = new string[1];
+                clientNames[0] = "\r" + "-------------" + "\n";
+            }
+            
+            return clientNames;
         }
 
         private void updateRecordToPaid(bool blPaid, string recID)
@@ -532,6 +555,7 @@ namespace BodyBlizzSpaVer2
             }
 
             compute(newListServices);
+ 
             ReportForm rf = new ReportForm(therapist, lstTherapist);
             rf.ShowDialog();
         }

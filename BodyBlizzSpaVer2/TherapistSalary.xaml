@@ -36,6 +36,9 @@
                 <DataGridTextColumn Header="DATE SERVICED" Binding="{Binding DateServiced}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
                 </DataGridTextColumn>
+                <DataGridTextColumn Header="CLIENT NAME" Binding="{Binding ClientName}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
+
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="THERAPIST" Binding="{Binding Therapist}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
                 </DataGridTextColumn>

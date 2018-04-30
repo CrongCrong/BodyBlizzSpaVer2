@@ -51,7 +51,7 @@ namespace BodyBlizzSpaVer2
                 "INNER JOIN dbspa.tbltherapist ON dbspa.tblservicemade.therapistID = dbspa.tbltherapist.ID) " +
                 "INNER JOIN dbspa.tbldiscount ON dbspa.tblservicemade.discountID = dbspa.tbldiscount.ID) " +
                 "INNER JOIN dbspa.tblcommissions ON dbspa.tblservicemade.commissionID = dbspa.tblcommissions.ID) WHERE (dbspa.tblservicemade.isDeleted = 0)" +
-                " AND (dbspa.tblservicemade.dateServiced BETWEEN ? AND ?)";
+                " AND (dbspa.tblclient.isDeleted = 0) AND (dbspa.tbltherapist.isDeleted = 0) AND (dbspa.tblservicemade.dateServiced BETWEEN ? AND ?)";
 
             List<string> parameters = new List<string>();
             DateTime date = DateTime.Parse(datePickerFrom.Text);

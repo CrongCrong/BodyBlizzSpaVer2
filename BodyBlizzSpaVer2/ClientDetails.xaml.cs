@@ -1095,16 +1095,29 @@ namespace BodyBlizzSpaVer2
         private void datePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             SerialNumberModel serialN = checkSerialNumber();
-            string strD = datePicker.Text;
+            string strD = "";
+            if (string.IsNullOrEmpty(clientModel.DateServiced))
+            {
+                strD = DateTime.Parse(datePicker.Text).ToShortDateString();
+            }else
+            {
+                strD = DateTime.Parse(clientModel.DateServiced).ToShortDateString();
+            }
             
+            string dteNow = DateTime.Now.ToShortDateString();
+            string dteSelected = datePicker.Text;
             if (string.IsNullOrEmpty(strD))
             {
                 strD = DateTime.Now.ToShortDateString();
             }
 
-            CODModel codnum = checkCODNumber(strD);
-            txtCOD.Text = (Convert.ToInt32(codnum.COD1) + 1).ToString();
-            txtSerialNumber.Text = (Convert.ToInt32(serialN.SerialNumber)  + 1).ToString();
+            CODModel codnum = checkCODNumber(dteSelected);
+            if (!strD.Equals(dteNow))
+            {
+                txtCOD.Text = (Convert.ToInt32(codnum.COD1) + 1).ToString();
+                txtSerialNumber.Text = (Convert.ToInt32(serialN.SerialNumber) + 1).ToString();
+            }
+            
         }
     }
 }

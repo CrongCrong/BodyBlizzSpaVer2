@@ -49,6 +49,6 @@ namespace BodyBlizzSpaVer2.Classes
 
         public string TimeOut { get; set; }
 
-
+        public string ClientName { get; set; }
     }
 }

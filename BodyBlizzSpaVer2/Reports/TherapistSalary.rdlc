@@ -84,7 +84,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>0.54167in</Top>
+        <Top>0.59723in</Top>
         <Left>0.16333in</Left>
         <Height>0.25in</Height>
         <Width>1.34375in</Width>
@@ -116,7 +116,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>0.54167in</Top>
+        <Top>0.59723in</Top>
         <Left>4.11125in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -150,8 +150,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>1.06944in</Top>
-        <Left>0.16333in</Left>
+        <Top>1.72208in</Top>
+        <Left>0.12846in</Left>
         <Height>0.25in</Height>
         <Width>0.48958in</Width>
         <ZIndex>4</ZIndex>
@@ -214,10 +214,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>servicesRendered</rd:DefaultName>
-        <Top>0.79167in</Top>
-        <Left>0.62167in</Left>
+        <Top>0.875in</Top>
+        <Left>0.16333in</Left>
         <Height>0.25in</Height>
-        <Width>2.28125in</Width>
+        <Width>1.85726in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -248,7 +248,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>amount</rd:DefaultName>
-        <Top>0.79167in</Top>
+        <Top>0.875in</Top>
         <Left>4.11125in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -264,7 +264,7 @@
         </Style>
       </Textbox>
       <Line Name="Line1">
-        <Top>1.05556in</Top>
+        <Top>1.68041in</Top>
         <Left>3.31771in</Left>
         <Height>0in</Height>
         <Width>2.34375in</Width>
@@ -295,7 +295,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>total</rd:DefaultName>
-        <Top>1.06944in</Top>
+        <Top>1.72208in</Top>
         <Left>4.11125in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -327,7 +327,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>2.82196in</Top>
+        <Top>2.56957in</Top>
         <Left>0.68749in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -343,7 +343,7 @@
         </Style>
       </Textbox>
       <Line Name="Line2">
-        <Top>2.82196in</Top>
+        <Top>2.54179in</Top>
         <Left>0.12846in</Left>
         <Height>0in</Height>
         <Width>2.08333in</Width>
@@ -355,7 +355,7 @@
         </Style>
       </Line>
       <Line Name="Line3">
-        <Top>1.38888in</Top>
+        <Top>2.07983in</Top>
         <Left>0.12846in</Left>
         <Height>0in</Height>
         <Width>5.533in</Width>
@@ -366,6 +366,70 @@
           </Border>
         </Style>
       </Line>
+      <Textbox Name="Textbox9">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Clients:</Value>
+                <Style>
+                  <FontFamily>Rockwell</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox6</rd:DefaultName>
+        <Top>0.59723in</Top>
+        <Left>2.42375in</Left>
+        <Height>0.25in</Height>
+        <Width>0.60217in</Width>
+        <ZIndex>13</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="clientNames">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Join(Parameters!clientNames.Value)</Value>
+                <Style>
+                  <FontFamily>Rockwell</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>clientNames</rd:DefaultName>
+        <Top>0.875in</Top>
+        <Left>2.42375in</Left>
+        <Height>0.25in</Height>
+        <Width>1.29167in</Width>
+        <ZIndex>14</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>3.133in</Height>
     <Style />
@@ -399,6 +463,12 @@
     <ReportParameter Name="total">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="clientNames">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+      <MultiValue>true</MultiValue>
     </ReportParameter>
   </ReportParameters>
   <EmbeddedImages>

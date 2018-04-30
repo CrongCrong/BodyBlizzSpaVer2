@@ -56,9 +56,7 @@ namespace BodyBlizzSpaVer2
                     lstTherapist.Add(t);
                     t = new TherapistModel();
                 }
-
                 conDB.closeConnection();
-
             }
             catch (Exception ex)
             {

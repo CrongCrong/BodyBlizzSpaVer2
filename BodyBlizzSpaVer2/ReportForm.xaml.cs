@@ -370,6 +370,10 @@ namespace BodyBlizzSpaVer2
             multiValueParam.Values.AddRange(therapist.Amount);
             paramList.Add(multiValueParam);
 
+            multiValueParam = new ReportParameter("clientNames");
+            multiValueParam.Values.AddRange(therapist.ClientName);
+            paramList.Add(multiValueParam);
+
             //multiValueParam = new ReportParameter("penalties");
             //multiValueParam.Values.AddRange(therapist.Penalties);
             //paramList.Add(multiValueParam);

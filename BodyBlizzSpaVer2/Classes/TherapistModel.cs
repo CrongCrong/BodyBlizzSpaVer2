@@ -167,6 +167,8 @@ namespace BodyBlizzSpaVer2.Classes
 
         public string Loan { get; set; }
 
+        public string[] ClientName { get; set; }
+
         public override string ToString()
         {
             return Description;
