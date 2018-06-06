@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -28,6 +18,8 @@ namespace BodyBlizzSpaVer2
         }
 
         ConnectionDB conDB = new ConnectionDB();
+        string queryString = "";
+        List<string> parameters;
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -40,7 +32,7 @@ namespace BodyBlizzSpaVer2
             List<ProductsModel> lstProducts = new List<ProductsModel>();
             ProductsModel product = new ProductsModel();
 
-            string queryString = "SELECT ID, productName, description, price, stocks FROM dbspa.tblproducts WHERE isDeleted = 0";
+            queryString = "SELECT ID, productName, description, price, stocks FROM dbspa.tblproducts WHERE isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -65,7 +57,7 @@ namespace BodyBlizzSpaVer2
             List<ProductStocksModel> lstProductStocks = new List<ProductStocksModel>();
             ProductStocksModel ps = new ProductStocksModel();
 
-            string queryString = "SELECT dbspa.tblproductstocks.ID, productID, date, SUM(dbspa.tblproductstocks.stocks) as st, dbspa.tblproducts.productName " +
+            queryString = "SELECT dbspa.tblproductstocks.ID, productID, date, SUM(dbspa.tblproductstocks.stocks) as st, dbspa.tblproducts.productName " +
                 "FROM(dbspa.tblproductstocks INNER JOIN dbspa.tblproducts ON dbspa.tblproductstocks.productID = dbspa.tblproducts.ID) " +
                 "WHERE dbspa.tblproductstocks.isDeleted = 0 GROUP BY productID";
 
@@ -103,7 +95,7 @@ namespace BodyBlizzSpaVer2
             List<ProductBoughtModel> lstProductsBought = new List<ProductBoughtModel>();
             ProductBoughtModel pbm = new ProductBoughtModel();
 
-            string queryString = "SELECT ID, productID, sum(totalqty) as 'TOTAL' FROM dbspa.tblproductbought WHERE isDeleted = 0 group by productID";
+            queryString = "SELECT ID, productID, sum(totalqty) as 'TOTAL' FROM dbspa.tblproductbought WHERE isDeleted = 0 group by productID";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -125,8 +117,8 @@ namespace BodyBlizzSpaVer2
         {
             try
             {
-                string queryString = "UPDATE dbspa.tblproducts SET isDeleted = ? WHERE ID = ?";
-                List<string> parameters = new List<string>();
+                queryString = "UPDATE dbspa.tblproducts SET isDeleted = ? WHERE ID = ?";
+                parameters = new List<string>();
                 parameters.Add(1.ToString());
                 parameters.Add(id.ToString());
 

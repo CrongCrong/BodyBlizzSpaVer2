@@ -21,6 +21,9 @@ namespace BodyBlizzSpaVer2
        
         ConnectionDB conDB = new ConnectionDB();
         User user;
+        string queryString = "";
+        List<string> parameters;
+
         public ClientForm(User usr)
         {
             user = usr;
@@ -45,12 +48,12 @@ namespace BodyBlizzSpaVer2
             ClientModel cm = new ClientModel();
             try
             {
-                string queryString = "SELECT dbspa.tblclient.ID AS 'ID',dbspa.tblclient.firstName AS 'FIRST NAME'," + 
+                queryString = "SELECT dbspa.tblclient.ID AS 'ID',dbspa.tblclient.firstName AS 'FIRST NAME'," + 
                     "dbspa.tblclient.lastName AS 'LAST NAME', dbspa.tblservicemode.serviceType AS 'SERVICE MODE', " +
                     "IF(dbspa.tblclient.isLoyal, 'YES', 'NO') AS 'LOYALTY CARD', LoyaltyID, dbspa.tblclient.phonenumber FROM (dbspa.tblclient INNER JOIN dbspa.tblservicemode ON " +
                     "dbspa.tblclient.servicemode = dbspa.tblservicemode.ID) WHERE (dbspa.tblclient.isDeleted = 0) order by ID desc";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 DateTime date = DateTime.Parse(DateTime.Now.ToShortDateString());
                 parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
 
@@ -86,12 +89,12 @@ namespace BodyBlizzSpaVer2
 
                 List<ClientModel> lstClientModel = new List<ClientModel>();
                 ClientModel cm = new ClientModel();
-                string queryString = "SELECT dbspa.tblclient.ID AS 'ID',dbspa.tblclient.firstName AS 'FIRST NAME'," +
+                queryString = "SELECT dbspa.tblclient.ID AS 'ID',dbspa.tblclient.firstName AS 'FIRST NAME'," +
                         "dbspa.tblclient.lastName AS 'LAST NAME', dbspa.tblservicemode.serviceType AS 'SERVICE MODE', " +
                         "IF(dbspa.tblclient.isLoyal, 'YES', 'NO') AS 'LOYALTY CARD', LoyaltyID, dbspa.tblclient.phonenumber FROM (dbspa.tblclient INNER JOIN dbspa.tblservicemode ON " +
                         "dbspa.tblclient.servicemode = dbspa.tblservicemode.ID)  WHERE (dbspa.tblclient.isDeleted = 0) ";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
 
                 if(chkDate.IsChecked == true)
                 {
@@ -136,10 +139,10 @@ namespace BodyBlizzSpaVer2
         {
             ClientModel cm = new ClientModel();
 
-            string queryString = "SELECT dateServiced, serialNo, cod, firstName, lastName, address, phonenumber, servicemode, totalamt, " +
+            queryString = "SELECT dateServiced, serialNo, cod, firstName, lastName, address, phonenumber, servicemode, totalamt, " +
             "timeIn, timeOut, isLoyal, LoyaltyID FROM dbspa.tblclient WHERE (ID = ?) AND (isDeleted = 0)";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
 
             parameters.Add(id.ToString());
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
@@ -170,9 +173,9 @@ namespace BodyBlizzSpaVer2
         {
             LoyaltyCardModel lcm = new LoyaltyCardModel();
 
-            string queryString = "SELECT servicecount, firstfree, secondfree FROM dbspa.tblloyaltycard WHERE ID = ?";
+            queryString = "SELECT servicecount, firstfree, secondfree FROM dbspa.tblloyaltycard WHERE ID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(cardID);
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
@@ -182,11 +185,9 @@ namespace BodyBlizzSpaVer2
                 lcm.ServiceCount = Convert.ToInt32(reader["servicecount"].ToString());
                 lcm.FirstFree = reader["firstfree"].ToString();
                 lcm.SecondFree = reader["secondfree"].ToString();
-
-
             }
 
-
+            conDB.closeConnection();
             return lcm;
         }
 
@@ -195,10 +196,10 @@ namespace BodyBlizzSpaVer2
             List<ServiceMadeModel> lstSMM = new List<ServiceMadeModel>();
             ServiceMadeModel smm = new ServiceMadeModel();
 
-            string queryString = "SELECT dbspa.tblservicemade.ID, serviceTypeID, therapistID, dateServiced, isDiscounted, discountID, " +
+            queryString = "SELECT dbspa.tblservicemade.ID, serviceTypeID, therapistID, dateServiced, isDiscounted, discountID, " +
                 "dbspa.tblservicetype.price, dbspa.tblservicetype.serviceType FROM (dbspa.tblservicemade INNER JOIN dbspa.tblservicetype ON dbspa.tblservicemade.serviceTypeID = dbspa.tblservicetype.ID) " +
                 "WHERE(clientID = ?) AND (dbspa.tblservicemade.isDeleted = 0) AND dateServiced = ?";
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
 
             parameters.Add(id.ToString());
             DateTime date = DateTime.Parse(DateTime.Now.ToShortDateString());
@@ -232,8 +233,8 @@ namespace BodyBlizzSpaVer2
 
             foreach (ServiceMadeModel madeModel in smm)
             {
-                string queryString = "SELECT ID, serviceType, price FROM dbspa.tblservicetype WHERE ID = ? AND isDeleted=0";
-                List<string> parameters = new List<string>();
+                queryString = "SELECT ID, serviceType, price FROM dbspa.tblservicetype WHERE ID = ? AND isDeleted=0";
+                parameters = new List<string>();
                 parameters.Add(madeModel.ServiceType);
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
 
@@ -257,11 +258,11 @@ namespace BodyBlizzSpaVer2
             List<ServiceMadeModel> lstPromoServices = new List<ServiceMadeModel>();
             ServiceMadeModel s = new ServiceMadeModel();
 
-            string queryString = "SELECT dbspa.tblpromoservicesclient.ID, dbspa.tblpromo.promoname, dbspa.tblpromo.price FROM " +
+            queryString = "SELECT dbspa.tblpromoservicesclient.ID, dbspa.tblpromo.promoname, dbspa.tblpromo.price FROM " +
                 "(dbspa.tblpromoservicesclient INNER JOIN dbspa.tblpromo ON dbspa.tblpromoservicesclient.promoID = dbspa.tblpromo.ID) " +
                 "WHERE dbspa.tblpromoservicesclient.clientID = ? AND dateserviced = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(c.ID1);
             DateTime date = DateTime.Parse(DateTime.Now.ToShortDateString());
             parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
@@ -277,6 +278,7 @@ namespace BodyBlizzSpaVer2
                 s = new ServiceMadeModel();
             }
 
+            conDB.closeConnection();
             return lstPromoServices;
         }
 
@@ -284,8 +286,8 @@ namespace BodyBlizzSpaVer2
         {
             DiscountModel dm = new DiscountModel();
 
-            string queryString = "SELECT discount, description FROM dbspa.tbldiscount WHERE (ID=?) And (isDeleted = 0)";
-            List<string> parameters = new List<string>();
+            queryString = "SELECT discount, description FROM dbspa.tbldiscount WHERE (ID=?) And (isDeleted = 0)";
+            parameters = new List<string>();
 
             parameters.Add(id.ToString());
 
@@ -308,12 +310,12 @@ namespace BodyBlizzSpaVer2
             List<TherapistModel> lstTM = new List<TherapistModel>();
             TherapistModel tm = new TherapistModel();
 
-            string queryString = "SELECT dbspa.tbltherapist.ID, dbspa.tbltherapist.firstName, dbspa.tbltherapist.lastName, dbspa.tbltherapist.wage, " +
+            queryString = "SELECT dbspa.tbltherapist.ID, dbspa.tbltherapist.firstName, dbspa.tbltherapist.lastName, dbspa.tbltherapist.wage, " +
                 "dbspa.tbltherapist.description FROM ((dbspa.tblservicemade INNER JOIN dbspa.tbltherapist ON " +
                 "dbspa.tblservicemade.therapistID = dbspa.tbltherapist.ID) INNER JOIN dbspa.tblClient ON " +
                 "dbspa.tblservicemade.clientID = dbspa.tblclient.ID) WHERE (dbspa.tblservicemade.clientID = ?) AND (dbspa.tblservicemade.dateServiced = ?)";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
 
             parameters.Add(id.ToString());
 
@@ -405,14 +407,14 @@ namespace BodyBlizzSpaVer2
 
             try
             {
-                string queryString = "UPDATE dbspa.tblclient SET isDeleted = ? WHERE ID = ?";
-                List<string> parameters = new List<string>();
+                queryString = "UPDATE dbspa.tblclient SET isDeleted = ? WHERE ID = ?";
+                parameters = new List<string>();
 
                 parameters.Add(1.ToString());
                 parameters.Add(id.ToString());
 
                 conDB.AddRecordToDatabase(queryString, parameters);
-
+                conDB.closeConnection();
                 getClientInfo(dateFrom.Text);
             }
             catch (Exception ex)
@@ -427,12 +429,12 @@ namespace BodyBlizzSpaVer2
             ClientModel cm = new ClientModel();
             try
             {
-                string queryString = "SELECT dbspa.tblclient.ID AS 'ID',dbspa.tblclient.firstName AS 'FIRST NAME'," +
+                queryString = "SELECT dbspa.tblclient.ID AS 'ID',dbspa.tblclient.firstName AS 'FIRST NAME'," +
                     "dbspa.tblclient.lastName AS 'LAST NAME', dbspa.tblservicemode.serviceType AS 'SERVICE MODE', " +
                     "IF(dbspa.tblclient.isLoyal, 'YES', 'NO') AS 'LOYALTY CARD', LoyaltyID, dbspa.tblclient.phonenumber FROM (dbspa.tblclient INNER JOIN dbspa.tblservicemode ON " +
                     "dbspa.tblclient.servicemode = dbspa.tblservicemode.ID)  WHERE (dbspa.tblclient.dateServiced = ?) AND (dbspa.tblclient.isDeleted = 0)";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 DateTime date = DateTime.Parse(selectedDate);
                 parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
 
@@ -479,7 +481,7 @@ namespace BodyBlizzSpaVer2
             List<ProductBoughtModel> lstProductsBought = new List<ProductBoughtModel>();
             ProductBoughtModel prodBought = new ProductBoughtModel();
 
-            string queryString = "SELECT dbspa.tblproductbought.ID, dbspa.tblproducts.productName, " +
+            queryString = "SELECT dbspa.tblproductbought.ID, dbspa.tblproducts.productName, " +
                 "IF(dbspa.tblproductbought.isDiscounted, (dbspa.tblproducts.price - dbspa.tblproducts.price * (dbspa.tbldiscount.discount / 100))  * dbspa.tblproductbought.totalqty, " +
                 "dbspa.tblproducts.price * dbspa.tblproductbought.totalqty) AS 'PRICE', IF(dbspa.tblproductbought.isDiscounted, 'YES', 'NO') AS 'DISCOUNTED'" +
                 " FROM(((dbspa.tblproductbought INNER JOIN dbspa.tblclient ON dbspa.tblproductbought.clientID = dbspa.tblclient.ID) " +
@@ -487,7 +489,7 @@ namespace BodyBlizzSpaVer2
                 "INNER JOIN dbspa.tbldiscount ON dbspa.tblproductbought.discountID = dbspa.tbldiscount.ID) " +
                 "WHERE dbspa.tblproductbought.isDeleted = 0 AND dbspa.tblproductbought.clientID = ? AND datebought =?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(id.ToString());
 
             DateTime date = DateTime.Parse(DateTime.Now.ToShortDateString());
@@ -642,12 +644,12 @@ namespace BodyBlizzSpaVer2
 
                 List<ClientModel> lstClientModel = new List<ClientModel>();
                 ClientModel cm = new ClientModel();
-                string queryString = "SELECT dbspa.tblclient.ID AS 'ID',dbspa.tblclient.firstName AS 'FIRST NAME'," +
+                queryString = "SELECT dbspa.tblclient.ID AS 'ID',dbspa.tblclient.firstName AS 'FIRST NAME'," +
                         "dbspa.tblclient.lastName AS 'LAST NAME', dbspa.tblservicemode.serviceType AS 'SERVICE MODE', " +
                         "IF(dbspa.tblclient.isLoyal, 'YES', 'NO') AS 'LOYALTY CARD', LoyaltyID, dbspa.tblclient.phonenumber FROM (dbspa.tblclient INNER JOIN dbspa.tblservicemode ON " +
                         "dbspa.tblclient.servicemode = dbspa.tblservicemode.ID)  WHERE (dbspa.tblclient.isDeleted = 0) order by ID desc";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
 

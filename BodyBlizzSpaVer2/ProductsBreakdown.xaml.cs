@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -30,6 +20,8 @@ namespace BodyBlizzSpaVer2
         ConnectionDB conDB = new ConnectionDB();
         ProductsWindow productsWindow;
         ProductStocksModel productStocksModel;
+        string queryString = "";
+        List<string> parameters;
 
         public ProductsBreakdown(ProductsWindow pw)
         {
@@ -55,11 +47,11 @@ namespace BodyBlizzSpaVer2
             List<ProductBoughtModel> lstProductsOut = new List<ProductBoughtModel>();
             ProductBoughtModel pb = new ProductBoughtModel();
 
-            string queryString = "SELECT dbspa.tblproducts.productName, CONCAT(dbspa.tblclient.firstName, ' ', dbspa.tblclient.lastName) as 'Whole Name', " +
+            queryString = "SELECT dbspa.tblproducts.productName, CONCAT(dbspa.tblclient.firstName, ' ', dbspa.tblclient.lastName) as 'Whole Name', " +
                 "totalqty FROM ((dbspa.tblproductbought INNER JOIN dbspa.tblclient ON dbspa.tblproductbought.clientID = dbspa.tblclient.ID) " +
                 "INNER JOIN dbspa.tblproducts ON dbspa.tblproductbought.productID = dbspa.tblproducts.ID) WHERE dbspa.tblproductbought.isDeleted = 0 " +
                 "AND dbspa.tblproductbought.productID = ?";
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(productStocksModel.ProductID);
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
@@ -82,11 +74,11 @@ namespace BodyBlizzSpaVer2
             List<ProductStocksModel> lstProductsIn = new List<ProductStocksModel>();
             ProductStocksModel pIn = new ProductStocksModel();
 
-            string queryString = "SELECT dbspa.tblproductstocks.ID, dbspa.tblproducts.productName, date, dbspa.tblproducts.ID as 'PRODUCT ID', dbspa.tblproductstocks.stocks " +
+            queryString = "SELECT dbspa.tblproductstocks.ID, dbspa.tblproducts.productName, date, dbspa.tblproducts.ID as 'PRODUCT ID', dbspa.tblproductstocks.stocks " +
                 "FROM(dbspa.tblproductstocks INNER JOIN dbspa.tblproducts ON dbspa.tblproductstocks.productID = dbspa.tblproducts.ID) " +
                 "WHERE dbspa.tblproductstocks.isDeleted = 0 AND dbspa.tblproductstocks.productID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(productStocksModel.ProductID);
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
@@ -113,7 +105,7 @@ namespace BodyBlizzSpaVer2
             List<ProductStocksModel> lstProductStocks = new List<ProductStocksModel>();
             ProductStocksModel ps = new ProductStocksModel();
 
-            string queryString = "SELECT dbspa.tblproductstocks.ID, productID, date, SUM(dbspa.tblproductstocks.stocks) as st, dbspa.tblproducts.productName " +
+            queryString = "SELECT dbspa.tblproductstocks.ID, productID, date, SUM(dbspa.tblproductstocks.stocks) as st, dbspa.tblproducts.productName " +
                 "FROM(dbspa.tblproductstocks INNER JOIN dbspa.tblproducts ON dbspa.tblproductstocks.productID = dbspa.tblproducts.ID) " +
                 "WHERE dbspa.tblproductstocks.isDeleted = 0 GROUP BY productID";
 
@@ -151,7 +143,7 @@ namespace BodyBlizzSpaVer2
             List<ProductBoughtModel> lstProductsBought = new List<ProductBoughtModel>();
             ProductBoughtModel pbm = new ProductBoughtModel();
 
-            string queryString = "SELECT ID, productID, sum(totalqty) as 'TOTAL' FROM dbspa.tblproductbought WHERE isDeleted = 0 group by productID";
+            queryString = "SELECT ID, productID, sum(totalqty) as 'TOTAL' FROM dbspa.tblproductbought WHERE isDeleted = 0 group by productID";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 

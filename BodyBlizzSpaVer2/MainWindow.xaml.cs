@@ -3,18 +3,8 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -30,6 +20,8 @@ namespace BodyBlizzSpaVer2
         }
 
         ConnectionDB conDB = new ConnectionDB();
+        string queryString = "";
+        List<string> parameters;
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -61,7 +53,6 @@ namespace BodyBlizzSpaVer2
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("LOG IN FAILED! - Incorret Username/Password");
             }
 
@@ -76,8 +67,8 @@ namespace BodyBlizzSpaVer2
         {
             User user = new User();
 
-            string queryString = "SELECT ID, firstName, LastName, userType, username, password FROM dbspa.tblUser WHERE (username = ?) AND (password = ?)";
-            List<string> parameters = new List<string>();
+            queryString = "SELECT ID, firstName, LastName, userType, username, password FROM dbspa.tblUser WHERE (username = ?) AND (password = ?)";
+            parameters = new List<string>();
 
             parameters.Add(username);
             parameters.Add(password);

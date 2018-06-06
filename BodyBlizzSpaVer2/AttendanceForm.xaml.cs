@@ -31,6 +31,9 @@ namespace BodyBlizzSpaVer2
 
 
         ConnectionDB conDB = new ConnectionDB();
+        string queryString = "";
+        List<string> parameters;
+
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             date.Content = DateTime.Now.ToShortDateString();
@@ -55,7 +58,7 @@ namespace BodyBlizzSpaVer2
 
             try
             {
-                string queryString = "SELECT ID, firstName, lastName, wage, description FROM dbspa.tbltherapist WHERE (isDeleted = 0)";
+                queryString = "SELECT ID, firstName, lastName, wage, description FROM dbspa.tbltherapist WHERE (isDeleted = 0)";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -86,7 +89,6 @@ namespace BodyBlizzSpaVer2
             {
                 TherapistModel therapist = cmbTherapist.SelectedItem as TherapistModel;
                 string recordID = "";
-
 
                 try
                 {
@@ -160,8 +162,7 @@ namespace BodyBlizzSpaVer2
                         }
                     }
 
-                    string queryString = "";
-                    List<string> parameters = new List<string>();
+                    parameters = new List<string>();
                     if (checkIfAlreadyLoggedIn())
                     {
 
@@ -286,8 +287,8 @@ namespace BodyBlizzSpaVer2
                 {
                     TherapistModel therapist = cmbTherapist.SelectedItem as TherapistModel;
 
-                    string queryString = "SELECT therapistID FROM dbspa.tblattendance WHERE therapistID = ? AND attendanceDate = ? AND isDeleted = 0";
-                    List<string> parameters = new List<string>();
+                    queryString = "SELECT therapistID FROM dbspa.tblattendance WHERE therapistID = ? AND attendanceDate = ? AND isDeleted = 0";
+                    parameters = new List<string>();
                     parameters.Add(therapist.ID1);
                     DateTime date = DateTime.Parse(dteAttendance.Text);
                     parameters.Add(date.Year + "-" + date.Month + "-" + date.Day);
@@ -327,11 +328,11 @@ namespace BodyBlizzSpaVer2
             TherapistAttendance attendance = new TherapistAttendance();
             try
             {
-                string queryString = "SELECT dbspa.tblattendance.ID, dbspa.tbltherapist.description AS 'THERAPIST', dbspa.tblattendance.attendanceDate AS 'DATE', " +
+                queryString = "SELECT dbspa.tblattendance.ID, dbspa.tbltherapist.description AS 'THERAPIST', dbspa.tblattendance.attendanceDate AS 'DATE', " +
                     "dbspa.tblattendance.timeIn AS 'TIME IN', dbspa.tbltherapist.ID AS 'THERAPIST ID', dbspa.tblattendance.timeOut AS 'TIME OUT' FROM (dbspa.tblattendance INNER JOIN dbspa.tbltherapist ON " +
                     "dbspa.tblattendance.therapistID = dbspa.tbltherapist.ID) WHERE (dbspa.tblattendance.isDeleted = 0) AND (dbspa.tbltherapist.isDeleted = 0) " +
                     "AND (dbspa.tblattendance.attendanceDate = ?)";
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 DateTime date = new DateTime();
                 if (!string.IsNullOrEmpty(dateFrom.Text))
                 {
@@ -398,12 +399,12 @@ namespace BodyBlizzSpaVer2
 
             try
             {
-                string queryString = "SELECT dbspa.tblattendance.ID, dbspa.tbltherapist.description AS 'THERAPIST', dbspa.tblattendance.attendanceDate AS 'DATE', " +
+                queryString = "SELECT dbspa.tblattendance.ID, dbspa.tbltherapist.description AS 'THERAPIST', dbspa.tblattendance.attendanceDate AS 'DATE', " +
                     "dbspa.tblattendance.timeIn AS 'TIME IN', dbspa.tbltherapist.ID AS 'THERAPIST ID', dbspa.tblattendance.timeOut AS 'TIME OUT' FROM " +
                     "(dbspa.tblattendance INNER JOIN dbspa.tbltherapist ON dbspa.tblattendance.therapistID = dbspa.tbltherapist.ID) " +
                     "WHERE (dbspa.tblattendance.isDeleted = 0) AND (dbspa.tbltherapist.isDeleted = 0) AND (dbspa.tblattendance.attendanceDate = ?)";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 DateTime date = DateTime.Parse(dateFrom.Text);
                 parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
 
@@ -435,8 +436,8 @@ namespace BodyBlizzSpaVer2
 
         private void deleteAttendanceRecord(string recID)
         {
-            string queryString = "UPDATE dbspa.tblAttendance SET isDeleted = 1 WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "UPDATE dbspa.tblAttendance SET isDeleted = 1 WHERE ID = ?";
+            parameters = new List<string>();
 
             parameters.Add(recID);
 
@@ -453,12 +454,12 @@ namespace BodyBlizzSpaVer2
 
             try
             {
-                string queryString = "SELECT dbspa.tblattendance.ID, dbspa.tbltherapist.description AS 'THERAPIST', dbspa.tblattendance.attendanceDate AS 'DATE', " +
+                queryString = "SELECT dbspa.tblattendance.ID, dbspa.tbltherapist.description AS 'THERAPIST', dbspa.tblattendance.attendanceDate AS 'DATE', " +
                     "dbspa.tblattendance.timeIn AS 'TIME IN', dbspa.tblattendance.timeOut AS 'TIME OUT' FROM (dbspa.tblattendance INNER JOIN " +
                     "dbspa.tbltherapist ON dbspa.tblattendance.therapistID = dbspa.tbltherapist.ID) WHERE (dbspa.tblattendance.isDeleted = 0) AND " +
                     "(dbspa.tbltherapist.isDeleted = 0) AND (tblAttendance.therapistID = ?) AND dbspa.tblattendance.ID = ?";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 parameters.Add(strTherapistId.ToString());
                 parameters.Add(recordID);
 
@@ -493,33 +494,22 @@ namespace BodyBlizzSpaVer2
 
         private void chkManualIn_Checked(object sender, RoutedEventArgs e)
         {
-
-
-            dateTimeIn.Visibility = Visibility.Visible;
-
-            
+            dateTimeIn.Visibility = Visibility.Visible;      
         }
 
         private void chkManualOut_Checked(object sender, RoutedEventArgs e)
         {
-
-            dateTimeOut.Visibility = Visibility.Visible;
-
-            
+            dateTimeOut.Visibility = Visibility.Visible;           
         }
 
         private void chkManualIn_Unchecked(object sender, RoutedEventArgs e)
         {
-
                 dateTimeIn.Visibility = Visibility.Hidden;
-
         }
 
         private void chkManualOut_Unchecked(object sender, RoutedEventArgs e)
         {
-
                 dateTimeOut.Visibility = Visibility.Hidden;
-
         }
 
         private void btnTimeIn_Click(object sender, RoutedEventArgs e)
@@ -615,8 +605,8 @@ namespace BodyBlizzSpaVer2
                         }
 
                         string recordID = "";
-                        string queryString = "";
-                        List<string> parameters = new List<string>();
+                        queryString = "";
+                        parameters = new List<string>();
                         if (checkIfAlreadyLoggedIn())
                         {
                       
@@ -753,8 +743,8 @@ namespace BodyBlizzSpaVer2
                                     numIfUndertime = 1;
                                 }
 
-                                string queryString = "UPDATE dbspa.tblattendance SET timeOut = ?, ifUndertime = ? , undertimeDeduction = ? WHERE therapistID = ? AND ID = ?";
-                                List<string> parameters = new List<string>();
+                                queryString = "UPDATE dbspa.tblattendance SET timeOut = ?, ifUndertime = ? , undertimeDeduction = ? WHERE therapistID = ? AND ID = ?";
+                                parameters = new List<string>();
                                 if (chkManualOut.IsChecked == true)
                                 {
                                     parameters.Add(dateTimeOut.Text);

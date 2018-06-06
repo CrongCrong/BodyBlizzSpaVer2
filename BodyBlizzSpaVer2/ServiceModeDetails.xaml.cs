@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -31,6 +21,9 @@ namespace BodyBlizzSpaVer2
         ConnectionDB conDB = new ConnectionDB();
         ServiceModeWindow serviceModeWindow;
         ServiceModeModel serviceModel;
+        string queryString = "";
+        List<string> parameters;
+
         public ServiceModeDetails(ServiceModeWindow sm)
         {
             serviceModeWindow = sm;
@@ -77,7 +70,7 @@ namespace BodyBlizzSpaVer2
         {
             List<ServiceModeModel> lstServiceMode = new List<ServiceModeModel>();
             ServiceModeModel serviceMode = new ServiceModeModel();
-            string queryString = "SELECT ID, serviceType AS 'SERVICE TYPE' FROM dbspa.tblservicemode WHERE isDeleted = 0";
+            queryString = "SELECT ID, serviceType AS 'SERVICE TYPE' FROM dbspa.tblservicemode WHERE isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -100,10 +93,10 @@ namespace BodyBlizzSpaVer2
                 if (checkFields())
                 {
 
-                    string queryString = "INSERT INTO dbspa.tblservicemode (serviceType, isDeleted)" +
+                    queryString = "INSERT INTO dbspa.tblservicemode (serviceType, isDeleted)" +
                         "VALUES(?,?)";
 
-                    List<string> parameters = new List<string>();
+                    parameters = new List<string>();
                     parameters.Add(txtServiceMode.Text);
                     parameters.Add(0.ToString());
 
@@ -133,8 +126,8 @@ namespace BodyBlizzSpaVer2
         {
             try
             {
-                string queryString = "UPDATE dbspa.tblservicemode SET serviceType = ? WHERE ID = ?";
-                List<string> parameters = new List<string>();
+                queryString = "UPDATE dbspa.tblservicemode SET serviceType = ? WHERE ID = ?";
+                parameters = new List<string>();
 
                 parameters.Add(txtServiceMode.Text);
                 parameters.Add(serviceModel.ID1);

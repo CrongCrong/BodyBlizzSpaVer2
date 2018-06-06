@@ -3,17 +3,9 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -30,6 +22,9 @@ namespace BodyBlizzSpaVer2
         CommissionWindow comms;
         CommissionModel comModel;
         ConnectionDB conDB = new ConnectionDB();
+
+        string queryString = "";
+        List<string> parameters;
 
         public CommissionDetails(CommissionWindow co)
         {
@@ -77,7 +72,7 @@ namespace BodyBlizzSpaVer2
             try
             {
 
-                string queryString = "SELECT dbspa.tblservicetype.ID, dbspa.tblservicetype.serviceType AS 'SERVICE TYPE', dbspa.tblservicetype.price AS 'PRICE', " +
+                queryString = "SELECT dbspa.tblservicetype.ID, dbspa.tblservicetype.serviceType AS 'SERVICE TYPE', dbspa.tblservicetype.price AS 'PRICE', " +
                     "description FROM dbspa.tblservicetype WHERE (dbspa.tblservicetype.isDeleted = 0)";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
@@ -114,7 +109,7 @@ namespace BodyBlizzSpaVer2
         {
             try
             {
-                string queryString = "SELECT dbspa.tblservicetype.ID, dbspa.tblservicetype.serviceType AS 'SERVICE TYPE', dbspa.tblservicetype.price AS 'PRICE', " +
+                queryString = "SELECT dbspa.tblservicetype.ID, dbspa.tblservicetype.serviceType AS 'SERVICE TYPE', dbspa.tblservicetype.price AS 'PRICE', " +
                     "description FROM dbspa.tblservicetype WHERE (isDeleted = 0)";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
@@ -150,7 +145,7 @@ namespace BodyBlizzSpaVer2
             try
             {
 
-                string queryString = "SELECT dbspa.tblservicetype.ID, dbspa.tblservicetype.serviceType AS 'SERVICE TYPE', dbspa.tblservicetype.price FROM " +
+                queryString = "SELECT dbspa.tblservicetype.ID, dbspa.tblservicetype.serviceType AS 'SERVICE TYPE', dbspa.tblservicetype.price FROM " +
                     "(dbspa.tblservicetype INNER JOIN dbspa.tblcommissions ON dbspa.tblservicetype.ID = dbspa.tblcommissions.serviceTypeID) WHERE " +
                     "(dbspa.tblservicetype.isDeleted = 0) AND (dbspa.tblcommissions.isDeleted = 0)";
 
@@ -183,7 +178,7 @@ namespace BodyBlizzSpaVer2
             try
             {
 
-                string queryString = "SELECT dbspa.tblcommissions.ID, dbspa.tblservicetype.description as 'SERVICE TYPE', " + 
+                queryString = "SELECT dbspa.tblcommissions.ID, dbspa.tblservicetype.description as 'SERVICE TYPE', " + 
                     "dbspa.tblcommissions.commission as 'COMMISSION' FROM (dbspa.tblcommissions INNER JOIN dbspa.tblservicetype ON " + 
                     "dbspa.tblcommissions.serviceTypeID = dbspa.tblservicetype.ID) WHERE (dbspa.tblcommissions.isDeleted = 0)";
 
@@ -216,9 +211,9 @@ namespace BodyBlizzSpaVer2
 
                 CommissionModel stm = cmbServiceType.SelectedItem as CommissionModel;
 
-                string queryString = "UPDATE dbspa.tblcommissions SET commission = ? " +
+                queryString = "UPDATE dbspa.tblcommissions SET commission = ? " +
                     "WHERE ID = ?";
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 parameters.Add(String.Format("{0:0.00}", txtCommission.Text));
                 parameters.Add(comModel.ID1);
 
@@ -242,7 +237,7 @@ namespace BodyBlizzSpaVer2
            
             ServiceTypeModel promoServ = new ServiceTypeModel();
 
-            string queryString = "SELECT ID, promoname, price FROM dbspa.tblpromo WHERE dbspa.tblpromo.commission = 0 AND isDeleted = 0";
+            queryString = "SELECT ID, promoname, price FROM dbspa.tblpromo WHERE dbspa.tblpromo.commission = 0 AND isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -264,8 +259,8 @@ namespace BodyBlizzSpaVer2
         {
             try
             {
-                string queryString = "INSERT INTO dbspa.tblcommissions (serviceTypeID,commission,isDeleted)VALUES(?, ?, ?)";
-                List<string> parameters = new List<string>();
+                queryString = "INSERT INTO dbspa.tblcommissions (serviceTypeID,commission,isDeleted)VALUES(?, ?, ?)";
+                parameters = new List<string>();
                 ServiceTypeModel stm = cmbServiceType.SelectedItem as ServiceTypeModel;
 
                 parameters.Add(stm.ID1);
@@ -292,9 +287,9 @@ namespace BodyBlizzSpaVer2
 
         private void updatePromoNameWithCommission(string id)
         {
-            string queryString = "UPDATE dbspa.tblpromo SET commission = ? WHERE ID = ?";
+            queryString = "UPDATE dbspa.tblpromo SET commission = ? WHERE ID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(txtCommission.Text);
             parameters.Add(id.ToString());
 

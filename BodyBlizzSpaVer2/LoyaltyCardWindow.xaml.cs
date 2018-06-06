@@ -1,20 +1,9 @@
 ﻿using BodyBlizzSpaVer2.Classes;
 using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -29,6 +18,8 @@ namespace BodyBlizzSpaVer2
         }
 
         ConnectionDB conDB = new ConnectionDB();
+        string queryString = "";
+        List<string> parameters;
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -40,7 +31,7 @@ namespace BodyBlizzSpaVer2
             List<LoyaltyCardModel> lstLoyaltyCard = new List<LoyaltyCardModel>();
             LoyaltyCardModel loyalty = new LoyaltyCardModel();
 
-            string queryString = "SELECT dbspa.tblloyaltycard.ID, dbspa.tblclient.ID AS 'clientID', serialnumber,CONCAT(dbspa.tblclient.firstName, ' ', dbspa.tblclient.lastName) as 'Whole Name' " +
+            queryString = "SELECT dbspa.tblloyaltycard.ID, dbspa.tblclient.ID AS 'clientID', serialnumber,CONCAT(dbspa.tblclient.firstName, ' ', dbspa.tblclient.lastName) as 'Whole Name' " +
                 "FROM (dbspa.tblloyaltycard INNER JOIN dbspa.tblclient ON dbspa.tblloyaltycard.clientID = dbspa.tblclient.ID) WHERE dbspa.tblloyaltycard.isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
@@ -66,7 +57,7 @@ namespace BodyBlizzSpaVer2
             LoyaltyCardModel loyalty = new LoyaltyCardModel();
 
 
-            string queryString = "SELECT dbspa.tblloyaltycard.ID, serialnumber FROM dbspa.tblloyaltycard WHERE dbspa.tblloyaltycard.clientID = 0";
+            queryString = "SELECT dbspa.tblloyaltycard.ID, serialnumber FROM dbspa.tblloyaltycard WHERE dbspa.tblloyaltycard.clientID = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -85,9 +76,9 @@ namespace BodyBlizzSpaVer2
 
         private void deleteRecord(string recID)
         {
-            string queryString = "UPDATE dbspa.tblloyaltycard SET isDeleted = 1 WHERE ID = ?";
+            queryString = "UPDATE dbspa.tblloyaltycard SET isDeleted = 1 WHERE ID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(recID);
 
             conDB.AddRecordToDatabase(queryString, parameters);
@@ -97,9 +88,9 @@ namespace BodyBlizzSpaVer2
 
         private void removeLoyaltyCardFromClient(string recID)
         {
-            string queryString = "UPDATE dbspa.tblclient SET isLoyal = 0, LoyaltyID = 0 WHERE LoyaltyID = ?";
+            queryString = "UPDATE dbspa.tblclient SET isLoyal = 0, LoyaltyID = 0 WHERE LoyaltyID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(recID);
 
             conDB.AddRecordToDatabase(queryString, parameters);

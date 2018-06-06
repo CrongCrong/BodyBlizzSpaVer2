@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -30,6 +20,8 @@ namespace BodyBlizzSpaVer2
         ConnectionDB conDB = new ConnectionDB();
         LoanBalanceWindow loanBalWindow;
         LoanModel loanModel;
+        string queryString = "";
+        List<string> parameters;
 
         public PayLoanDetails(LoanBalanceWindow lbw, LoanModel lm)
         {
@@ -83,10 +75,10 @@ namespace BodyBlizzSpaVer2
         private void savePayRecord()
         {
 
-            string queryString = "INSERT INTO dbspa.tblloanbalance (therapistID, datepaid, dateloan, loanID, amount, isDeleted) " +
+            queryString = "INSERT INTO dbspa.tblloanbalance (therapistID, datepaid, dateloan, loanID, amount, isDeleted) " +
                 "VALUES(?,?,?,?,?,0)";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(loanModel.TherapistID);
             DateTime dte = DateTime.Parse(datePaidPicker.Text);
             parameters.Add(dte.Year + "-" + dte.Month + "-" + dte.Day);
@@ -107,11 +99,11 @@ namespace BodyBlizzSpaVer2
             List<LoanModel> lstLoanBalance = new List<LoanModel>();
             LoanModel loanMod = new LoanModel();
 
-            string queryString = "SELECT tbl2.ID, tbl2.loandate, tbl2.therapistID, tbl2.loanamount, ifPaid, " +
+            queryString = "SELECT tbl2.ID, tbl2.loandate, tbl2.therapistID, tbl2.loanamount, ifPaid, " +
                 "tbl2.loanamount - (SELECT SUM(dbspa.tblloanbalance.amount) as balance FROM dbspa.tblloanbalance WHERE isDeleted = 0 AND loanID = tbl2.ID)" +
                 " as balance FROM dbspa.tblloans as tbl2 WHERE tbl2.isDeleted = 0 AND tbl2.therapistID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(loanModel.TherapistID);
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);

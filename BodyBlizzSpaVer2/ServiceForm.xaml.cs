@@ -4,16 +4,8 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -34,6 +26,8 @@ namespace BodyBlizzSpaVer2
         ServiceMadeModel serviceMadeDetails;
         ConnectionDB conDB = new ConnectionDB();
         User user;
+        string queryString = "";
+        List<string> parameters;
 
         public ServiceForm(ClientDetails cdv, ClientForm cf1, ClientModel cm, User usr)
         {
@@ -127,7 +121,7 @@ namespace BodyBlizzSpaVer2
         {
             try
             {
-                string queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE', description "+
+                queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE', description "+
                     "FROM dbspa.tblservicetype WHERE (isDeleted = 0) order by description";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
@@ -163,7 +157,7 @@ namespace BodyBlizzSpaVer2
         {
             try
             {
-                string queryString = "SELECT ID,discount, description FROM dbspa.tbldiscount WHERE (isDeleted = 0)";
+                queryString = "SELECT ID,discount, description FROM dbspa.tbldiscount WHERE (isDeleted = 0)";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -198,7 +192,7 @@ namespace BodyBlizzSpaVer2
             try
             {
                 List<TherapistModel> lstTherapistsServ = new List<TherapistModel>();
-                string queryString = "SELECT ID,firstName, lastName, wage, description FROM dbspa.tbltherapist WHERE (isDeleted = 0)";
+                queryString = "SELECT ID,firstName, lastName, wage, description FROM dbspa.tbltherapist WHERE (isDeleted = 0)";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -237,7 +231,7 @@ namespace BodyBlizzSpaVer2
         private void fillPromoName()
         {
             PromoModel promo = new PromoModel();
-            string queryString = "SELECT dbspa.tblpromo.ID, promoname, price FROM dbspa.tblpromo WHERE isDeleted = 0";
+            queryString = "SELECT dbspa.tblpromo.ID, promoname, price FROM dbspa.tblpromo WHERE isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -267,8 +261,8 @@ namespace BodyBlizzSpaVer2
         {
             ServiceMadeModel serviceMadeModel = new ServiceMadeModel();
 
-            string queryString = "SELECT serviceTypeID, therapistID, discountID FROM dbspa.tblservicemade WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "SELECT serviceTypeID, therapistID, discountID FROM dbspa.tblservicemade WHERE ID = ?";
+            parameters = new List<string>();
 
             parameters.Add(id.ToString());
 
@@ -290,12 +284,12 @@ namespace BodyBlizzSpaVer2
             List<PromoServicesModel> lstPromoServices = new List<PromoServicesModel>();
             PromoServicesModel promoServ = new PromoServicesModel();
 
-            string queryString = "SELECT dbspa.tblpromoservicemade.ID, therapistID, dbspa.tbltherapist.description, serviceID, " +
+            queryString = "SELECT dbspa.tblpromoservicemade.ID, therapistID, dbspa.tbltherapist.description, serviceID, " +
                 "dbspa.tblservicetype.serviceType, promoservicesclientID FROM ((dbspa.tblpromoservicemade INNER JOIN dbspa.tbltherapist " +
                 "ON dbspa.tblpromoservicemade.therapistID = dbspa.tbltherapist.ID INNER JOIN dbspa.tblservicetype " +
                 "ON dbspa.tblpromoservicemade.serviceID = dbspa.tblservicetype.ID)) WHERE dbspa.tblpromoservicemade.promoservicesclientID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(id);
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
 
@@ -368,8 +362,8 @@ namespace BodyBlizzSpaVer2
             CommissionModel cm = new CommissionModel();
             try
             {
-                string queryString = "SELECT ID,serviceTypeID, commission FROM dbspa.tblcommissions WHERE (isDeleted = 0) AND (serviceTypeID = ?)";
-                List<string> parameters = new List<string>();
+                queryString = "SELECT ID,serviceTypeID, commission FROM dbspa.tblcommissions WHERE (isDeleted = 0) AND (serviceTypeID = ?)";
+                parameters = new List<string>();
 
                 parameters.Add(id.ToString());
 
@@ -398,7 +392,7 @@ namespace BodyBlizzSpaVer2
             List<ServiceMadeModel> lstServiceMade = new List<ServiceMadeModel>();
             try
             {
-                string queryString = "SELECT dbspa.tblservicemade.ID, dbspa.tblservicetype.servicetype AS 'SERVICE TYPE', " +
+                queryString = "SELECT dbspa.tblservicemade.ID, dbspa.tblservicetype.servicetype AS 'SERVICE TYPE', " +
                     "dbspa.tbltherapist.description AS 'THERAPIST', dbspa.tblservicemade.dateServiced, dbspa.tblservicemade.discountID," +
                     "IF(dbspa.tblservicemade.isDiscounted, ROUND(dbspa.tblservicetype.price - dbspa.tblservicetype.price * (dbspa.tbldiscount.discount / 100)), dbspa.tblservicetype.price) AS 'PRICE', " +
                     "IF(dbspa.tblservicemade.isDiscounted, 'YES', 'NO') AS 'DISCOUNTED', IF(dbspa.tblservicemade.savetocard, 'YES', 'NO') AS 'SAVED TO CARD', " +
@@ -411,7 +405,7 @@ namespace BodyBlizzSpaVer2
                     "WHERE (dbspa.tblclient.ID = ?) " +
                     "AND (dbspa.tblservicemade.isDeleted = 0) ORDER BY ID desc";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 parameters.Add(id.ToString());
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
@@ -455,7 +449,7 @@ namespace BodyBlizzSpaVer2
             SerialNumberModel snm = new SerialNumberModel();
             try
             {
-                string queryString = "SELECT ID, serialNumber FROM dbspa.tblserialnumber WHERE (ID =" +
+                queryString = "SELECT ID, serialNumber FROM dbspa.tblserialnumber WHERE (ID =" +
                              "(SELECT MAX(ID) AS Expr1 FROM dbspa.tblserialnumber tblSerialNumber_1))";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
@@ -506,9 +500,9 @@ namespace BodyBlizzSpaVer2
                 //    parameterDate = parameterDate.AddDays(-1);
                 //}
 
-                string queryString = "SELECT ID, COD, dateServiced FROM dbspa.tblcod WHERE (dateServiced = ?)";
+                queryString = "SELECT ID, COD, dateServiced FROM dbspa.tblcod WHERE (dateServiced = ?)";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
 
                 //DateTime date = DateTime.Parse(clientModel.DateServiced);
 
@@ -535,8 +529,8 @@ namespace BodyBlizzSpaVer2
             bool ifInserted = false;
             try
             {
-                string queryString = "INSERT INTO dbspa.tblserialnumber (serialNumber, dateServiced) VALUES(?, ?)";
-                List<string> parameters = new List<string>();
+                queryString = "INSERT INTO dbspa.tblserialnumber (serialNumber, dateServiced) VALUES(?, ?)";
+                parameters = new List<string>();
 
                 parameters.Add(serial.ToString());
                 DateTime date = DateTime.Parse(clientModel.DateServiced);
@@ -559,14 +553,14 @@ namespace BodyBlizzSpaVer2
             bool ifInserted = false;
             try
             {
-                string stringQuery = "INSERT INTO dbspa.tblcod (COD, dateServiced) VALUES (?,?)";
-                List<string> parameters = new List<string>();
+                queryString = "INSERT INTO dbspa.tblcod (COD, dateServiced) VALUES (?,?)";
+                parameters = new List<string>();
 
                 parameters.Add(cod.ToString());
                 DateTime date = DateTime.Parse(clientModel.DateServiced);
                 parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
 
-                conDB.AddRecordToDatabase(stringQuery, parameters);
+                conDB.AddRecordToDatabase(queryString, parameters);
                 conDB.closeConnection();
 
                 ifInserted = true;
@@ -585,8 +579,8 @@ namespace BodyBlizzSpaVer2
 
             try
             {
-                string queryString = "UPDATE dbspa.tblcod SET COD = ? WHERE ID = ?";
-                List<string> parameters = new List<string>();
+                queryString = "UPDATE dbspa.tblcod SET COD = ? WHERE ID = ?";
+                parameters = new List<string>();
 
                 parameters.Add(cod.ToString());
                 parameters.Add(id.ToString());
@@ -615,7 +609,7 @@ namespace BodyBlizzSpaVer2
             {
                 string insert = "INSERT INTO dbspa.tblclient (dateServiced,serialNo,cod,firstName,lastName,address,phonenumber,servicemode,totalamt,timeIn,timeOut,isDeleted,isLoyal,LoyaltyID) " +
                     "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
 
                 DateTime date = DateTime.Parse(model.DateServiced);
                 parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
@@ -654,9 +648,9 @@ namespace BodyBlizzSpaVer2
 
         private void updateClientRecord(string serial, string cod, string sloyal, string sloyaltyid)
         {
-            string queryString = "UPDATE dbspa.tblclient SET serial = ?, dateServiced = ? , cod = ? , isLoyal = ?, LoyaltyID = ? WHERE ID = ?";
+            queryString = "UPDATE dbspa.tblclient SET serial = ?, dateServiced = ? , cod = ? , isLoyal = ?, LoyaltyID = ? WHERE ID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(serial);
             DateTime date = DateTime.Parse(DateTime.Now.ToShortDateString());
             parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
@@ -671,9 +665,9 @@ namespace BodyBlizzSpaVer2
 
         private void updateClientRecordRemoveLoyaltyCard()
         {
-            string queryString = "UPDATE dbspa.tblclient SET isLoyal = 0, LoyaltyID = 0 WHERE ID = ?";
+            queryString = "UPDATE dbspa.tblclient SET isLoyal = 0, LoyaltyID = 0 WHERE ID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(clientModel.ID1);
 
             conDB.AddRecordToDatabase(queryString, parameters);
@@ -702,11 +696,11 @@ namespace BodyBlizzSpaVer2
                     numDiscounted = 1;
                 }
 
-                string queryString = "INSERT INTO dbspa.tblservicemade (serviceTypeID,clientID,therapistID,dateServiced,isDeleted,isDiscounted, " +
+                queryString = "INSERT INTO dbspa.tblservicemade (serviceTypeID,clientID,therapistID,dateServiced,isDeleted,isDiscounted, " +
                     "discountID,commissionID,loyaltyID,savetocard, firstfree, secondfree, timeIn, timeOut)" +
                     "VALUES(?,?, ?,?,?,?,?,?,?,?,?,?,?,?)";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
 
                 parameters.Add(Convert.ToInt32(stm.ID1).ToString());
                 parameters.Add(Convert.ToInt32(model.ID1).ToString());
@@ -797,10 +791,10 @@ namespace BodyBlizzSpaVer2
                 }
 
 
-                string queryString = "UPDATE dbspa.tblservicemade SET serviceTypeID = ?, dateServiced = ?, isDiscounted = ?, discountID = ? " +
+                queryString = "UPDATE dbspa.tblservicemade SET serviceTypeID = ?, dateServiced = ?, isDiscounted = ?, discountID = ? " +
                     " ,therapistID = ? , commissionID = ?, savetocard = ?, timeIn = ?, timeOut = ? WHERE ID = ?";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 parameters.Add(stm.ID1);
                 DateTime dte = DateTime.Parse(serviceMade.DateServiced);      
                 parameters.Add(dte.Year + "/" + dte.Month + "/" + dte.Day);
@@ -865,9 +859,9 @@ namespace BodyBlizzSpaVer2
                 ComboBox ele = dgvPromoServices.Columns[1].GetCellContent(row) as ComboBox;
                 TherapistModel th = ele.SelectedItem as TherapistModel;
 
-                string queryString = "UPDATE dbspa.tblpromoservicemade SET therapistID = ? WHERE ID = ?";
+                queryString = "UPDATE dbspa.tblpromoservicemade SET therapistID = ? WHERE ID = ?";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 if (th != null)
                 {
                     parameters.Add(th.ID1);
@@ -887,8 +881,8 @@ namespace BodyBlizzSpaVer2
 
         private void updateLoyaltyRecordWithStamp(string EmpId)
         {
-            string queryString = "UPDATE dbspa.tblloyaltycard SET clientID = ?, servicecount = servicecount+1 WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "UPDATE dbspa.tblloyaltycard SET clientID = ?, servicecount = servicecount+1 WHERE ID = ?";
+            parameters = new List<string>();
 
             parameters.Add(EmpId);
             parameters.Add(clientModel.LoyaltyID);
@@ -901,8 +895,8 @@ namespace BodyBlizzSpaVer2
 
         private void updateLoyaltyRecordWithoutStamp(string EmpId)
         {
-            string queryString = "UPDATE dbspa.tblloyaltycard SET clientID = ? WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "UPDATE dbspa.tblloyaltycard SET clientID = ? WHERE ID = ?";
+            parameters = new List<string>();
 
             parameters.Add(EmpId);
             parameters.Add(clientModel.LoyaltyID);
@@ -914,8 +908,8 @@ namespace BodyBlizzSpaVer2
 
         private void updateLoyaltyRecordDeductStamp()
         {
-            string queryString = "UPDATE dbspa.tblloyaltycard SET servicecount = servicecount-1 WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "UPDATE dbspa.tblloyaltycard SET servicecount = servicecount-1 WHERE ID = ?";
+            parameters = new List<string>();
             parameters.Add(clientModel.LoyaltyID);
             conDB.AddRecordToDatabase(queryString, parameters);
             conDB.closeConnection();
@@ -925,9 +919,9 @@ namespace BodyBlizzSpaVer2
         private int insertPromoServicesForClient(PromoModel p)
         {
             int x = 0;
-            string queryString = "INSERT INTO dbspa.tblpromoservicesclient (clientID, promoID, promoprice, savetocard, loyaltyID, dateserviced, isDeleted) " +
+            queryString = "INSERT INTO dbspa.tblpromoservicesclient (clientID, promoID, promoprice, savetocard, loyaltyID, dateserviced, isDeleted) " +
                 "VALUES (?,?,?,?,?,?,?)";
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
 
             parameters.Add(clientModel.ID1);
             parameters.Add(p.ID);
@@ -974,10 +968,10 @@ namespace BodyBlizzSpaVer2
                     ComboBox ele = dgvPromoServices.Columns[1].GetCellContent(row) as ComboBox;
                     TherapistModel th = ele.SelectedItem as TherapistModel;
 
-                    string queryString = "INSERT INTO dbspa.tblpromoservicemade (promoID, clientID, therapistID, serviceID, dateserviced, promoservicesclientID, isDeleted) " +
+                    queryString = "INSERT INTO dbspa.tblpromoservicemade (promoID, clientID, therapistID, serviceID, dateserviced, promoservicesclientID, isDeleted) " +
                         "VALUES (?,?,?,?,?,?,?)";
 
-                    List<string> parameters = new List<string>();
+                    parameters = new List<string>();
 
                     parameters.Add(ps.ID);
                     parameters.Add(clientModel.ID1);
@@ -1000,9 +994,9 @@ namespace BodyBlizzSpaVer2
 
         private void updateLoyaltyCardFirstFree()
         {
-            string queryString = "UPDATE dbspa.tblloyaltycard SET firstfree = ? WHERE ID = ?";
+            queryString = "UPDATE dbspa.tblloyaltycard SET firstfree = ? WHERE ID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add("1");
             parameters.Add(clientModel.LoyaltyID);
 
@@ -1013,9 +1007,9 @@ namespace BodyBlizzSpaVer2
 
         private void updateLoyaltyCardSecondFree()
         {
-            string queryString = "UPDATE dbspa.tblloyaltycard SET secondfree = ? WHERE ID = ?";
+            queryString = "UPDATE dbspa.tblloyaltycard SET secondfree = ? WHERE ID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add("1");
             parameters.Add(clientModel.LoyaltyID);
 
@@ -1026,9 +1020,9 @@ namespace BodyBlizzSpaVer2
 
         private void updateLoyaltyCardRemoveLoyaltyCard()
         {
-            string queryString = "UPDATE dbspa.tblloyaltycard SET isDeleted = 1 WHERE ID = ?";
+            queryString = "UPDATE dbspa.tblloyaltycard SET isDeleted = 1 WHERE ID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(clientModel.LoyaltyID);
 
             conDB.AddRecordToDatabase(queryString, parameters);
@@ -1045,12 +1039,12 @@ namespace BodyBlizzSpaVer2
             {
                 List<ClientModel> lstClient = new List<ClientModel>();
 
-                string queryString = "SELECT dbspa.tblclient.ID AS 'ID',dbspa.tblclient.firstName AS 'FIRST NAME'," +
+                queryString = "SELECT dbspa.tblclient.ID AS 'ID',dbspa.tblclient.firstName AS 'FIRST NAME'," +
                     "dbspa.tblclient.lastName AS 'LAST NAME', dbspa.tblservicemode.serviceType AS 'SERVICE MODE', " +
                     "IF(dbspa.tblclient.isLoyal, 'YES', 'NO') AS 'LOYALTY CARD', LoyaltyID, dbspa.tblclient.phonenumber FROM (dbspa.tblclient INNER JOIN dbspa.tblservicemode ON " +
                     "dbspa.tblclient.servicemode = dbspa.tblservicemode.ID) WHERE (dbspa.tblclient.isDeleted = 0) order by ID desc";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
 
                 DateTime date = DateTime.Parse(DateTime.Now.ToShortDateString());
                 parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
@@ -1087,12 +1081,12 @@ namespace BodyBlizzSpaVer2
             PromoServicesModel promoServ = new PromoServicesModel();
             List<PromoServicesModel> lstPromoServ = new List<PromoServicesModel>();
 
-            string queryString = "SELECT dbspa.tblpromoservices.promoID, dbspa.tblpromo.promoname, dbspa.tblpromo.price, dbspa.tblservicetype.serviceType, dbspa.tblservicetype.ID AS 'SERVICETYPEID' " +
+            queryString = "SELECT dbspa.tblpromoservices.promoID, dbspa.tblpromo.promoname, dbspa.tblpromo.price, dbspa.tblservicetype.serviceType, dbspa.tblservicetype.ID AS 'SERVICETYPEID' " +
                 "FROM((dbspa.tblpromoservices INNER JOIN dbspa.tblpromo ON dbspa.tblpromoservices.promoID = dbspa.tblpromo.ID) INNER JOIN " +
                 "dbspa.tblservicetype ON dbspa.tblpromoservices.serviceID = dbspa.tblservicetype.ID) WHERE dbspa.tblpromoservices.isDeleted = 0 " +
                 "AND dbspa.tblpromoservices.promoID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(promoMod.ID);
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
 
@@ -1116,10 +1110,10 @@ namespace BodyBlizzSpaVer2
             List<ServiceMadeModel> lstPromoServices = new List<ServiceMadeModel>();
             ServiceMadeModel s = new ServiceMadeModel();
 
-            string queryString = "SELECT dbspa.tblpromoservicesclient.ID, clientID, promoID, promoprice, loyaltyID, dbspa.tblpromo.promoname,dbspa.tblpromoservicesclient.dateserviced, " +
+            queryString = "SELECT dbspa.tblpromoservicesclient.ID, clientID, promoID, promoprice, loyaltyID, dbspa.tblpromo.promoname,dbspa.tblpromoservicesclient.dateserviced, " +
                 "IF(dbspa.tblpromoservicesclient.savetocard, 'YES', 'NO') AS 'SAVED TO CARD' FROM (dbspa.tblpromoservicesclient INNER JOIN dbspa.tblpromo " +
                 "ON dbspa.tblpromoservicesclient.promoID = dbspa.tblpromo.ID) WHERE clientID = ?";
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(clientModel.ID1);
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
 

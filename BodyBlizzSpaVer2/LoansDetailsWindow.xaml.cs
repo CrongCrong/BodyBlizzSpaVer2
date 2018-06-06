@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -29,6 +19,8 @@ namespace BodyBlizzSpaVer2
 
         ConnectionDB conDB = new ConnectionDB();
         LoansWindow loansWindow;
+        string queryString = "";
+        List<string> parameters;
 
         public LoansDetailsWindow(LoansWindow lw)
         {
@@ -45,7 +37,7 @@ namespace BodyBlizzSpaVer2
         {
             try
             {
-                string queryString = "SELECT ID, firstName, lastName, wage, description FROM dbspa.tbltherapist WHERE (isDeleted = 0)";
+                queryString = "SELECT ID, firstName, lastName, wage, description FROM dbspa.tbltherapist WHERE (isDeleted = 0)";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -72,8 +64,8 @@ namespace BodyBlizzSpaVer2
         private void saveLoanDetails()
         {
 
-            string queryString = "INSERT INTO dbspa.tblloans (loandate, therapistID, loanamount, isDeleted) VALUES (?,?,?,0)";
-            List<string> parameters = new List<string>();
+            queryString = "INSERT INTO dbspa.tblloans (loandate, therapistID, loanamount, isDeleted) VALUES (?,?,?,0)";
+            parameters = new List<string>();
             DateTime dte = DateTime.Parse(dateLoan.Text);
             parameters.Add(dte.Year + "-" + dte.Month + "-" + dte.Day);
             parameters.Add(cmbTherapist.SelectedValue.ToString());
@@ -113,7 +105,7 @@ namespace BodyBlizzSpaVer2
             List<LoanModel> lstLoanModel = new List<LoanModel>();
             LoanModel loanModel = new LoanModel();
 
-            string queryString = "SELECT dbspa.tblloans.ID, therapistID, dbspa.tbltherapist.description, loanamount, loandate FROM (dbspa.tblloans INNER JOIN " +
+            queryString = "SELECT dbspa.tblloans.ID, therapistID, dbspa.tbltherapist.description, loanamount, loandate FROM (dbspa.tblloans INNER JOIN " +
                 "dbspa.tbltherapist ON dbspa.tblloans.therapistID = dbspa.tbltherapist.ID) WHERE dbspa.tblloans.isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);

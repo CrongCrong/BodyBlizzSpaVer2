@@ -3,17 +3,8 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -31,6 +22,8 @@ namespace BodyBlizzSpaVer2
 
         DiscountWindow discountForm;
         DiscountModel discount;
+        string queryString = "";
+        List<string> parameters;
 
         public DiscountDetails(DiscountWindow df)
         {
@@ -89,7 +82,7 @@ namespace BodyBlizzSpaVer2
             List<DiscountModel> lstDiscounts = new List<DiscountModel>();
             DiscountModel ds = new DiscountModel();
 
-            string queryString = "SELECT ID, discount as 'DISCOUNT (%)', description AS 'DESCRIPTION' FROM dbspa.tbldiscount WHERE isDeleted = 0";
+            queryString = "SELECT ID, discount as 'DISCOUNT (%)', description AS 'DESCRIPTION' FROM dbspa.tbldiscount WHERE isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -113,9 +106,9 @@ namespace BodyBlizzSpaVer2
             {
                 try
                 {
-                    string queryString = "INSERT INTO dbspa.tbldiscount (discount, description,isDeleted)" +
+                    queryString = "INSERT INTO dbspa.tbldiscount (discount, description,isDeleted)" +
                          "VALUES(?,?,?)";
-                    List<string> parameters = new List<string>();
+                    parameters = new List<string>();
 
                     parameters.Add(txtDiscount.Text);
                     parameters.Add(String.Format("{0:0.00}", txtDescription.Text));
@@ -145,9 +138,9 @@ namespace BodyBlizzSpaVer2
             {
                 try
                 {
-                    string queryString = "UPDATE dbspa.tbldiscount SET discount = ?, description = ? " +
+                    queryString = "UPDATE dbspa.tbldiscount SET discount = ?, description = ? " +
                         "WHERE ID = ?";
-                    List<string> parameters = new List<string>();
+                    parameters = new List<string>();
                     parameters.Add(String.Format("{0:0.00}", txtDiscount.Text));
                     parameters.Add(txtDescription.Text);
                     parameters.Add(discount.ID1);

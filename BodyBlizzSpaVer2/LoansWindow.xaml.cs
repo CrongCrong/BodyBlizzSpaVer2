@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -28,6 +18,8 @@ namespace BodyBlizzSpaVer2
         }
 
         ConnectionDB conDB = new ConnectionDB();
+        string queryString = "";
+        List<string> parameters;
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -40,7 +32,7 @@ namespace BodyBlizzSpaVer2
             List<LoanModel> lstLoanModel = new List<LoanModel>();
             LoanModel loanModel = new LoanModel();
 
-            string queryString = "SELECT dbspa.tblloans.ID, therapistID, dbspa.tbltherapist.description, loanamount, loandate FROM (dbspa.tblloans INNER JOIN " +
+            queryString = "SELECT dbspa.tblloans.ID, therapistID, dbspa.tbltherapist.description, loanamount, loandate FROM (dbspa.tblloans INNER JOIN " +
                 "dbspa.tbltherapist ON dbspa.tblloans.therapistID = dbspa.tbltherapist.ID) WHERE dbspa.tblloans.isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
@@ -68,7 +60,7 @@ namespace BodyBlizzSpaVer2
             List<LoanModel> lstloanBalance = new List<LoanModel>();
             LoanModel loanBalance = new LoanModel();
 
-            string queryString = "SELECT dbspa.tblloans.ID, therapistID, dbspa.tbltherapist.description, Count(*) as cnt " +
+            queryString = "SELECT dbspa.tblloans.ID, therapistID, dbspa.tbltherapist.description, Count(*) as cnt " +
                 "FROM(dbspa.tblloans INNER JOIN dbspa.tbltherapist ON dbspa.tblloans.therapistID = dbspa.tbltherapist.ID) " +
                 "WHERE dbspa.tblloans.isDeleted = 0 AND dbspa.tblloans.ifPaid = 0 GROUP BY therapistID";
 

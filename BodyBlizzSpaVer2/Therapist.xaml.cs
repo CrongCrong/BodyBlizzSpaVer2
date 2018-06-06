@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -30,6 +20,8 @@ namespace BodyBlizzSpaVer2
 
         public TherapistModel therapist = new TherapistModel();
         ConnectionDB conDB = new ConnectionDB();
+        string queryString = "";
+        List<string> parameters;
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -42,7 +34,7 @@ namespace BodyBlizzSpaVer2
             TherapistModel t = new TherapistModel();
             try
             {
-                string queryString = "SELECT ID, firstName as 'FIRST NAME', lastName as 'LAST NAME', wage as 'WAGE' FROM dbspa.tbltherapist" +
+                queryString = "SELECT ID, firstName as 'FIRST NAME', lastName as 'LAST NAME', wage as 'WAGE' FROM dbspa.tbltherapist" +
                     " WHERE (isDeleted = 0)";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
@@ -71,8 +63,8 @@ namespace BodyBlizzSpaVer2
 
             try
             {
-                string queryString = "UPDATE dbspa.tbltherapist SET isDeleted = ? WHERE ID = ?";
-                List<string> parameters = new List<string>();
+                queryString = "UPDATE dbspa.tbltherapist SET isDeleted = ? WHERE ID = ?";
+                parameters = new List<string>();
                 parameters.Add(1.ToString());
                 parameters.Add(id.ToString());
 

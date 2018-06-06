@@ -3,18 +3,8 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -29,7 +19,8 @@ namespace BodyBlizzSpaVer2
         }
 
         ConnectionDB conDB = new ConnectionDB();
-
+        string queryString = "";
+        List<string> parameters;
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -53,7 +44,7 @@ namespace BodyBlizzSpaVer2
         {
             try
             {
-                string queryString = "SELECT ID, firstName, lastName, wage, description FROM dbspa.tbltherapist WHERE (isDeleted = 0)";
+                queryString = "SELECT ID, firstName, lastName, wage, description FROM dbspa.tbltherapist WHERE (isDeleted = 0)";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -110,7 +101,7 @@ namespace BodyBlizzSpaVer2
             List<CashAdvanceModel> lstCashAdvance = new List<CashAdvanceModel>();
             CashAdvanceModel cashAdvance = new CashAdvanceModel();
 
-            string queryString = "SELECT dbspa.tblcashadvance.ID, Date, therapistID, dbspa.tbltherapist.description, cash FROM " +
+            queryString = "SELECT dbspa.tblcashadvance.ID, Date, therapistID, dbspa.tbltherapist.description, cash FROM " +
                 "(dbspa.tblcashadvance INNER JOIN dbspa.tbltherapist ON dbspa.tblcashadvance.therapistID = dbspa.tbltherapist.ID) " +
                 "WHERE dbspa.tblcashadvance.isDeleted = 0 ORDER BY dbspa.tblcashadvance.ID DESC";
 
@@ -132,9 +123,9 @@ namespace BodyBlizzSpaVer2
         
         private void saveCashAdvanceRecord()
         {
-            string queryString = "INSERT INTO dbspa.tblcashadvance (Date, therapistID, cash, isDeleted) VALUES (?,?,?,0)";
+            queryString = "INSERT INTO dbspa.tblcashadvance (Date, therapistID, cash, isDeleted) VALUES (?,?,?,0)";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             DateTime dte = DateTime.Parse(dateCashAdvance.Text);
             parameters.Add(dte.Year + "-" + dte.Month + "-" + dte.Day);
             parameters.Add(cmbTherapist.SelectedValue.ToString());
@@ -152,8 +143,8 @@ namespace BodyBlizzSpaVer2
 
         private void deleteCashAdvanceRecord(string recID)
         {
-            string queryString = "UPDATE dbspa.tblcashadvance SET isDeleted = 1 WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "UPDATE dbspa.tblcashadvance SET isDeleted = 1 WHERE ID = ?";
+            parameters = new List<string>();
             parameters.Add(recID);
 
             conDB.AddRecordToDatabase(queryString, parameters);

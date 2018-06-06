@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -28,6 +18,8 @@ namespace BodyBlizzSpaVer2
         }
 
         ConnectionDB conDB = new ConnectionDB();
+        string queryString = "";
+        List<string> parameters;
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -47,7 +39,7 @@ namespace BodyBlizzSpaVer2
             try
             {
 
-                string queryString = "SELECT dbspa.tblcommissions.ID, dbspa.tblservicetype.description as 'SERVICE TYPE', " +
+                queryString = "SELECT dbspa.tblcommissions.ID, dbspa.tblservicetype.description as 'SERVICE TYPE', " +
                     "dbspa.tblcommissions.commission as 'COMMISSION' FROM (dbspa.tblcommissions INNER JOIN dbspa.tblservicetype ON " +
                     "dbspa.tblcommissions.serviceTypeID = dbspa.tblservicetype.ID) WHERE (dbspa.tblcommissions.isDeleted = 0)";
 
@@ -78,9 +70,9 @@ namespace BodyBlizzSpaVer2
             CommissionModel comMod = new CommissionModel();
             try
             {
-                string queryString = "SELECT ID, serviceTypeID, commission FROM dbspa.tblcommissions WHERE (isDeleted = 0) AND (ID = ?)";
+                queryString = "SELECT ID, serviceTypeID, commission FROM dbspa.tblcommissions WHERE (isDeleted = 0) AND (ID = ?)";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 parameters.Add(id.ToString());
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
@@ -109,8 +101,8 @@ namespace BodyBlizzSpaVer2
 
             try
             {
-                string queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE' FROM dbspa.tblservicetype WHERE (isDeleted = 0) AND (ID = ?)";
-                List<string> parameters = new List<string>();
+                queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE' FROM dbspa.tblservicetype WHERE (isDeleted = 0) AND (ID = ?)";
+                parameters = new List<string>();
                 parameters.Add(id.ToString());
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
@@ -137,8 +129,8 @@ namespace BodyBlizzSpaVer2
 
             try
             {
-                string queryString = "UPDATE dbspa.tblcommissions SET isDeleted = ? WHERE ID = ?";
-                List<string> parameters = new List<string>();
+                queryString = "UPDATE dbspa.tblcommissions SET isDeleted = ? WHERE ID = ?";
+                parameters = new List<string>();
                 parameters.Add(1.ToString());
                 parameters.Add(id.ToString());
 

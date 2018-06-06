@@ -37,14 +37,14 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="10,385,0,0" VerticalAlignment="Top" Width="85" Height="85" 
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Right" Margin="0,385,642,0" VerticalAlignment="Top" Width="85" Height="85" 
                 Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD RECORD" Click="btnAdd_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739">
 
         </Button>
 
         <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="100,385,0,0" VerticalAlignment="Top" Width="85" Height="85" 
                 Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="EDIT RECORD" Click="btnEdit_Click" BorderThickness="1" BorderBrush="#383838" Background="#b7b739">
-           
+
         </Button>
 
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="190,385,0,0" VerticalAlignment="Top" Width="85" Height="85" 

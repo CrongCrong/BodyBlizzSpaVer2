@@ -4,16 +4,8 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -33,6 +25,8 @@ namespace BodyBlizzSpaVer2
         List<ServiceMadeModel> lstServiceMade = new List<ServiceMadeModel>();
         double dblCashAdvance = 0.0;
         double dblLoans = 0.0;
+        string queryString = "";
+        List<string> parameters;
 
         public TherapistSalary(TherapistModel tm)
         {
@@ -57,7 +51,7 @@ namespace BodyBlizzSpaVer2
                
                 try
                 {
-                    string queryString = "SELECT tblServiceMade.ID, dbspa.tblservicemade.dateServiced as 'DATE SERVICED'," +
+                    queryString = "SELECT tblServiceMade.ID, dbspa.tblservicemade.dateServiced as 'DATE SERVICED'," +
                         "dbspa.tbltherapist.description as 'THERAPIST', dbspa.tblservicetype.serviceType as 'SERVICE TYPE'," +
                         " dbspa.tblcommissions.commission, dbspa.tblservicemade.isDiscounted, dbspa.tbldiscount.discount, ifPaid, " +
                         "concat(dbspa.tblclient.firstName, ' ', dbspa.tblclient.lastName) AS CLIENT_NAME FROM (((((dbspa.tblservicemade " +
@@ -69,7 +63,7 @@ namespace BodyBlizzSpaVer2
                         "WHERE(dbspa.tbltherapist.ID = ?) AND (dbspa.tblservicemade.dateServiced BETWEEN ? AND ?) AND " +
                         "(dbspa.tblservicemade.isDeleted = 0) AND (dbspa.tblclient.isDeleted = 0) AND (dbspa.tblservicetype.isDeleted = 0)";
 
-                    List<string> parameters = new List<string>();
+                    parameters = new List<string>();
                     parameters.Add(therapist.ID1);
                     DateTime date = DateTime.Parse(dateFrom.Text);
                     parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
@@ -152,14 +146,14 @@ namespace BodyBlizzSpaVer2
 
             foreach(string strPromoID in lst)
             {
-                string queryString = "SELECT dbspa.tblpromoservicemade.ID, dateserviced, dbspa.tbltherapist.description, " +
+                queryString = "SELECT dbspa.tblpromoservicemade.ID, dateserviced, dbspa.tbltherapist.description, " +
                 "dbspa.tblpromo.promoname, (truncate(dbspa.tblpromo.commission / numOfServ, 2)) AS 'commission' FROM (SELECT COUNT(*) as numOfServ " +
                 "FROM dbspa.tblpromoservices where promoID = ? AND isDeleted = 0) AS tbl1, ((dbspa.tblpromoservicemade INNER JOIN " +
                 "dbspa.tbltherapist ON dbspa.tblpromoservicemade.therapistID = dbspa.tbltherapist.ID) INNER JOIN " +
                 "dbspa.tblpromo ON dbspa.tblpromoservicemade.promoID = dbspa.tblpromo.ID) WHERE dbspa.tblpromoservicemade.isDeleted = 0" +
                 " AND (dbspa.tblpromoservicemade.dateserviced BETWEEN ? AND ?) AND (dbspa.tblpromoservicemade.therapistID = ?)";
 
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
                 parameters.Add(strPromoID);
                 DateTime date = DateTime.Parse(dateFrom.Text);
                 parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
@@ -199,8 +193,8 @@ namespace BodyBlizzSpaVer2
         {
             List<string> lstPromoIDs = new List<string>();
             string p = "";
-            string queryString = "SELECT promoID FROM dbspa.tblpromoservicemade WHERE therapistID = ? AND isDeleted = 0 GROUP BY promoID";
-            List<string> parameters = new List<string>();
+            queryString = "SELECT promoID FROM dbspa.tblpromoservicemade WHERE therapistID = ? AND isDeleted = 0 GROUP BY promoID";
+            parameters = new List<string>();
             parameters.Add(therapist.ID1);
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
@@ -224,11 +218,11 @@ namespace BodyBlizzSpaVer2
             {
                 try
                 {
-                    string queryString = "SELECT ID, attendanceDate AS 'DATE', timeIn AS 'TIME IN', timeOut AS 'TIME OUT', minutesLate AS 'MINS LATE', " +
+                    queryString = "SELECT ID, attendanceDate AS 'DATE', timeIn AS 'TIME IN', timeOut AS 'TIME OUT', minutesLate AS 'MINS LATE', " +
                         "deduction as 'DEDUCTION', IF(isLate,'YES','NO') AS 'LATE', IF(ifhalfday,'YES','NO') AS 'HALFDAY', IF(ifUndertime,'YES','NO') " +
                         "AS 'UNDERTIME' FROM dbspa.tblattendance WHERE (therapistID = ?) AND (attendanceDate BETWEEN ? AND ?) AND (isDeleted = 0)";
 
-                    List<string> parameters = new List<string>();
+                    parameters = new List<string>();
                     parameters.Add(therapist.ID1);
 
                     DateTime date = DateTime.Parse(dateFrom.Text);
@@ -273,9 +267,9 @@ namespace BodyBlizzSpaVer2
         {
             double dblCA = 0.0;
 
-            string queryString = "SELECT SUM(dbspa.tblcashadvance.cash) as ca FROM dbspa.tblcashadvance WHERE therapistID = ? AND isDeleted = 0 " +
+            queryString = "SELECT SUM(dbspa.tblcashadvance.cash) as ca FROM dbspa.tblcashadvance WHERE therapistID = ? AND isDeleted = 0 " +
                 " AND (Date BETWEEN ? AND ?)";
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
 
             parameters.Add(therapist.ID1);
 
@@ -302,10 +296,10 @@ namespace BodyBlizzSpaVer2
         {
             double dblLoansToPay = 0.0;
 
-            string queryString = "SELECT SUM(dbspa.tblloanbalance.amount) as loan FROM dbspa.tblloanbalance WHERE therapistID = ? and isDeleted = 0 " +
+            queryString = "SELECT SUM(dbspa.tblloanbalance.amount) as loan FROM dbspa.tblloanbalance WHERE therapistID = ? and isDeleted = 0 " +
                 "AND (datepaid BETWEEN ? AND ?)";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(therapist.ID1);
 
             DateTime date = DateTime.Parse(dateFrom.Text);
@@ -335,10 +329,10 @@ namespace BodyBlizzSpaVer2
             try
             {
 
-                string queryString = "SELECT ID, attendanceDate, timeIn, timeOut, therapistID, minutesLate, isLate, deduction, ifhalfday, " +
+                queryString = "SELECT ID, attendanceDate, timeIn, timeOut, therapistID, minutesLate, isLate, deduction, ifhalfday, " +
                     "ifUndertime, lateDeduction, undertimeDeduction FROM dbspa.tblattendance WHERE  " +
                     "(dbspa.tblattendance.isDeleted = 0) AND (therapistID = ?) AND (attendanceDate BETWEEN ? AND ?)";
-                List<string> parameters = new List<string>();
+                parameters = new List<string>();
 
                 parameters.Add(ID.ToString());
 
@@ -485,8 +479,8 @@ namespace BodyBlizzSpaVer2
 
         private void updateRecordToPaid(bool blPaid, string recID)
         {
-            string queryString = "UPDATE dbspa.tblservicemade SET ifPaid = ? WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "UPDATE dbspa.tblservicemade SET ifPaid = ? WHERE ID = ?";
+            parameters = new List<string>();
             if (blPaid)
             {
                 parameters.Add("1");

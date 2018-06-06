@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -30,6 +20,8 @@ namespace BodyBlizzSpaVer2
         ConnectionDB conDB = new ConnectionDB();
         List<CashAdvanceModel> lstCashAdvance = new List<CashAdvanceModel>();
         List<LoanModel> lstLoansPaid = new List<LoanModel>();
+        string queryString = "";
+        List<string> parameters;
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -42,7 +34,7 @@ namespace BodyBlizzSpaVer2
             List<ServiceMadeModel> lstServiceMade = new List<ServiceMadeModel>();
             ServiceMadeModel serviceMade = new ServiceMadeModel();
 
-            string queryString = "SELECT dbspa.tblservicemade.ID, dbspa.tblservicetype.servicetype AS 'SERVICE TYPE', " +
+            queryString = "SELECT dbspa.tblservicemade.ID, dbspa.tblservicetype.servicetype AS 'SERVICE TYPE', " +
                 "dbspa.tbltherapist.description AS 'THERAPIST', dbspa.tblservicemade.dateServiced, dbspa.tblcommissions.commission, " +
                 "IF(dbspa.tblservicemade.isDiscounted, ROUND(dbspa.tblservicetype.price - dbspa.tblservicetype.price * (dbspa.tbldiscount.discount / 100)), " +
                 "dbspa.tblservicetype.price) AS 'PRICE', IF(dbspa.tblservicemade.isDiscounted, 'YES', 'NO') AS 'DISCOUNTED' " +
@@ -53,7 +45,7 @@ namespace BodyBlizzSpaVer2
                 "INNER JOIN dbspa.tblcommissions ON dbspa.tblservicemade.commissionID = dbspa.tblcommissions.ID) WHERE (dbspa.tblservicemade.isDeleted = 0)" +
                 " AND (dbspa.tblclient.isDeleted = 0) AND (dbspa.tbltherapist.isDeleted = 0) AND (dbspa.tblservicemade.dateServiced BETWEEN ? AND ?)";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             DateTime date = DateTime.Parse(datePickerFrom.Text);
             parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
 
@@ -84,12 +76,12 @@ namespace BodyBlizzSpaVer2
             List<ServiceMadeModel> lstServiceMade = new List<ServiceMadeModel>();
             ServiceMadeModel serviceMade = new ServiceMadeModel();
 
-            string queryString = "SELECT dbspa.tblpromoservicesclient.ID, dbspa.tblpromo.commission, promoID, promoprice, " +
+            queryString = "SELECT dbspa.tblpromoservicesclient.ID, dbspa.tblpromo.commission, promoID, promoprice, " +
                 "loyaltyID, dbspa.tblpromo.promoname,dbspa.tblpromoservicesclient.dateserviced, IF(dbspa.tblpromoservicesclient.savetocard, 'YES', 'NO')" +
                 " AS 'SAVED TO CARD' FROM (dbspa.tblpromoservicesclient INNER JOIN dbspa.tblpromo ON dbspa.tblpromoservicesclient.promoID = dbspa.tblpromo.ID)" +
                 " WHERE dateserviced BETWEEN ? AND ? ";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
 
             DateTime date = DateTime.Parse(datePickerFrom.Text);
             parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
@@ -108,6 +100,7 @@ namespace BodyBlizzSpaVer2
                 serviceMade = new ServiceMadeModel();
             }
 
+            conDB.closeConnection();
             return lstServiceMade;
         }
 
@@ -116,10 +109,10 @@ namespace BodyBlizzSpaVer2
             lstCashAdvance = new List<CashAdvanceModel>();
             CashAdvanceModel cashAdvanceModel = new CashAdvanceModel();
 
-            string queryString = "SELECT ID, therapistID, cash FROM dbspa.tblcashadvance WHERE " +
+            queryString = "SELECT ID, therapistID, cash FROM dbspa.tblcashadvance WHERE " +
                 "(Date BETWEEN ? AND ?) AND isDeleted = 0";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             DateTime date = DateTime.Parse(datePickerFrom.Text);
             parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
 
@@ -137,6 +130,7 @@ namespace BodyBlizzSpaVer2
                 cashAdvanceModel = new CashAdvanceModel();              
             }
 
+            conDB.closeConnection();
             return lstCashAdvance;
         }
 
@@ -145,10 +139,10 @@ namespace BodyBlizzSpaVer2
             lstLoansPaid = new List<LoanModel>();
             LoanModel lo = new LoanModel();
 
-            string queryString = "SELECT amount FROM dbspa.tblloanbalance WHERE " +
+            queryString = "SELECT amount FROM dbspa.tblloanbalance WHERE " +
                 "(datepaid BETWEEN ? AND ?) AND isDeleted = 0";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             DateTime date = DateTime.Parse(datePickerFrom.Text);
             parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
 
@@ -174,9 +168,9 @@ namespace BodyBlizzSpaVer2
             List<ExpensesModel> lstExpenses = new List<ExpensesModel>();
             ExpensesModel expenses = new ExpensesModel();
 
-            string queryString = "SELECT ID, date, description, cashout FROM dbspa.tblexpenses WHERE isDeleted = 0 AND (date BETWEEN ? AND ?)";
+            queryString = "SELECT ID, date, description, cashout FROM dbspa.tblexpenses WHERE isDeleted = 0 AND (date BETWEEN ? AND ?)";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             DateTime date = DateTime.Parse(datePickerFrom.Text);
             parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
 

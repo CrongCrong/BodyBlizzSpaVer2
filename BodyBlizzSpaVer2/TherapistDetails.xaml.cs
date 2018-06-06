@@ -3,17 +3,8 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -26,6 +17,10 @@ namespace BodyBlizzSpaVer2
         {
             InitializeComponent();
         }
+
+
+        string queryString = "";
+        List<string> parameters;
 
         public TherapistDetails(Therapist t)
         {
@@ -51,7 +46,7 @@ namespace BodyBlizzSpaVer2
             TherapistModel t = new TherapistModel();
             try
             {
-                string queryString = "SELECT ID, firstName as 'FIRST NAME', lastName as 'LAST NAME', wage as 'WAGE' FROM dbspa.tbltherapist" +
+                queryString = "SELECT ID, firstName as 'FIRST NAME', lastName as 'LAST NAME', wage as 'WAGE' FROM dbspa.tbltherapist" +
                     " WHERE (isDeleted = 0)";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
@@ -106,9 +101,9 @@ namespace BodyBlizzSpaVer2
             {
                 if (checkFields())
                 {
-                    string queryString = "INSERT INTO dbspa.tbltherapist (firstName,lastName,wage,description,isDeleted)" +
+                    queryString = "INSERT INTO dbspa.tbltherapist (firstName,lastName,wage,description,isDeleted)" +
                         "VALUES(?,?,?,?,?)";
-                    List<string> parameters = new List<string>();
+                    parameters = new List<string>();
                     string fullName = txtFirstName.Text + " " + txtLastName.Text;
                     parameters.Add(txtFirstName.Text);
                     parameters.Add(txtLastName.Text);
@@ -141,8 +136,8 @@ namespace BodyBlizzSpaVer2
                 {
                     try
                     {
-                        string queryString = "UPDATE dbspa.tbltherapist SET firstName = ?, lastName = ?, wage = ?, description = ? WHERE ID = ?";
-                        List<string> parameters = new List<string>();
+                        queryString = "UPDATE dbspa.tbltherapist SET firstName = ?, lastName = ?, wage = ?, description = ? WHERE ID = ?";
+                        parameters = new List<string>();
                         parameters.Add(txtFirstName.Text);
                         parameters.Add(txtLastName.Text);
                         parameters.Add(txtWage.Text);

@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -35,6 +25,8 @@ namespace BodyBlizzSpaVer2
         string consumableID = "";
         double dblQty = 0.0;
         double dblUsed = 0.0;
+        string queryString = "";
+        List<string> parameters;
 
 
         public ConsumableUpdates(ConsumableStocksDetails csd, ConsumableModel cm)
@@ -156,11 +148,11 @@ namespace BodyBlizzSpaVer2
             List<ConsumableModel> lstConsumableOnStocks = new List<ConsumableModel>();
             ConsumableModel consumableStock = new ConsumableModel();
 
-            string queryString = "SELECT dbspa.tblconsumableleft.ID, dbspa.tblconsumableleft.date, dbspa.tblconsumables.description, qty, used FROM " +
+            queryString = "SELECT dbspa.tblconsumableleft.ID, dbspa.tblconsumableleft.date, dbspa.tblconsumables.description, qty, used FROM " +
                 "(dbspa.tblconsumableleft INNER JOIN dbspa.tblconsumables ON dbspa.tblconsumableleft.consumableID = " +
                 "dbspa.tblconsumables.ID) WHERE dbspa.tblconsumableleft.isDeleted = 0 AND dbspa.tblconsumableleft.consumableID = ?;";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(consumableID);
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
@@ -193,7 +185,7 @@ namespace BodyBlizzSpaVer2
             List<ConsumableModel> lstConsumablesStocks = new List<ConsumableModel>();
             ConsumableModel consumeStock = new ConsumableModel();
 
-            string queryString = "Select dbspa.tblconsumableleft.consumableID, dbspa.tblconsumables.description, COUNT(*) as cnt FROM " +
+            queryString = "Select dbspa.tblconsumableleft.consumableID, dbspa.tblconsumables.description, COUNT(*) as cnt FROM " +
                 "(dbspa.tblconsumableleft INNER JOIN dbspa.tblconsumables ON dbspa.tblconsumableleft.consumableID = dbspa.tblconsumables.ID) " +
                 "WHERE dbspa.tblconsumableleft.isDeleted = 0 GROUP BY dbspa.tblconsumableleft.consumableID";
 
@@ -208,7 +200,7 @@ namespace BodyBlizzSpaVer2
                 consumeStock = new ConsumableModel();
 
             }
-
+            conDB.closeConnection();
             return lstConsumablesStocks;
         }
 
@@ -216,7 +208,7 @@ namespace BodyBlizzSpaVer2
         {
             ConsumableModel consumables = new ConsumableModel();
 
-            string queryString = "SELECT ID, name, description FROM dbspa.tblconsumables WHERE isDeleted = 0";
+            queryString = "SELECT ID, name, description FROM dbspa.tblconsumables WHERE isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -256,9 +248,9 @@ namespace BodyBlizzSpaVer2
         private void saveConsumable()
         {
 
-            string queryString = "INSERT INTO dbspa.tblconsumableleft (date, consumableID, qty, used, isDeleted) VALUES (?,?,?,?,?)";
+            queryString = "INSERT INTO dbspa.tblconsumableleft (date, consumableID, qty, used, isDeleted) VALUES (?,?,?,?,?)";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             DateTime dte = DateTime.Parse(dateBought.Text);
             parameters.Add(dte.Year + "-" + dte.Month + "-" + dte.Day);
             parameters.Add(cmbConsumables.SelectedValue.ToString());
@@ -273,8 +265,8 @@ namespace BodyBlizzSpaVer2
 
         private void updateConsumableRecord()
         {
-            string queryString = "UPDATE dbspa.tblconsumableleft SET qty = ?, used = ? WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "UPDATE dbspa.tblconsumableleft SET qty = ?, used = ? WHERE ID = ?";
+            parameters = new List<string>();
             dblUsed = dblUsed + Convert.ToDouble(txtUsed.Text);
             parameters.Add(txtQty.Text);
             parameters.Add(dblUsed.ToString());

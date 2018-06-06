@@ -3,17 +3,8 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -30,6 +21,8 @@ namespace BodyBlizzSpaVer2
         ConnectionDB conDB = new ConnectionDB();
         ExpensesWindow expenseWindow;
         ExpensesModel expenseModel;
+        string queryString = "";
+        List<string> parameters;
 
         public ExpensesDetails(ExpensesWindow ew)
         {
@@ -87,7 +80,7 @@ namespace BodyBlizzSpaVer2
             List<ExpensesModel> lstExpensesModel = new List<ExpensesModel>();
             ExpensesModel expensesModel = new ExpensesModel();
 
-            string queryString = "SELECT ID, date, description, cashout FROM dbspa.tblexpenses WHERE isDeleted = 0";
+            queryString = "SELECT ID, date, description, cashout FROM dbspa.tblexpenses WHERE isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -108,8 +101,8 @@ namespace BodyBlizzSpaVer2
 
         private void insertExpenseRecord()
         {
-            string queryString = "INSERT INTO dbspa.tblexpenses(date, description, cashout, isDeleted) VALUES (?,?,?,?)";
-            List<string> parameters = new List<string>();
+            queryString = "INSERT INTO dbspa.tblexpenses(date, description, cashout, isDeleted) VALUES (?,?,?,?)";
+            parameters = new List<string>();
 
             DateTime date = DateTime.Parse(dateExpenses.Text);
             parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
@@ -124,8 +117,8 @@ namespace BodyBlizzSpaVer2
 
         private void updateRecord()
         {
-            string queryString = "UPDATE dbspa.tblexpenses SET date = ?, description = ?, cashout = ? WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "UPDATE dbspa.tblexpenses SET date = ?, description = ?, cashout = ? WHERE ID = ?";
+            parameters = new List<string>();
 
             parameters.Add(dateExpenses.Text);
             parameters.Add(txtDescription.Text);

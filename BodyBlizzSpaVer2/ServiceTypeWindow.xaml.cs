@@ -3,17 +3,7 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -28,6 +18,8 @@ namespace BodyBlizzSpaVer2
         }
 
         ConnectionDB conDB = new ConnectionDB();
+        string queryString = "";
+        List<string> parameters;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -39,7 +31,7 @@ namespace BodyBlizzSpaVer2
             List<ServiceTypeModel> lstServiceType = new List<ServiceTypeModel>();
             ServiceTypeModel serviceModel = new ServiceTypeModel();
 
-            string queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE' , " +
+            queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE' , " +
                 "description AS 'DESCRIPTION' FROM dbspa.tblservicetype WHERE (isDeleted = 0) order by servicetype asc";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
@@ -62,8 +54,8 @@ namespace BodyBlizzSpaVer2
         {
             try
             {
-                string queryString = "UPDATE dbspa.tblservicetype SET isDeleted = ? WHERE ID = ?";
-                List<string> parameters = new List<string>();
+                queryString = "UPDATE dbspa.tblservicetype SET isDeleted = ? WHERE ID = ?";
+                parameters = new List<string>();
                 parameters.Add(1.ToString());
                 parameters.Add(id.ToString());
 

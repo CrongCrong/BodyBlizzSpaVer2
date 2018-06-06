@@ -3,17 +3,8 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -30,6 +21,8 @@ namespace BodyBlizzSpaVer2
         ServiceTypeModel serviceTypeModel;
         ConnectionDB conDB = new ConnectionDB();
         ServiceTypeWindow serviceTypeWindow;
+        string queryString = "";
+        List<string> parameters;
 
         public ServiceTypeDetails(ServiceTypeWindow st)
         {
@@ -82,7 +75,7 @@ namespace BodyBlizzSpaVer2
             List<ServiceTypeModel> lstServiceType = new List<ServiceTypeModel>();
             ServiceTypeModel serviceModel = new ServiceTypeModel();
 
-            string queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE' , description AS 'DESCRIPTION' FROM dbspa.tblservicetype WHERE (isDeleted = 0)";
+            queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE' , description AS 'DESCRIPTION' FROM dbspa.tblservicetype WHERE (isDeleted = 0)";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -103,9 +96,9 @@ namespace BodyBlizzSpaVer2
         private void updateServiceTypeDetails(ServiceTypeModel serviceTypeModel)
         {
 
-            string queryString = "UPDATE dbspa.tblservicetype SET serviceType = ?, description = ?, price = ? " +
+            queryString = "UPDATE dbspa.tblservicetype SET serviceType = ?, description = ?, price = ? " +
                 "WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
 
             parameters.Add(txtServiceType.Text);
             parameters.Add(txtDescription.Text);
@@ -129,9 +122,9 @@ namespace BodyBlizzSpaVer2
             {
                 if (checkFields())
                 {
-                    string queryString = "INSERT INTO dbspa.tblservicetype (serviceType, price, description, isDeleted)" +
+                    queryString = "INSERT INTO dbspa.tblservicetype (serviceType, price, description, isDeleted)" +
                         "VALUES(?,?,?,?)";
-                    List<string> parameters = new List<string>();
+                    parameters = new List<string>();
 
                     parameters.Add(txtServiceType.Text);
                     parameters.Add(txtPrice.Text);

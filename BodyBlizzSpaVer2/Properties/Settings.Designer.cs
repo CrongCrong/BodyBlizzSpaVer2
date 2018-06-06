@@ -250,5 +250,17 @@ namespace BodyBlizzSpaVer2.Properties {
                 this["cutOffTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        public string connectionDB {
+            get {
+                return ((string)(this["connectionDB"]));
+            }
+            set {
+                this["connectionDB"] = value;
+            }
+        }
     }
 }

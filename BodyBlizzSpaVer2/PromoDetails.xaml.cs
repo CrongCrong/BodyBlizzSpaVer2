@@ -3,17 +3,8 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -30,6 +21,8 @@ namespace BodyBlizzSpaVer2
         ConnectionDB conDB = new ConnectionDB();
         PromoWindow promoWindow;
         PromoModel promoModel;
+        string queryString = "";
+        List<string> parameters;
 
         public PromoDetails(PromoWindow pw)
         {
@@ -62,7 +55,7 @@ namespace BodyBlizzSpaVer2
             PromoModel promo = new PromoModel();
             List<PromoModel> lstPromos = new List<PromoModel>();
 
-            string queryString = "SELECT ID, promoname, price, commission FROM dbspa.tblpromo WHERE isDeleted = 0";
+            queryString = "SELECT ID, promoname, price, commission FROM dbspa.tblpromo WHERE isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -81,8 +74,8 @@ namespace BodyBlizzSpaVer2
 
         private void savePromoRecord()
         {
-            string queryString = "INSERT INTO dbspa.tblpromo (promoname, price, commission, isDeleted) VALUES (?,?,?,?)";
-            List<string> parameters = new List<string>();
+            queryString = "INSERT INTO dbspa.tblpromo (promoname, price, commission, isDeleted) VALUES (?,?,?,?)";
+            parameters = new List<string>();
 
             parameters.Add(txtPromoName.Text);
             parameters.Add(String.Format("{0:0.00}", txtPromoPrice.Text));
@@ -96,8 +89,8 @@ namespace BodyBlizzSpaVer2
 
         private void updatePromoRecord()
         {
-            string queryString = "UPDATE dbspa.tblpromo SET promoname = ?, price = ?, commission = ? WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "UPDATE dbspa.tblpromo SET promoname = ?, price = ?, commission = ? WHERE ID = ?";
+            parameters = new List<string>();
             parameters.Add(txtPromoName.Text);
             parameters.Add(String.Format("{0:0.00}", txtPromoPrice.Text));
             parameters.Add(txtCommission.Text);

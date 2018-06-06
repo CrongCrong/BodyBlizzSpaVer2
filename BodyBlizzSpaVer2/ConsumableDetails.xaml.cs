@@ -1,19 +1,8 @@
 ﻿using BodyBlizzSpaVer2.Classes;
 using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -30,6 +19,9 @@ namespace BodyBlizzSpaVer2
         ConnectionDB conDB = new ConnectionDB();
         ConsumableWindow consumableWin;
         ConsumableModel consumableMod;
+        List<string> parameters;
+        string queryString = "";
+
         public ConsumableDetails(ConsumableWindow consumWin)
         {
             consumableWin = consumWin;
@@ -109,7 +101,7 @@ namespace BodyBlizzSpaVer2
             List<ConsumableModel> lstConsumables = new List<ConsumableModel>();
             ConsumableModel consumables = new ConsumableModel();
 
-            string queryString = "SELECT ID, name, description FROM dbspa.tblconsumables WHERE isDeleted = 0";
+            queryString = "SELECT ID, name, description FROM dbspa.tblconsumables WHERE isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -130,9 +122,9 @@ namespace BodyBlizzSpaVer2
         private void saveConsumable()
         {
 
-            string queryString = "INSERT INTO dbspa.tblconsumables (name, description, isDeleted) VALUES (?,?,0)";
+            queryString = "INSERT INTO dbspa.tblconsumables (name, description, isDeleted) VALUES (?,?,0)";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
 
             parameters.Add(txtName.Text);
             parameters.Add(txtDescription.Text);
@@ -146,9 +138,9 @@ namespace BodyBlizzSpaVer2
         private void updateConsumable()
         {
 
-            string queryString = "UPDATE dbspa.tblconsumables SET name = ?, description = ? WHERE ID = ?";
+            queryString = "UPDATE dbspa.tblconsumables SET name = ?, description = ? WHERE ID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(txtName.Text);
             parameters.Add(txtDescription.Text);
             parameters.Add(consumableMod.ID);

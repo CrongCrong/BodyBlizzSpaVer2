@@ -3,17 +3,8 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -31,6 +22,8 @@ namespace BodyBlizzSpaVer2
         PromoWindow promoWindow;
         PromoServicesModel promoServiceModel;
         string insertedPromoID;
+        string queryString = "";
+        List<string> parameters;
 
         public PromoServiceDetails(PromoWindow psw)
         {
@@ -63,11 +56,11 @@ namespace BodyBlizzSpaVer2
         {
             List<PromoServicesModel> lstPromoServ = new List<PromoServicesModel>();
             PromoServicesModel promoServ = new PromoServicesModel();
-            string queryString = "SELECT dbspa.tblpromoservices.ID, dbspa.tblpromo.promoname, dbspa.tblservicetype.serviceType, " +
+            queryString = "SELECT dbspa.tblpromoservices.ID, dbspa.tblpromo.promoname, dbspa.tblservicetype.serviceType, " +
                 "dbspa.tblservicetype.description FROM ((dbspa.tblpromoservices INNER JOIN dbspa.tblpromo ON dbspa.tblpromoservices.promoID = dbspa.tblpromo.ID) " +
                 "INNER JOIN dbspa.tblservicetype ON dbspa.tblpromoservices.serviceID = dbspa.tblservicetype.ID) " +
                 "WHERE dbspa.tblpromoservices.isDeleted = 0 AND dbspa.tblpromoservices.promoID = ?";
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(promoID);
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
@@ -91,7 +84,7 @@ namespace BodyBlizzSpaVer2
             List<PromoServicesModel> lstPromoServices = new List<PromoServicesModel>();
             PromoServicesModel promoservice = new PromoServicesModel();
 
-            string queryString = "SELECT dbspa.tblpromoservices.ID, dbspa.tblpromo.promoname, dbspa.tblservicetype.description, promoID FROM ((dbspa.tblpromoservices " +
+            queryString = "SELECT dbspa.tblpromoservices.ID, dbspa.tblpromo.promoname, dbspa.tblservicetype.description, promoID FROM ((dbspa.tblpromoservices " +
                 "INNER JOIN dbspa.tblpromo ON dbspa.tblpromoservices.promoID = dbspa.tblpromo.ID) INNER JOIN dbspa.tblservicetype " +
                 "ON dbspa.tblpromoservices.serviceID = dbspa.tblservicetype.ID) WHERE dbspa.tblpromoservices.isDeleted = 0";
 
@@ -118,12 +111,12 @@ namespace BodyBlizzSpaVer2
 
             List<PromoServicesModel> lstPromoServ = new List<PromoServicesModel>();
             PromoServicesModel promoServ = new PromoServicesModel();
-            string queryString = "SELECT dbspa.tblpromoservices.ID, dbspa.tblpromo.promoname, dbspa.tblservicetype.serviceType, " +
+            queryString = "SELECT dbspa.tblpromoservices.ID, dbspa.tblpromo.promoname, dbspa.tblservicetype.serviceType, " +
                 "dbspa.tblservicetype.description FROM((dbspa.tblpromoservices INNER JOIN dbspa.tblpromo ON dbspa.tblpromoservices.promoID = dbspa.tblpromo.ID) " +
                 "INNER JOIN dbspa.tblservicetype ON dbspa.tblpromoservices.serviceID = dbspa.tblservicetype.ID) " +
                 "WHERE dbspa.tblpromoservices.isDeleted = 0 AND dbspa.tblpromoservices.promoID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
 
             if(pm != null)
             {
@@ -152,7 +145,7 @@ namespace BodyBlizzSpaVer2
         private void fillPromoName()
         {
             PromoModel promo = new PromoModel();
-            string queryString = "SELECT dbspa.tblpromo.ID, promoname FROM dbspa.tblpromo WHERE isDeleted = 0";
+            queryString = "SELECT dbspa.tblpromo.ID, promoname FROM dbspa.tblpromo WHERE isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -171,7 +164,7 @@ namespace BodyBlizzSpaVer2
             try
             {
 
-                string queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE', description FROM dbspa.tblservicetype WHERE (isDeleted = 0)";
+                queryString = "SELECT ID, serviceType AS 'SERVICE TYPE', price AS 'PRICE', description FROM dbspa.tblservicetype WHERE (isDeleted = 0)";
 
                 MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -198,8 +191,8 @@ namespace BodyBlizzSpaVer2
 
         private void addServiceToPromo(string ID)
         {
-            string queryString = "INSERT INTO dbspa.tblpromoservices (promoID, serviceID, isDeleted) VALUES (?,?,?)";
-            List<string> parameters = new List<string>();
+            queryString = "INSERT INTO dbspa.tblpromoservices (promoID, serviceID, isDeleted) VALUES (?,?,?)";
+            parameters = new List<string>();
             parameters.Add(ID);
             parameters.Add(cmbServices.SelectedValue.ToString());
             parameters.Add("0");
@@ -230,9 +223,9 @@ namespace BodyBlizzSpaVer2
 
         private void deleteRecord()
         {
-            string queryString = "UPDATE dbspa.tblpromoservices SET isDeleted = 1 WHERE ID = ?";
+            queryString = "UPDATE dbspa.tblpromoservices SET isDeleted = 1 WHERE ID = ?";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(promoServiceModel.ID);
 
             conDB.AddRecordToDatabase(queryString, parameters);

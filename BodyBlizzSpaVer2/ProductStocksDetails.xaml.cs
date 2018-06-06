@@ -3,17 +3,8 @@ using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -31,6 +22,8 @@ namespace BodyBlizzSpaVer2
         ProductsBreakdown productsBreakdown;
         ProductsWindow productsWindow;
         ProductStocksModel prodStocksModel;
+        string queryString = "";
+        List<string> parameters;
 
         public ProductStocksDetails(ProductsWindow pw)
         {
@@ -63,7 +56,7 @@ namespace BodyBlizzSpaVer2
             List<ProductBoughtModel> lstProductsBought = new List<ProductBoughtModel>();
             ProductBoughtModel pbm = new ProductBoughtModel();
 
-            string queryString = "SELECT ID, productID, sum(totalqty) as 'TOTAL' FROM dbspa.tblproductbought WHERE isDeleted = 0 group by productID";
+            queryString = "SELECT ID, productID, sum(totalqty) as 'TOTAL' FROM dbspa.tblproductbought WHERE isDeleted = 0 group by productID";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -84,7 +77,7 @@ namespace BodyBlizzSpaVer2
         private void fillComboProducts()
         {
 
-            string queryString = "SELECT ID, productName, description, price, stocks FROM dbspa.tblproducts WHERE isDeleted = 0;";
+            queryString = "SELECT ID, productName, description, price, stocks FROM dbspa.tblproducts WHERE isDeleted = 0;";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -116,7 +109,7 @@ namespace BodyBlizzSpaVer2
             List<ProductStocksModel> lstProductStocks = new List<ProductStocksModel>();
             ProductStocksModel ps = new ProductStocksModel();
 
-            string queryString = "SELECT dbspa.tblproductstocks.ID, productID, date, SUM(dbspa.tblproductstocks.stocks) as st, dbspa.tblproducts.productName " +
+            queryString = "SELECT dbspa.tblproductstocks.ID, productID, date, SUM(dbspa.tblproductstocks.stocks) as st, dbspa.tblproducts.productName " +
                 "FROM(dbspa.tblproductstocks INNER JOIN dbspa.tblproducts ON dbspa.tblproductstocks.productID = dbspa.tblproducts.ID) " +
                 "WHERE dbspa.tblproductstocks.isDeleted = 0 GROUP BY productID";
 
@@ -154,7 +147,7 @@ namespace BodyBlizzSpaVer2
             List<ProductStocksModel> lstProductsIn = new List<ProductStocksModel>();
             ProductStocksModel pIn = new ProductStocksModel();
 
-            string queryString = "SELECT dbspa.tblproductstocks.ID, dbspa.tblproducts.productName, date, dbspa.tblproducts.ID as 'PRODUCT ID', dbspa.tblproductstocks.stocks " +
+            queryString = "SELECT dbspa.tblproductstocks.ID, dbspa.tblproducts.productName, date, dbspa.tblproducts.ID as 'PRODUCT ID', dbspa.tblproductstocks.stocks " +
                 "FROM(dbspa.tblproductstocks INNER JOIN dbspa.tblproducts ON dbspa.tblproductstocks.productID = dbspa.tblproducts.ID)";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
@@ -198,9 +191,9 @@ namespace BodyBlizzSpaVer2
         private void saveStocksProduct()
         {
             ProductsModel p = cmbProducts.SelectedItem as ProductsModel;
-            string queryString = "INSERT INTO dbspa.tblproductstocks (productID, date, stocks, isDeleted) VALUES (?,?,?,?)";
+            queryString = "INSERT INTO dbspa.tblproductstocks (productID, date, stocks, isDeleted) VALUES (?,?,?,?)";
 
-            List<string> parameters = new List<string>();
+            parameters = new List<string>();
             parameters.Add(p.ID);
             DateTime date = DateTime.Parse(deliveryDate.Text);
             parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
@@ -215,8 +208,8 @@ namespace BodyBlizzSpaVer2
         private void updateStocksRecord()
         {
             ProductsModel p = cmbProducts.SelectedItem as ProductsModel;
-            string queryString = "UPDATE dbspa.tblproductstocks SET productID = ?, date = ?, stocks = ? WHERE ID = ?";
-            List<string> parameters = new List<string>();
+            queryString = "UPDATE dbspa.tblproductstocks SET productID = ?, date = ?, stocks = ? WHERE ID = ?";
+            parameters = new List<string>();
             parameters.Add(p.ID);
             DateTime date = DateTime.Parse(deliveryDate.Text);
             parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);

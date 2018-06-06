@@ -1,19 +1,8 @@
 ﻿using BodyBlizzSpaVer2.Classes;
 using MahApps.Metro.Controls;
 using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BodyBlizzSpaVer2
 {
@@ -28,6 +17,8 @@ namespace BodyBlizzSpaVer2
         }
 
         ConnectionDB conDB = new ConnectionDB();
+        string queryString = "";
+        List<string> parameters;
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -41,7 +32,7 @@ namespace BodyBlizzSpaVer2
             List<ConsumableModel> lstConsumables = new List<ConsumableModel>();
             ConsumableModel consumables = new ConsumableModel();
 
-            string queryString = "SELECT ID, name, description FROM dbspa.tblconsumables WHERE isDeleted = 0";
+            queryString = "SELECT ID, name, description FROM dbspa.tblconsumables WHERE isDeleted = 0";
 
             MySqlDataReader reader = conDB.getSelectConnection(queryString, null);
 
@@ -64,7 +55,7 @@ namespace BodyBlizzSpaVer2
             List<ConsumableModel> lstConsumablesStocks = new List<ConsumableModel>();
             ConsumableModel consumeStock = new ConsumableModel();
 
-            string queryString = "Select dbspa.tblconsumableleft.consumableID, dbspa.tblconsumables.description, COUNT(*) as cnt FROM " +
+            queryString = "Select dbspa.tblconsumableleft.consumableID, dbspa.tblconsumables.description, COUNT(*) as cnt FROM " +
                 "(dbspa.tblconsumableleft INNER JOIN dbspa.tblconsumables ON dbspa.tblconsumableleft.consumableID = dbspa.tblconsumables.ID) " +
                 "WHERE dbspa.tblconsumableleft.isDeleted = 0 GROUP BY dbspa.tblconsumableleft.consumableID";
 
@@ -77,9 +68,8 @@ namespace BodyBlizzSpaVer2
                 consumeStock.Count = reader["cnt"].ToString();
                 lstConsumablesStocks.Add(consumeStock);
                 consumeStock = new ConsumableModel();
-
             }
-
+            conDB.closeConnection();
             return lstConsumablesStocks;
         }
 
