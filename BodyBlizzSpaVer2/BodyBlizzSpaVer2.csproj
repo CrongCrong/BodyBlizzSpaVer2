@@ -145,6 +145,7 @@
     <Compile Include="Classes\PromoServiceMadeModel.cs" />
     <Compile Include="Classes\PromoServicesModel.cs" />
     <Compile Include="Classes\SerialNumberModel.cs" />
+    <Compile Include="Classes\ServiceReportModel.cs" />
     <Compile Include="Classes\TherapistAttendance.cs" />
     <Compile Include="CommissionDetails.xaml.cs">
       <DependentUpon>CommissionDetails.xaml</DependentUpon>
@@ -479,6 +480,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Reports\ServiceReport.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\analytics.png" />
     <Resource Include="Images\drop.png" />
     <Resource Include="Images\test.png" />
@@ -506,6 +510,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BodyBlizzSpaVer2.Classes.ServiceReportModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

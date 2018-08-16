@@ -206,7 +206,7 @@ namespace BodyBlizzSpaVer2
                     {
                         queryString = "INSERT INTO dbspa.tblattendance (attendanceDate, timeIn, therapistID, isDeleted, minutesLate, isLate, deduction, " +
                             "ifhalfday, lateDeduction, undertimeDeduction, ifUndertime) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-
+                        parameters = new List<string>();
                         DateTime date = DateTime.Parse(dteAttendance.Text);
                         parameters.Add(date.Year + "/" + date.Month + "/" + date.Day);
 

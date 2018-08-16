@@ -671,5 +671,49 @@ namespace BodyBlizzSpaVer2
             }
 
         }
+
+        private void btnPrintServiceReport_Click(object sender, RoutedEventArgs e)
+        {
+            ReportForm report = new ReportForm(getClientsForTheDay());
+            report.ShowDialog();
+        }
+
+        private List<ServiceReportModel> getClientsForTheDay()
+        {
+            List<ServiceReportModel> lstServiceReports = new List<ServiceReportModel>();
+            ServiceReportModel serviceReport = new ServiceReportModel();
+
+            queryString = "SELECT concat(tblclient.firstName,' ', tblclient.lastName) as clientname, address, " +
+                "serviceType, tblservicemade.timeIn, tblservicemade.timeOut, price, " +
+                "concat(tbltherapist.firstName, ' ', tbltherapist.lastName) as therapistname " +
+                "FROM(((dbspa.tblclient INNER JOIN dbspa.tblservicemade ON tblclient.ID = tblservicemade.clientID) " +
+                "INNER JOIN dbspa.tblservicetype ON dbspa.tblservicetype.ID = dbspa.tblservicemade.serviceTypeID) " +
+                "INNER JOIN dbspa.tbltherapist ON dbspa.tblservicemade.therapistID = tbltherapist.ID) " +
+                "WHERE tblclient.isDeleted = 0 AND tblservicemade.isDeleted = 0 AND tblservicetype.isDeleted = 0 AND" +
+                " tbltherapist.isDeleted = 0 AND tblservicemade.dateServiced = ?";
+
+            parameters = new List<string>();
+            DateTime sdate = DateTime.Parse(dateFrom.Text);
+            parameters.Add(sdate.Year + "/" + sdate.Month + "/" + sdate.Day);
+
+            MySqlDataReader reader = conDB.getSelectConnection(queryString, parameters);
+
+            while (reader.Read())
+            {
+                serviceReport.ClientName = reader["clientname"].ToString();
+                serviceReport.Address = reader["address"].ToString();
+                serviceReport.ServiceType = reader["serviceType"].ToString();
+                serviceReport.TimeIn = reader["timeIn"].ToString();
+                serviceReport.TimeOut = reader["timeOut"].ToString();
+                serviceReport.Price = reader["price"].ToString();
+                serviceReport.TherapistName = reader["therapistname"].ToString();
+                serviceReport.Day = sdate.ToShortDateString();
+                lstServiceReports.Add(serviceReport);
+                serviceReport = new ServiceReportModel();
+            }
+            conDB.closeConnection();
+
+            return lstServiceReports;
+        }
     }
 }

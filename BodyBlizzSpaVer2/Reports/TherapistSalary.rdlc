@@ -150,7 +150,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>1.72208in</Top>
+        <Top>1.92919in</Top>
         <Left>0.12846in</Left>
         <Height>0.25in</Height>
         <Width>0.48958in</Width>
@@ -264,7 +264,7 @@
         </Style>
       </Textbox>
       <Line Name="Line1">
-        <Top>1.68041in</Top>
+        <Top>1.90142in</Top>
         <Left>3.31771in</Left>
         <Height>0in</Height>
         <Width>2.34375in</Width>
@@ -295,7 +295,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>total</rd:DefaultName>
-        <Top>1.72208in</Top>
+        <Top>1.92919in</Top>
         <Left>4.11125in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -327,7 +327,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>2.56957in</Top>
+        <Top>2.45212in</Top>
         <Left>0.68749in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -343,23 +343,11 @@
         </Style>
       </Textbox>
       <Line Name="Line2">
-        <Top>2.54179in</Top>
+        <Top>2.43823in</Top>
         <Left>0.12846in</Left>
         <Height>0in</Height>
         <Width>2.08333in</Width>
         <ZIndex>11</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-        </Style>
-      </Line>
-      <Line Name="Line3">
-        <Top>2.07983in</Top>
-        <Left>0.12846in</Left>
-        <Height>0in</Height>
-        <Width>5.533in</Width>
-        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -387,7 +375,7 @@
         <Left>2.42375in</Left>
         <Height>0.25in</Height>
         <Width>0.60217in</Width>
-        <ZIndex>13</ZIndex>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -419,6 +407,38 @@
         <Left>2.42375in</Left>
         <Height>0.25in</Height>
         <Width>1.29167in</Width>
+        <ZIndex>13</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox10">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Basic Pay:</Value>
+                <Style>
+                  <FontFamily>Rockwell</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox6</rd:DefaultName>
+        <Top>1.19444in</Top>
+        <Left>0.16333in</Left>
+        <Height>0.25in</Height>
+        <Width>1.34375in</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -430,8 +450,136 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="Textbox11">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Days:</Value>
+                <Style>
+                  <FontFamily>Rockwell</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox6</rd:DefaultName>
+        <Top>1.19444in</Top>
+        <Left>2.42375in</Left>
+        <Height>0.25in</Height>
+        <Width>0.60217in</Width>
+        <ZIndex>15</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox12">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Daily wage:</Value>
+                <Style>
+                  <FontFamily>Rockwell</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>1.19444in</Top>
+        <Left>4.11125in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>16</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="totaldailywage">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!totaldailywage.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>totaldailywage</rd:DefaultName>
+        <Top>1.47222in</Top>
+        <Left>4.11125in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>17</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="dayswork">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!dayswork.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>dayswork</rd:DefaultName>
+        <Top>1.47222in</Top>
+        <Left>2.42375in</Left>
+        <Height>0.25in</Height>
+        <Width>1.29167in</Width>
+        <ZIndex>18</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>3.133in</Height>
+    <Height>2.74923in</Height>
     <Style />
   </Body>
   <Width>5.76042in</Width>
@@ -469,6 +617,16 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
       <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="dayswork">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="totaldailywage">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
   <EmbeddedImages>

@@ -508,16 +508,16 @@ namespace BodyBlizzSpaVer2
                 DateTime dteFrm = DateTime.Parse(dateFrom.Text);
 
                 int days = ((dteTo - dteFrm).Days) + 1;
-                //double wage = Convert.ToDouble(therapist.Wage);
+                double wage = Convert.ToDouble(therapist.Wage);
                 searchTherapist();
                 getAttendanceList();
 
                 lstTherapist = getAttendanceForTherapist(Convert.ToInt32(therapist.ID1));
-                //double total = lstTherapist.Count * wage;
+                double total = lstTherapist.Count * wage;
                 int deduct = getTotalDeduction(lstTherapist);
-                //lblTotalWage.Content = "TOTAL WAGE: " + (total - deduct).ToString();
+                lblTotalWage.Content = "TOTAL WAGE: " + (total - deduct).ToString();
                 therapist.NumberOfDays = days.ToString();
-                //therapist.TotalWage = total.ToString();
+                therapist.TotalWage = total.ToString();
                 therapist.Penalties = getPenalties(lstTherapist);
                 therapist.Deduction = deduct.ToString();
                 chkCashAdvance.IsChecked = false;

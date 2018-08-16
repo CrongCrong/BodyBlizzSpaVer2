@@ -16,7 +16,7 @@
         <DatePicker x:Name="dateFrom" HorizontalAlignment="Left" Margin="181,30,0,0" VerticalAlignment="Top" Width="230" Height="29" FontSize="16" FontFamily="Rockwell"/>
         <DataGrid x:Name="dgvClient" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" 
                   Height="278" Width="887" AutoGenerateColumns="False"  Background="Transparent" >
-            
+
             <DataGrid.Columns>
                 <!-- <DataGridTextColumn Header="ID" Binding="{Binding ID1}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
@@ -32,7 +32,7 @@
                 <DataGridTextColumn Header="Phone Number" Binding="{Binding PhoneNumber}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="SERVICE MODE" Binding="{Binding ServiceMode}" CanUserResize="False" FontFamily="Arial Rounded MT" IsReadOnly="True">
 
                 </DataGridTextColumn>
@@ -44,7 +44,7 @@
         </DataGrid>
         <Button x:Name="btnAdd" Content="  Add&#xa;Client" HorizontalAlignment="Left" Margin="10,445,0,0" 
                 VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="ADD RECORD" Click="btnAdd_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838">
-            
+
         </Button>
 
         <Button x:Name="btnEdit" Content="  Edit&#xa;Client" HorizontalAlignment="Left" Margin="100,445,0,0" 
@@ -71,13 +71,13 @@
 
         </Button>
 
-        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="460,445,0,0" 
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="550,445,0,0" 
                 VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" 
                 ToolTip="DELETE RECORD" Click="btnDelete_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838">
 
         </Button>
 
-        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="550,445,0,0" 
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="640,445,0,0" 
                 VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" 
                 ToolTip="CLOSE WINDOW" Click="btnClose_Click" BorderThickness="1" Background="#b7b739" BorderBrush="#383838">
 
@@ -89,5 +89,8 @@
         <CheckBox x:Name="chkDate" Content="Date:" HorizontalAlignment="Left" Margin="58,32,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Right" Width="118" Height="27" FontFamily="Rockwell" FontWeight="Bold" Background="#FF9E9BE4"/>
         <CheckBox x:Name="chkLastname" Content="Last name:" HorizontalAlignment="Left" Margin="58,64,0,0" VerticalAlignment="Top" FontSize="16" Height="30" HorizontalContentAlignment="Right" Width="118" FontFamily="Rockwell" FontWeight="Bold" Background="#FF9E9BE4"/>
         <CheckBox x:Name="chkFirstname" Content="First name:" HorizontalAlignment="Left" Margin="58,99,0,0" VerticalAlignment="Top" FontSize="16" Height="29" Width="118" HorizontalContentAlignment="Right" FontFamily="Rockwell" FontWeight="Bold" Background="#FF9E9BE4"/>
+        <Button x:Name="btnPrintServiceReport" Content="   Print&#xA; Service&#xA; Report" HorizontalAlignment="Left" Margin="460,445,0,0" 
+            VerticalAlignment="Top" Width="85" Height="85" Style="{DynamicResource MetroCircleButtonStyle}" 
+            ToolTip="PRINT SERVICE REPORT" BorderThickness="1" Background="#b7b739" BorderBrush="#383838" FontSize="15" Click="btnPrintServiceReport_Click"/>
     </Grid>
 </Controls:MetroWindow>

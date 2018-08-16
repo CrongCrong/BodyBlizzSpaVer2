@@ -55,7 +55,7 @@
         </DataGrid>
 
         <Label x:Name="lblRecordsFound" Content="Records" HorizontalAlignment="Left" Margin="331,267,0,0" VerticalAlignment="Top" FontSize="13"/>
-        <Label x:Name="lblTotal" Content="Total Commission" HorizontalAlignment="Left" Margin="763,267,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTotal" Content="Total Commission" HorizontalAlignment="Left" Margin="753,267,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label4" Content="Attendance:" HorizontalAlignment="Left" Margin="331,293,0,0" VerticalAlignment="Top" FontSize="15"/>
         <DataGrid x:Name="dgvAttendanceList" HorizontalAlignment="Left" Margin="315,326,0,0" VerticalAlignment="Top" Height="160" Width="637" AutoGenerateColumns="False">
             <DataGrid.Columns>

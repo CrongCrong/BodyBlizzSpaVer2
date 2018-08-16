@@ -25,6 +25,7 @@ namespace BodyBlizzSpaVer2
         List<ExpensesModel> lstExpenses;
         List<CashAdvanceModel> lstCashAdvance;
         List<LoanModel> lstLoans;
+        List<ServiceReportModel> lstServiceReport;
 
         string dateReport;
 
@@ -52,6 +53,12 @@ namespace BodyBlizzSpaVer2
             InitializeComponent();
         }
 
+        public ReportForm(List<ServiceReportModel> lstSRF)
+        {
+            lstServiceReport = lstSRF;
+            InitializeComponent();
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (clientModel != null)
@@ -75,6 +82,12 @@ namespace BodyBlizzSpaVer2
             {
                 printExpenses();
             }
+
+            if(lstServiceReport != null)
+            {
+                printServiceForm();
+            }
+
         }
 
         private void printClientForm()
@@ -310,20 +323,20 @@ namespace BodyBlizzSpaVer2
             param.Values.Add(therapist.Description);
             paramList.Add(param);
 
-            //param = new ReportParameter("dailyWage");
-            //param.Values.Add(therapist.Wage);
-            //paramList.Add(param);
+            param = new ReportParameter("totaldailywage");
+            param.Values.Add(therapist.TotalWage);
+            paramList.Add(param);
 
-            //param = new ReportParameter("totalDays");
-            //param.Values.Add(lstTherapist.Count.ToString());
-            //paramList.Add(param);
+            param = new ReportParameter("dayswork");
+            param.Values.Add(lstTherapist.Count.ToString());
+            paramList.Add(param);
 
             //param = new ReportParameter("totalWage");
             //param.Values.Add(therapist.TotalWage);
             //paramList.Add(param);
 
             param = new ReportParameter("total");
-            param.Values.Add(therapist.TotalCommission);
+            param.Values.Add((Convert.ToDouble(therapist.TotalCommission) + Convert.ToDouble(therapist.TotalWage)).ToString());
             paramList.Add(param);
 
             //param = new ReportParameter("cashAdvance");
@@ -453,5 +466,29 @@ namespace BodyBlizzSpaVer2
             reportViewer.RefreshReport();
         }
 
+        private void printServiceForm()
+        {
+            ReportDataSource rds = new ReportDataSource();
+
+            rds = new ReportDataSource("DataSet1", lstServiceReport);
+
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            LocalReport localReport = reportViewer.LocalReport;
+
+            localReport.ReportPath = "Reports/ServiceReport.rdlc";
+            reportViewer.RefreshReport();
+
+            System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
+            ps.Landscape = true;
+
+            ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
+            ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
+            reportViewer.SetPageSettings(ps);
+
+            reportViewer.LocalReport.DataSources.Add(rds);
+
+            // Refresh the report  
+            reportViewer.RefreshReport();
+        }
     }
 }
