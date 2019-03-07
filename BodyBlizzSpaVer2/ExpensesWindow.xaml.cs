@@ -38,8 +38,8 @@ namespace BodyBlizzSpaVer2
             while(reader.Read())
             {
                 expensesModel.ID = reader["ID"].ToString();
-                DateTime dte = DateTime.Parse(reader["date"].ToString());
-                expensesModel.Date = dte.ToShortDateString();
+                
+                expensesModel.Date = (!string.IsNullOrEmpty(reader["date"].ToString())) ? reader["date"].ToString() : "";
                 expensesModel.Description = reader["description"].ToString();
                 expensesModel.CashOut = reader["cashout"].ToString();
                 lstExpensesModel.Add(expensesModel);

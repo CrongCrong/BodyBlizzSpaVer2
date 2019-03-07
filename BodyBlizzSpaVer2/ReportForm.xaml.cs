@@ -437,15 +437,15 @@ namespace BodyBlizzSpaVer2
 
 
             param = new ReportParameter("sales");
-            param.Values.Add(sales.ToString());
+            param.Values.Add("Php " + sales.ToString("N0"));
             paramList.Add(param);
 
             param = new ReportParameter("totalSales");
-            param.Values.Add(totalSales.ToString());
+            param.Values.Add("Php " + totalSales.ToString("N0"));
             paramList.Add(param);
 
             param = new ReportParameter("totalCommission");
-            param.Values.Add(totalCommission.ToString());
+            param.Values.Add("Php " + totalCommission.ToString("N0"));
             paramList.Add(param);
 
             param = new ReportParameter("totalExpenses");

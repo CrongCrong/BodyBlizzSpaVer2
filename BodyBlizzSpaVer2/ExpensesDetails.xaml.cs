@@ -87,8 +87,7 @@ namespace BodyBlizzSpaVer2
             while (reader.Read())
             {
                 expensesModel.ID = reader["ID"].ToString();
-                DateTime dte = DateTime.Parse(reader["date"].ToString());
-                expensesModel.Date = dte.ToShortDateString();
+                expensesModel.Date = (!string.IsNullOrEmpty(reader["date"].ToString())) ? reader["date"].ToString() : "";
                 expensesModel.Description = reader["description"].ToString();
                 expensesModel.CashOut = reader["cashout"].ToString();
                 lstExpensesModel.Add(expensesModel);
@@ -119,8 +118,9 @@ namespace BodyBlizzSpaVer2
         {
             queryString = "UPDATE dbspa.tblexpenses SET date = ?, description = ?, cashout = ? WHERE ID = ?";
             parameters = new List<string>();
+            DateTime date = DateTime.Parse(dateExpenses.Text);
+            parameters.Add(date.Year + "-" + date.Month + "-" + date.Day);
 
-            parameters.Add(dateExpenses.Text);
             parameters.Add(txtDescription.Text);
             parameters.Add(txtCashout.Text);
             parameters.Add(expenseModel.ID);

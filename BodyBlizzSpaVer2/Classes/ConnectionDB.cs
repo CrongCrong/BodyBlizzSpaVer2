@@ -11,7 +11,8 @@ namespace BodyBlizzSpaVer2.Classes
 {
     public class ConnectionDB
     {
-        string myConnection = "Server=" + Properties.Settings.Default.connectionDB + "; port=3306;username=root;password=admin; convert zero datetime=True";
+        //string myConnection = "Server=" + Properties.Settings.Default.connectionDB + ";port=3306;username=root;password=admin; convert zero datetime=True Initial Catalog='dbspa'";
+        string myConnection = "Server=localhost;port=3306;username=root;password=admin; convert zero datetime=True;";
         public MySqlConnection myConn = new MySqlConnection();
         MySqlDataReader reader;
 

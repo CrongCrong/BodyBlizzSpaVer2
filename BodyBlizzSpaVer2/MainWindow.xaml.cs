@@ -54,6 +54,7 @@ namespace BodyBlizzSpaVer2
             catch (Exception ex)
             {
                 MessageBox.Show("LOG IN FAILED! - Incorret Username/Password");
+                conDB.writeLogFile("LOG-IN " + ex.StackTrace);
             }
 
         }
@@ -67,7 +68,7 @@ namespace BodyBlizzSpaVer2
         {
             User user = new User();
 
-            queryString = "SELECT ID, firstName, LastName, userType, username, password FROM dbspa.tblUser WHERE (username = ?) AND (password = ?)";
+            queryString = "SELECT ID, firstName, lastName, userType, username, password FROM dbspa.tblUser WHERE (username = ?) AND (password = ?)";
             parameters = new List<string>();
 
             parameters.Add(username);
@@ -80,7 +81,7 @@ namespace BodyBlizzSpaVer2
             {
                 user.Id = Convert.ToInt32(reader["ID"].ToString());
                 user.FirstName = reader["firstName"].ToString();
-                user.LastName = reader["LastName"].ToString();
+                user.LastName = reader["lastName"].ToString();
                 user.Type = Convert.ToInt32(reader["userType"].ToString());
                 user.Username = reader["username"].ToString();
                 user.Password = reader["password"].ToString();

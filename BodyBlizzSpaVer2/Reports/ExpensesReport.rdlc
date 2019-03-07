@@ -165,7 +165,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>3.50807in</Top>
+        <Top>2.88307in</Top>
         <Left>0.42789in</Left>
         <Height>0.25in</Height>
         <Width>1.40807in</Width>
@@ -196,74 +196,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>totalSales</rd:DefaultName>
-        <Top>3.50807in</Top>
+        <Top>2.88307in</Top>
         <Left>1.84986in</Left>
         <Height>0.25in</Height>
         <Width>1.32376in</Width>
         <ZIndex>6</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox8">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Total Expenses:</Value>
-                <Style>
-                  <FontFamily>rockwell</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>2.50807in</Top>
-        <Left>0.4279in</Left>
-        <Height>0.25in</Height>
-        <Width>1.40807in</Width>
-        <ZIndex>7</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="totalExpenses">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!totalExpenses.Value</Value>
-                <Style>
-                  <FontFamily>rockwell</FontFamily>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>totalExpenses</rd:DefaultName>
-        <Top>2.50807in</Top>
-        <Left>1.84986in</Left>
-        <Height>0.25in</Height>
-        <Width>1.32376in</Width>
-        <ZIndex>8</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -291,11 +228,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>3.00807in</Top>
-        <Left>0.4279in</Left>
+        <Top>2.56362in</Top>
+        <Left>0.42791in</Left>
         <Height>0.25in</Height>
         <Width>1.40807in</Width>
-        <ZIndex>9</ZIndex>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -321,11 +258,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>totalCommission</rd:DefaultName>
-        <Top>3.00807in</Top>
-        <Left>1.84985in</Left>
+        <Top>2.56362in</Top>
+        <Left>1.84986in</Left>
         <Height>0.25in</Height>
         <Width>1.32376in</Width>
-        <ZIndex>10</ZIndex>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -359,7 +296,7 @@
         <Left>0.4279in</Left>
         <Height>0.25in</Height>
         <Width>1.40807in</Width>
-        <ZIndex>11</ZIndex>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -390,71 +327,7 @@
         <Left>1.84986in</Left>
         <Height>0.25in</Height>
         <Width>1.32375in</Width>
-        <ZIndex>12</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="totalCA">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!totalCA.Value</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>totalCA</rd:DefaultName>
-        <Top>2.75807in</Top>
-        <Left>1.84985in</Left>
-        <Height>0.25in</Height>
-        <Width>1.32376in</Width>
-        <ZIndex>13</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox7">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Total Cash Advance:</Value>
-                <Style>
-                  <FontFamily>Rockwell</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>2.75807in</Top>
-        <Left>0.4279in</Left>
-        <Height>0.25in</Height>
-        <Width>1.40806in</Width>
-        <ZIndex>14</ZIndex>
+        <ZIndex>10</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -482,7 +355,7 @@
         <Left>0.42791in</Left>
         <Height>0.17421in</Height>
         <Width>5.74319in</Width>
-        <ZIndex>15</ZIndex>
+        <ZIndex>11</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -501,7 +374,7 @@
         <Left>1.65493in</Left>
         <Height>1.00255in</Height>
         <Width>3.55889in</Width>
-        <ZIndex>16</ZIndex>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -533,7 +406,7 @@
         <Left>1.65493in</Left>
         <Height>0.27522in</Height>
         <Width>3.55889in</Width>
-        <ZIndex>17</ZIndex>
+        <ZIndex>13</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -564,7 +437,7 @@
         <Left>2.41466in</Left>
         <Height>0.32038in</Height>
         <Width>2.01351in</Width>
-        <ZIndex>18</ZIndex>
+        <ZIndex>14</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -598,7 +471,7 @@
         <Left>1.52006in</Left>
         <Height>0.25in</Height>
         <Width>0.50028in</Width>
-        <ZIndex>19</ZIndex>
+        <ZIndex>15</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -629,7 +502,7 @@
         <Left>2.03422in</Left>
         <Height>0.25in</Height>
         <Width>3.1796in</Width>
-        <ZIndex>20</ZIndex>
+        <ZIndex>16</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -657,11 +530,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>7.49334in</Top>
-        <Left>0.61226in</Left>
+        <Top>6.86834in</Top>
+        <Left>0.61228in</Left>
         <Height>0.25in</Height>
         <Width>1.40807in</Width>
-        <ZIndex>21</ZIndex>
+        <ZIndex>17</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -688,74 +561,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>totalSales</rd:DefaultName>
-        <Top>7.49334in</Top>
-        <Left>2.03421in</Left>
-        <Height>0.25in</Height>
-        <Width>1.32376in</Width>
-        <ZIndex>22</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox14">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Total Expenses:</Value>
-                <Style>
-                  <FontFamily>rockwell</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>6.49334in</Top>
-        <Left>0.61227in</Left>
-        <Height>0.25in</Height>
-        <Width>1.40807in</Width>
-        <ZIndex>23</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="totalExpenses2">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!totalExpenses.Value</Value>
-                <Style>
-                  <FontFamily>rockwell</FontFamily>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>totalExpenses</rd:DefaultName>
-        <Top>6.49334in</Top>
+        <Top>6.86834in</Top>
         <Left>2.03423in</Left>
         <Height>0.25in</Height>
         <Width>1.32376in</Width>
-        <ZIndex>24</ZIndex>
+        <ZIndex>18</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -783,11 +593,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>6.99334in</Top>
-        <Left>0.61227in</Left>
+        <Top>6.54889in</Top>
+        <Left>0.61228in</Left>
         <Height>0.25in</Height>
         <Width>1.40807in</Width>
-        <ZIndex>25</ZIndex>
+        <ZIndex>19</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -813,11 +623,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>totalCommission</rd:DefaultName>
-        <Top>6.99334in</Top>
-        <Left>2.03422in</Left>
+        <Top>6.54889in</Top>
+        <Left>2.03423in</Left>
         <Height>0.25in</Height>
         <Width>1.32376in</Width>
-        <ZIndex>26</ZIndex>
+        <ZIndex>20</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -851,7 +661,7 @@
         <Left>0.61227in</Left>
         <Height>0.25in</Height>
         <Width>1.40807in</Width>
-        <ZIndex>27</ZIndex>
+        <ZIndex>21</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -882,193 +692,7 @@
         <Left>2.03423in</Left>
         <Height>0.25in</Height>
         <Width>1.32375in</Width>
-        <ZIndex>28</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="totalCA2">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!totalCA.Value</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>totalCA</rd:DefaultName>
-        <Top>6.74334in</Top>
-        <Left>2.03422in</Left>
-        <Height>0.25in</Height>
-        <Width>1.32376in</Width>
-        <ZIndex>29</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox17">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Total Cash Advance:</Value>
-                <Style>
-                  <FontFamily>Rockwell</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>6.74334in</Top>
-        <Left>0.61227in</Left>
-        <Height>0.25in</Height>
-        <Width>1.40806in</Width>
-        <ZIndex>30</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox18">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Total Loans:</Value>
-                <Style>
-                  <FontFamily>rockwell</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox18</rd:DefaultName>
-        <Top>3.25807in</Top>
-        <Left>0.83596in</Left>
-        <Height>0.25in</Height>
-        <Width>1in</Width>
-        <ZIndex>31</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="totalLoans">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!totalLoans.Value</Value>
-                <Style>
-                  <FontFamily>rockwell</FontFamily>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>totalLoans</rd:DefaultName>
-        <Top>3.25807in</Top>
-        <Left>1.84986in</Left>
-        <Height>0.25in</Height>
-        <Width>1in</Width>
-        <ZIndex>32</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox19">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Total Loans:</Value>
-                <Style>
-                  <FontFamily>rockwell</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox18</rd:DefaultName>
-        <Top>7.24334in</Top>
-        <Left>1.02034in</Left>
-        <Height>0.25in</Height>
-        <Width>1in</Width>
-        <ZIndex>33</ZIndex>
-        <Style>
-          <Border />
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="totalLoans2">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!totalLoans.Value</Value>
-                <Style>
-                  <FontFamily>rockwell</FontFamily>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>totalLoans</rd:DefaultName>
-        <Top>7.24334in</Top>
-        <Left>2.03423in</Left>
-        <Height>0.25in</Height>
-        <Width>1in</Width>
-        <ZIndex>34</ZIndex>
+        <ZIndex>22</ZIndex>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
